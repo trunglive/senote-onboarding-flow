@@ -20,7 +20,10 @@ module.exports = {
         DEFAULT: '#40474f',
         dark: '#212528',
       },
-      white: colors.white,
+      white: {
+        light: '#ebebeb',
+        DEFAULT: colors.white,
+      },
     },
     extend: {},
   },

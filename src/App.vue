@@ -1,14 +1,14 @@
 <template>
-  <Step msg="Welcome to Your Vue.js App"/>
+  <AddEmail />
 </template>
 
 <script>
-import Step from './components/Step.vue'
+import AddEmail from "@/components/Step1-AddEmail";
 
 export default {
   name: 'App',
   components: {
-    Step
+    AddEmail,
   }
 }
 </script>
