@@ -1,15 +1,18 @@
 <template>
   <AddEmail />
   <AddPassword />
+  <CustomizeFirstProject />
 </template>
 
 <script>
 import AddEmail from "@/components/Step1-AddEmail";
 import AddPassword from "@/components/Step2-AddPassword";
+import CustomizeFirstProject from "@/components/Step3-CustomizeFirstProject";
 
 export default {
   name: 'App',
   components: {
+    CustomizeFirstProject,
     AddPassword,
     AddEmail,
   }

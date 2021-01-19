@@ -22,6 +22,7 @@
       </div>
   </div>
 </template>
+
 <script>
 import { ref } from 'vue';
 import Spinner from "@/components/Spinner";
