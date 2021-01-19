@@ -1,13 +1,16 @@
 <template>
   <AddEmail />
+  <AddPassword />
 </template>
 
 <script>
 import AddEmail from "@/components/Step1-AddEmail";
+import AddPassword from "@/components/Step2-AddPassword";
 
 export default {
   name: 'App',
   components: {
+    AddPassword,
     AddEmail,
   }
 }

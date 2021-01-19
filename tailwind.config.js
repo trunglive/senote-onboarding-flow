@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     colors: {
       ocean: {
+        blur: '#cbdbdb',
         // light: '',
         DEFAULT: '#059fa3',
         dark: '#1d5f75',
