@@ -12,7 +12,7 @@
           <span class="font-bold"> 8 characters long</span>
         </div>
         <div class="flex flex-col mt-4">
-          <div :class="{'cursor-not-allowed': showSpinner || !passwordInput }">
+          <div :class="{ 'cursor-not-allowed': showSpinner || !passwordInput }">
             <a @click="handleClickContinue" href="#" :class="showSpinner || !passwordInput ? 'bg-ocean-blur cursor-not-allowed' : 'bg-ocean hover:bg-ocean-dark'" class="w-80 h-12 flex flex-col items-center justify-center rounded-md text-white font-bold duration-200 ease-in-out">
               <Spinner v-show="showSpinner" class="w-6 h-6" :class="showSpinner && 'opacity-100'" />
               <span v-show="!showSpinner">Continue</span>
@@ -32,7 +32,7 @@ import { ref } from "vue";
 
 export default {
   name: 'AddPassword',
-  setup() {
+  setup(props, { emit }) {
     const passwordInput = ref('');
     const showSpinner = ref(false);
 
@@ -42,6 +42,7 @@ export default {
         setTimeout(() => {
           resolve('success')
           showSpinner.value = false;
+          emit('nextStep', { currentStep: 1 })
         }, 1000)
       })
     }

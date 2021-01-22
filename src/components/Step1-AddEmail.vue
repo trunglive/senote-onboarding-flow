@@ -32,7 +32,7 @@ export default {
   props: {
     msg: String
   },
-  setup() {
+  setup(props, { emit }) {
     const emailInput = ref('');
     const showSpinner = ref(false);
 
@@ -42,12 +42,13 @@ export default {
         setTimeout(() => {
           resolve('success')
           showSpinner.value = false;
+          emit('nextStep', { currentStep: 0 });
         }, 1000)
       })
     }
 
     return { emailInput, showSpinner, handleClickContinue }
-  }
+  },
 }
 </script>
 
