@@ -11,17 +11,7 @@
           <span>Password should be at least</span>
           <span class="font-bold"> 8 characters long</span>
         </div>
-        <div class="flex flex-col mt-4">
-          <div :class="{ 'cursor-not-allowed': showSpinner || !passwordInput }">
-            <a @click="handleClickContinue" href="#" :class="showSpinner || !passwordInput ? 'bg-ocean-blur cursor-not-allowed' : 'bg-ocean hover:bg-ocean-dark'" class="w-80 h-12 flex flex-col items-center justify-center rounded-md text-white font-bold duration-200 ease-in-out">
-              <Spinner v-show="showSpinner" class="w-6 h-6" :class="showSpinner && 'opacity-100'" />
-              <span v-show="!showSpinner">Continue</span>
-            </a>
-          </div>
-          <a href="#" class="text-black w-80 h-12 flex flex-col items-center justify-center hover:text-black-light duration-100 ease-in-out">
-            Back
-          </a>
-        </div>
+        <NavigationButtonGroup />
       </div>
     </div>
   </div>
@@ -29,26 +19,11 @@
 
 <script>
 import { ref } from "vue";
+import NavigationButtonGroup from "@/components/NavigationButtonGroup";
 
 export default {
   name: 'AddPassword',
-  setup(props, { emit }) {
-    const passwordInput = ref('');
-    const showSpinner = ref(false);
-
-    function handleClickContinue() {
-      showSpinner.value = true;
-      return new Promise(resolve => {
-        setTimeout(() => {
-          resolve('success')
-          showSpinner.value = false;
-          emit('nextStep', { currentStep: 1 })
-        }, 1000)
-      })
-    }
-
-    return { passwordInput, showSpinner, handleClickContinue }
-  }
+  components: { NavigationButtonGroup },
 }
 </script>
 
