@@ -4,7 +4,7 @@
       <div class="text-black-dark font-bold text-xl mt-6">Customize your first project</div>
       <div class="text-black-light text-sm mt-1">It takes only 45 seconds</div>
     </div>
-    <NavigationButtonGroup />
+    <NavigationButtonGroup :send="send" />
   </div>
 </template>
 
@@ -12,6 +12,9 @@
 import NavigationButtonGroup from "@/components/NavigationButtonGroup";
 export default {
   name: 'CustomizeFirstProject',
+  props: {
+    send: Function,
+  },
   components: { NavigationButtonGroup },
 }
 </script>

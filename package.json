@@ -9,11 +9,13 @@
   },
   "dependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.2",
+    "@xstate/vue": "^0.4.0",
     "autoprefixer": "^9",
     "core-js": "^3.6.5",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
-    "vue": "^3.0.0"
+    "vue": "^3.0.0",
+    "xstate": "^4.16.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

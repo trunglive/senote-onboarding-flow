@@ -11,7 +11,7 @@
           <span>Password should be at least</span>
           <span class="font-bold"> 8 characters long</span>
         </div>
-        <NavigationButtonGroup />
+        <NavigationButtonGroup :send="send" />
       </div>
     </div>
   </div>
@@ -23,6 +23,9 @@ import NavigationButtonGroup from "@/components/NavigationButtonGroup";
 
 export default {
   name: 'AddPassword',
+  props: {
+    send: Function,
+  },
   components: { NavigationButtonGroup },
 }
 </script>

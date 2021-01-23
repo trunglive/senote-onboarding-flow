@@ -1,14 +1,37 @@
 <template>
-  <keep-alive>
-    <component :is="steps[currentActiveStep].component" @nextStep="handleNextStep"></component>
-  </keep-alive>
+  <AddEmail v-if="state.matches('addEmail')" :send="send" />
+  <AddPassword v-if="state.matches('addPassword')" :send="send" />
+  <CustomizeFirstProject v-if="state.matches('customizeFirstProject')" :send="send" />
 </template>
 
 <script>
 import { ref } from 'vue';
+import { Machine } from 'xstate';
+import { useMachine } from '@xstate/vue';
 import AddEmail from "@/components/Step1-AddEmail";
 import AddPassword from "@/components/Step2-AddPassword";
 import CustomizeFirstProject from "@/components/Step3-CustomizeFirstProject";
+
+const onboardingMachine = Machine({
+  id: 'onboard',
+  initial: 'addEmail',
+  states: {
+    addEmail: {
+      on: {
+        NEXT: 'addPassword',
+      }
+    },
+    addPassword: {
+      on: {
+        NEXT: 'customizeFirstProject',
+      }
+    },
+    customizeFirstProject: {
+      type: 'final',
+    },
+  },
+});
+
 
 export default {
   name: 'App',
@@ -18,6 +41,7 @@ export default {
     CustomizeFirstProject,
   },
   setup() {
+    const { state, send } = useMachine(onboardingMachine);
     const currentActiveStep = ref(0)
 
     const steps = [
@@ -36,16 +60,13 @@ export default {
         component: CustomizeFirstProject,
         validated: false,
       },
-    ]
-
-    function handleNextStep({ currentStep }) {
-      currentActiveStep.value = currentStep + 1;
-    }
+    ];
 
     return {
       currentActiveStep,
       steps,
-      handleNextStep,
+      state,
+      send,
     }
   }
 }

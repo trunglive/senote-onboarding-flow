@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col mt-4">
     <div :class="{'cursor-not-allowed': showSpinner || !emailInput }">
-      <a @click="handleClickContinue" href="#" :class="showSpinner || !emailInput ? 'bg-ocean-blur pointer-events-none' : 'bg-ocean hover:bg-ocean-dark'" class="w-80 h-12 flex flex-col items-center justify-center rounded-md text-white font-bold duration-200 ease-in-out">
+      <a @click="handleClickContinue" href="#" :class="showSpinner || !emailInput ? 'bg-ocean-blur' : 'bg-ocean hover:bg-ocean-dark'" class="w-80 h-12 flex flex-col items-center justify-center rounded-md text-white font-bold duration-200 ease-in-out">
         <Spinner v-show="showSpinner" class="w-6 h-6" :class="showSpinner && 'opacity-100'" />
         <span v-show="!showSpinner">Continue</span>
       </a>
@@ -14,9 +14,12 @@
 
 <script>
 import Spinner from "@/components/Spinner";
-import {ref} from "vue";
+import { ref } from "vue";
 export default {
   name: "NavigationButtonGroup",
+  props: {
+    send: Function,
+  },
   components: { Spinner },
   setup(props, { emit }) {
     const emailInput = ref('');
@@ -28,6 +31,7 @@ export default {
         setTimeout(() => {
           resolve('success')
           showSpinner.value = false;
+          props.send('NEXT');
           emit('nextStep', { currentStep: 0 });
         }, 1000)
       })

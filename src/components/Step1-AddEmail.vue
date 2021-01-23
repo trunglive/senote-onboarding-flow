@@ -7,7 +7,7 @@
       <div>
         <input v-model="emailInput" id="email" name="email" type="email" autocomplete="off" required class="appearance-none rounded-none w-full py-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:z-10" placeholder="Please input email">
         <div class="border-t border-dashed">
-          <NavigationButtonGroup />
+          <NavigationButtonGroup :send="send" />
         </div>
       </div>
   </div>
@@ -21,7 +21,8 @@ export default {
     NavigationButtonGroup,
   },
   props: {
-    msg: String
+    msg: String,
+    send: Function,
   },
 }
 </script>
