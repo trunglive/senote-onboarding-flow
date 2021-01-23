@@ -12,26 +12,6 @@ import AddEmail from "@/components/Step1-AddEmail";
 import AddPassword from "@/components/Step2-AddPassword";
 import CustomizeFirstProject from "@/components/Step3-CustomizeFirstProject";
 
-const onboardingMachine = Machine({
-  id: 'onboard',
-  initial: 'addEmail',
-  states: {
-    addEmail: {
-      on: {
-        NEXT: 'addPassword',
-      }
-    },
-    addPassword: {
-      on: {
-        NEXT: 'customizeFirstProject',
-      }
-    },
-    customizeFirstProject: {
-      type: 'final',
-    },
-  },
-});
-
 
 export default {
   name: 'App',
@@ -41,7 +21,7 @@ export default {
     CustomizeFirstProject,
   },
   setup() {
-    const { state, send } = useMachine(onboardingMachine);
+    const { state, send } = useMachine(userDataMachine);
     const currentActiveStep = ref(0)
 
     const steps = [

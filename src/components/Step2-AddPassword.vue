@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import { ref } from "vue";
 import NavigationButtonGroup from "@/components/NavigationButtonGroup";
 
 export default {

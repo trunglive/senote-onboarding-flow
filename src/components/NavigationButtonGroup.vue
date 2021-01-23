@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col mt-4">
     <div :class="{'cursor-not-allowed': showSpinner || !emailInput }">
-      <a @click="handleClickContinue" href="#" :class="showSpinner || !emailInput ? 'bg-ocean-blur' : 'bg-ocean hover:bg-ocean-dark'" class="w-80 h-12 flex flex-col items-center justify-center rounded-md text-white font-bold duration-200 ease-in-out">
+      <a @click="handleClickContinue" href="#" :class="showSpinner || !emailInput ? 'bg-ocean-blur pointer-event-none' : 'bg-ocean hover:bg-ocean-dark'" class="w-80 h-12 flex flex-col items-center justify-center rounded-md text-white font-bold duration-200 ease-in-out">
         <Spinner v-show="showSpinner" class="w-6 h-6" :class="showSpinner && 'opacity-100'" />
         <span v-show="!showSpinner">Continue</span>
       </a>
     </div>
-    <a href="#" class="text-black w-80 h-12 flex flex-col items-center justify-center hover:text-black-light duration-100 ease-in-out">
+    <a @click="handleClickBack" href="#" class="text-black w-80 h-12 flex flex-col items-center justify-center hover:text-black-light duration-100 ease-in-out">
       Back
     </a>
   </div>
@@ -37,7 +37,15 @@ export default {
       })
     }
 
-    return { emailInput, showSpinner, handleClickContinue }
+    function handleClickBack() {
+      props.send('BACK');
+    }
+
+    function disableClickContinue() {
+      return showSpinner || !emailInput;
+    }
+
+    return { emailInput, showSpinner, handleClickContinue, handleClickBack, disableClickContinue }
   },
 }
 </script>
