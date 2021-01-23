@@ -1,38 +1,88 @@
-import { Machine } from "xstate";
+import { Machine, assign } from "xstate";
+import {UpdateFormEvents, UpdateFormStates } from "@/machines/updateFormMachine.types";
 
 export const updateFormMachine = Machine({
   id: 'updateFormMachine',
-  initial: 'fetch',
+  initial: UpdateFormStates.fetch,
   context: {
     userData: null,
     error: false,
     errorMessage: '',
   },
   states: {
-    fetch: {
+    [UpdateFormStates.fetch]: {
       on: {
-        NEXT: 'edit',
-        ERROR: 'edit',
+        [UpdateFormEvents.NEXT]: {
+          target: UpdateFormStates.edit,
+          actions: assign({
+            error: _ => false,
+            errorMessage: _ => '',
+          }),
+        },
+        [UpdateFormEvents.ERROR]: {
+          target: UpdateFormStates.edit,
+          actions: assign({
+            error: _ => true,
+            errorMessage: _ => 'error fetching initial data',
+          }),
+        }
+      },
+      invoke: {
+        src: _ => async callback => {
+          try {
+            await new Promise(res => setTimeout(res, 1000));
+            callback({
+              type: UpdateFormEvents.NEXT,
+            })
+          } catch (e) {
+            callback({
+              type: UpdateFormEvents.ERROR,
+            })
+          }
+        }
       }
     },
-    edit: {
+    [UpdateFormStates.edit]: {
       on: {
-        NEXT: 'pending',
+        [UpdateFormEvents.NEXT]: {
+          target: UpdateFormStates.pending,
+        }
       }
     },
-    pending: {
+    [UpdateFormStates.pending]: {
       on: {
-        NEXT: 'done',
-        ERROR: 'edit',
+        [UpdateFormEvents.NEXT]: {
+          target: UpdateFormStates.done,
+          actions: assign({
+            error: _ => false,
+            errorMessage: _ => '',
+          }),
+        },
+        [UpdateFormEvents.ERROR]: {
+          target: UpdateFormStates.edit,
+          actions: assign({
+            error: _ => true,
+            errorMessage: _ => 'error saving data',
+          }),
+        },
+      },
+      invoke: {
+        src: _ => async callback => {
+          try {
+            await new Promise(res => setTimeout(res, 1000));
+            callback({
+              type: UpdateFormEvents.NEXT,
+            })
+          } catch (e) {
+            callback({
+              type: UpdateFormEvents.ERROR,
+            })
+          }
+        }
       }
     },
-    done: {
+    [UpdateFormStates.done]: {
       type: 'final',
     },
   },
-}, {
-  actions: {
-    assignEmail(context, event) {},
-    assignPassword(context, event) {},
-  }
 });
