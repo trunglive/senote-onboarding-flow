@@ -6,7 +6,7 @@
     :send="send"
   />
   <AddProjectName v-if="state.matches('addProjectName')" :send="send" />
-  <BusinessGoalIntroduction :send="send" />
+  <BusinessGoalIntroduction v-if="state.matches('businessGoalIntroduction')" :send="send" />
 </template>
 
 <script>
