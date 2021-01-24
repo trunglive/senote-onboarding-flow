@@ -84,7 +84,7 @@ export const userDataMachine = Machine({
         src: updateFormMachine,
         data: (ctx) => ctx,
         onDone: {
-          target: UserDataStates.addPassword,
+          target: UserDataStates.customizeFirstProject,
           actions: assign({
             userData: (_, { data }) => data?.userData ?? null,
           }),
@@ -100,7 +100,7 @@ export const userDataMachine = Machine({
         src: updateFormMachine,
         data: (ctx) => ctx,
         onDone: {
-          target: UserDataStates.addPassword,
+          target: UserDataStates.addProjectName,
           actions: assign({
             userData: (_, { data }) => data?.userData ?? null,
           }),
@@ -116,7 +116,7 @@ export const userDataMachine = Machine({
         src: updateFormMachine,
         data: (ctx) => ctx,
         onDone: {
-          target: UserDataStates.addPassword,
+          target: UserDataStates.businessGoalIntroduction,
           actions: assign({
             userData: (_, { data }) => data?.userData ?? null,
           }),
@@ -125,14 +125,30 @@ export const userDataMachine = Machine({
     },
     businessGoalIntroduction: {
       on: {
-        NEXT: "complete",
+        NEXT: "designThinkingProcesses",
         BACK: "addProjectName",
       },
       invoke: {
         src: updateFormMachine,
         data: (ctx) => ctx,
         onDone: {
-          target: UserDataStates.addPassword,
+          target: UserDataStates.designThinkingProcesses,
+          actions: assign({
+            userData: (_, { data }) => data?.userData ?? null,
+          }),
+        },
+      },
+    },
+    designThinkingProcesses: {
+      on: {
+        NEXT: "complete",
+        BACK: "businessGoalIntroduction",
+      },
+      invoke: {
+        src: updateFormMachine,
+        data: (ctx) => ctx,
+        onDone: {
+          target: UserDataStates.complete,
           actions: assign({
             userData: (_, { data }) => data?.userData ?? null,
           }),

@@ -6,8 +6,14 @@
     :send="send"
   />
   <AddProjectName v-if="state.matches('addProjectName')" :send="send" />
-  <BusinessGoalIntroduction v-if="state.matches('businessGoalIntroduction')" :send="send" />
-  <DesignThinkingProcess :send="send" />
+  <BusinessGoalIntroduction
+    v-if="state.matches('businessGoalIntroduction')"
+    :send="send"
+  />
+  <DesignThinkingProcess
+    v-if="state.matches('designThinkingProcesses')"
+    :send="send"
+  />
 </template>
 <script>
 import { ref } from "vue";
@@ -39,7 +45,7 @@ export default {
       return state.matches(UserDataStates[dataState]);
     };
 
-    console.log(state, 'state:: ');
+    console.log(state, "state:: ");
 
     return {
       currentActiveStep,

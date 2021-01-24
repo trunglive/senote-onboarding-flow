@@ -5,6 +5,7 @@ export const UserDataStates = {
   customizeFirstProject: "customizeFirstProject",
   addProjectName: "addProjectName",
   businessGoalIntroduction: "businessGoalIntroduction",
+  designThinkingProcesses: "designThinkingProcesses",
   complete: "complete",
 };
 
@@ -26,6 +27,7 @@ export const UserDataEvents = {
   CUSTOMIZE_FIRST_PROJECT: "CUSTOMIZE_FIRST_PROJECT",
   ENTER_PROJECT_NAME: "ENTER_PROJECT_NAME",
   BUSINESS_GOAL_INTRODUCTION: "BUSINESS_GOAL_INTRODUCTION",
+  DESIGN_THINKING_PROCESSES: "DESIGN_THINKING_PROCESSES",
   NEXT: "NEXT",
   BACK: "BACK",
 };
