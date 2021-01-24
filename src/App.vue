@@ -14,6 +14,7 @@
     v-if="state.matches('designThinkingProcesses')"
     :send="send"
   />
+  <Phase :send="send" />
 </template>
 <script>
 import { ref } from "vue";
@@ -26,6 +27,7 @@ import CustomizeFirstProject from "@/components/Step3-CustomizeFirstProject";
 import AddProjectName from "@/components/Step4-AddProjectName";
 import BusinessGoalIntroduction from "@/components/Step5-BusinessGoalIntroduction";
 import DesignThinkingProcess from "@/components/Step6-DesignThinkingProcess";
+import Phase from "@/components/Phase";
 
 export default {
   name: "App",
@@ -36,6 +38,7 @@ export default {
     CustomizeFirstProject,
     AddProjectName,
     DesignThinkingProcess,
+    Phase,
   },
   setup() {
     const { state, send } = useMachine(userDataMachine);
