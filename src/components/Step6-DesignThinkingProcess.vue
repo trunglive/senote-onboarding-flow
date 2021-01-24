@@ -6,9 +6,18 @@
         divided into three phrases.
       </div>
       <div class="space-y-2.5 mt-6 mb-2">
-        <div v-for="process in designThinkingProcesses" :key="process" class="flex items-center space-x-4">
-          <div class="flex items-center justify-center w-28 h-10 bg-blue rounded-md font-bold text-lg text-white">{{process.label}}</div>
-          <div class="text-lg text-black-light">{{process.goal}}</div>
+        <div
+          v-for="process in designThinkingProcesses"
+          :key="process"
+          class="flex items-center space-x-4"
+        >
+          <div
+            :class="process.backgroundColor"
+            class="flex items-center justify-center w-28 h-10 rounded-md font-bold text-lg text-white"
+          >
+            {{ process.label }}
+          </div>
+          <div class="text-lg text-black-light">{{ process.goal }}</div>
         </div>
       </div>
     </div>

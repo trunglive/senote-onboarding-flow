@@ -15,6 +15,7 @@ export const designThinkingProcesses = {
     label: "Discover",
     goal: "Gathering data",
     phaseStepOrder: 1,
+    backgroundColor: "bg-navyBlue-dark",
     stepProcesses: [
       {
         label: "Stakeholder Interview",
@@ -40,6 +41,7 @@ export const designThinkingProcesses = {
     label: "Analyze",
     goal: "Finding patterns",
     phaseStepOrder: 2,
+    backgroundColor: "bg-ocean-dark-2",
     stepProcesses: [
       {
         label: "Problem Valuation",
@@ -71,6 +73,7 @@ export const designThinkingProcesses = {
     label: "Prototype",
     goal: "Visualize findings",
     phaseStepOrder: 3,
+    backgroundColor: "bg-purple-dark",
     stepProcesses: [
       {
         label: "Paper Prototype",

@@ -1,4 +1,4 @@
-const colors = require('tailwindcss/colors')
+const colors = require("tailwindcss/colors");
 
 module.exports = {
   purge: [],
@@ -6,23 +6,34 @@ module.exports = {
   theme: {
     colors: {
       ocean: {
-        blur: '#cbdbdb',
+        blur: "#cbdbdb",
         // light: '',
-        DEFAULT: '#059fa3',
-        dark: '#1d5f75',
+        DEFAULT: "#059fa3",
+        dark: "#1d5f75",
+        "dark-2": "#1b4962",
       },
       blue: {
-        light: '#a7c5eb',
-        DEFAULT: '#51adcf',
+        light: "#a7c5eb",
+        DEFAULT: "#51adcf",
         // dark: '',
       },
+      navyBlue: {
+        light: "",
+        DEFAULT: "",
+        dark: "#192361",
+      },
+      purple: {
+        light: "",
+        DEFAULT: "",
+        dark: "#4f1a62",
+      },
       black: {
-        light: '#747474',
-        DEFAULT: '#40474f',
-        dark: '#212528',
+        light: "#747474",
+        DEFAULT: "#40474f",
+        dark: "#212528",
       },
       white: {
-        light: '#ebebeb',
+        light: "#ebebeb",
         DEFAULT: colors.white,
       },
     },
@@ -32,4 +43,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}
+};
