@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen flex flex-col items-center justify-center">
-    <div class="flex flex-col items-center mb-2">
-      <div class="text-black-dark font-bold text-xl mt-6">
+    <div class="flex flex-col items-center w-80 mb-2">
+      <div class="text-black-dark text-xl mt-6">
         Customize your first project
       </div>
       <div class="text-black-light text-sm mt-1">It takes only 45 seconds</div>

@@ -39,7 +39,7 @@ export default {
   },
   components: { Spinner },
   setup(props, { emit }) {
-    const emailInput = ref("");
+    const emailInput = ref("okay");
     const showSpinner = ref(false);
 
     function handleClickContinue() {

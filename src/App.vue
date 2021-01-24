@@ -5,16 +5,18 @@
     v-if="state.matches('customizeFirstProject')"
     :send="send"
   />
+<!--  <AddProjectName v-if="state.matches('addEmail')" :send="send" />-->
 </template>
 
 <script>
 import { ref } from "vue";
 import { useMachine } from "@xstate/vue";
+import { userDataMachine } from "@/machines/userDataMachine";
+import { UserDataStates } from "@/machines/userDataMachine.types";
 import AddEmail from "@/components/Step1-AddEmail";
 import AddPassword from "@/components/Step2-AddPassword";
 import CustomizeFirstProject from "@/components/Step3-CustomizeFirstProject";
-import { userDataMachine } from "@/machines/userDataMachine";
-import { UserDataStates } from "@/machines/userDataMachine.types";
+import AddProjectName from "@/components/Step4-AddProjectName";
 
 export default {
   name: "App",
@@ -22,6 +24,7 @@ export default {
     AddEmail,
     AddPassword,
     CustomizeFirstProject,
+    AddProjectName,
   },
   setup() {
     const { state, send } = useMachine(userDataMachine);
