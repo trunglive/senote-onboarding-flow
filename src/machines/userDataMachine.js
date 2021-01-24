@@ -1,6 +1,7 @@
 import { Machine, assign } from "xstate";
 import { UserDataStates } from "@/machines/userDataMachine.types";
 import { UserDataEvents } from "@/machines/userDataMachine.types";
+import { updateFormMachine } from "@/machines/updateFormMachine";
 
 export const userDataMachine = Machine({
   id: "userDataMachine",
@@ -33,18 +34,16 @@ export const userDataMachine = Machine({
         },
       },
       invoke: {
+        // eslint-disable-next-line no-unused-vars
         src: (_) => async (cb) => {
           try {
             const userData = {
-              name: "Trung",
+              email: "blabla@gmail.com",
             };
 
-            const { name, password, customizeFirstProject } = userData;
+            const { password, customizeFirstProject } = userData;
 
             switch (null) {
-              case name:
-                cb({ type: UserDataEvents.ENTER_EMAIL, userData });
-                break;
               case password:
                 cb({ type: UserDataEvents.ENTER_PASSWORD, userData });
                 break;
@@ -64,14 +63,32 @@ export const userDataMachine = Machine({
     addEmail: {
       on: {
         NEXT: "addPassword",
-        ENTER_EMAIL: {},
+      },
+      invoke: {
+        src: updateFormMachine,
+        data: (ctx) => ctx,
+        onDone: {
+          target: UserDataStates.addPassword,
+          actions: assign({
+            userData: (_, { data }) => data?.userData ?? null,
+          }),
+        },
       },
     },
     addPassword: {
       on: {
         NEXT: "customizeFirstProject",
         BACK: "addEmail",
-        ENTER_PASSWORD: {},
+      },
+      invoke: {
+        src: updateFormMachine,
+        data: (ctx) => ctx,
+        onDone: {
+          target: UserDataStates.addPassword,
+          actions: assign({
+            userData: (_, { data }) => data?.userData ?? null,
+          }),
+        },
       },
     },
     customizeFirstProject: {

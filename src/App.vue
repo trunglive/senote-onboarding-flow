@@ -31,6 +31,8 @@ export default {
       return state.matches(UserDataStates[dataState]);
     };
 
+    console.log(state, 'state:: ');
+
     return {
       currentActiveStep,
       state,

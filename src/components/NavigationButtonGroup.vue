@@ -50,7 +50,7 @@ export default {
           showSpinner.value = false;
           props.send("NEXT");
           emit("nextStep", { currentStep: 0 });
-        }, 1000);
+        }, 300);
       });
     }
 
