@@ -6,6 +6,7 @@
     :send="send"
   />
   <AddProjectName v-if="state.matches('addProjectName')" :send="send" />
+  <BusinessGoalIntroduction :send="send" />
 </template>
 
 <script>
@@ -17,10 +18,12 @@ import AddEmail from "@/components/Step1-AddEmail";
 import AddPassword from "@/components/Step2-AddPassword";
 import CustomizeFirstProject from "@/components/Step3-CustomizeFirstProject";
 import AddProjectName from "@/components/Step4-AddProjectName";
+import BusinessGoalIntroduction from "@/components/Step5-BusinessGoalIntroduction";
 
 export default {
   name: "App",
   components: {
+    BusinessGoalIntroduction,
     AddEmail,
     AddPassword,
     CustomizeFirstProject,
