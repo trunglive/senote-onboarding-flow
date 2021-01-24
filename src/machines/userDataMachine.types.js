@@ -1,10 +1,10 @@
 export const UserDataStates = {
-  init: 'init',
-  addEmail: 'addEmail',
-  addPassword: 'addPassword',
-  customizeFirstProject: 'customizeFirstProject',
-  complete: 'complete',
-}
+  init: "init",
+  addEmail: "addEmail",
+  addPassword: "addPassword",
+  customizeFirstProject: "customizeFirstProject",
+  complete: "complete",
+};
 
 export const UserDataMachineStates = {
   states: {
@@ -14,11 +14,12 @@ export const UserDataMachineStates = {
     [UserDataStates.customizeFirstProject]: {},
     [UserDataStates.complete]: {},
   },
-}
+};
 
 export const UserDataEvents = {
-  ENTER_EMAIL: 'ENTER_EMAIL',
-  ENTER_PASSWORD: 'ENTER_PASSWORD',
-  NEXT: 'NEXT',
-  BACK: 'BACK',
-}
+  ENTER_EMAIL: "ENTER_EMAIL",
+  ENTER_PASSWORD: "ENTER_PASSWORD",
+  CUSTOMIZE_FIRST_PROJECT: "CUSTOMIZE_FIRST_PROJECT",
+  NEXT: "NEXT",
+  BACK: "BACK",
+};

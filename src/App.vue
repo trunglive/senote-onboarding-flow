@@ -1,20 +1,23 @@
 <template>
   <AddEmail v-if="state.matches('addEmail')" :send="send" />
   <AddPassword v-if="state.matches('addPassword')" :send="send" />
-  <CustomizeFirstProject v-if="state.matches('customizeFirstProject')" :send="send" />
+  <CustomizeFirstProject
+    v-if="state.matches('customizeFirstProject')"
+    :send="send"
+  />
 </template>
 
 <script>
-import { ref } from 'vue';
-import { Machine } from 'xstate';
-import { useMachine } from '@xstate/vue';
+import { ref } from "vue";
+import { useMachine } from "@xstate/vue";
 import AddEmail from "@/components/Step1-AddEmail";
 import AddPassword from "@/components/Step2-AddPassword";
 import CustomizeFirstProject from "@/components/Step3-CustomizeFirstProject";
-
+import { userDataMachine } from "@/machines/userDataMachine";
+import { UserDataStates } from "@/machines/userDataMachine.types";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     AddEmail,
     AddPassword,
@@ -22,34 +25,20 @@ export default {
   },
   setup() {
     const { state, send } = useMachine(userDataMachine);
-    const currentActiveStep = ref(0)
+    const currentActiveStep = ref(0);
 
-    const steps = [
-      {
-        name: "addEmail",
-        component: AddEmail,
-        validated: false,
-      },
-      {
-        name: "addPassword",
-        component: AddPassword,
-        validated: false,
-      },
-      {
-        name: "customizeFirstProject",
-        component: CustomizeFirstProject,
-        validated: false,
-      },
-    ];
+    const isCurrentState = function (dataState) {
+      return state.matches(UserDataStates[dataState]);
+    };
 
     return {
       currentActiveStep,
-      steps,
       state,
       send,
-    }
-  }
-}
+      isCurrentState,
+    };
+  },
+};
 </script>
 
 <style>

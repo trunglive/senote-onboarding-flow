@@ -1,9 +1,9 @@
 export const UpdateFormStates = {
-  fetch: 'fetch',
-  edit: 'edit',
-  pending: 'pending',
-  done: 'done',
-}
+  fetch: "fetch",
+  edit: "edit",
+  pending: "pending",
+  done: "done",
+};
 
 export const UpdateFormMachineStates = {
   states: {
@@ -12,9 +12,9 @@ export const UpdateFormMachineStates = {
     [UpdateFormStates.pending]: {},
     [UpdateFormStates.done]: {},
   },
-}
+};
 
 export const UpdateFormEvents = {
-  NEXT: 'NEXT',
-  ERROR: 'ERROR',
-}
+  NEXT: "NEXT",
+  ERROR: "ERROR",
+};
