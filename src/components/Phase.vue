@@ -2,23 +2,21 @@
   <div class="min-h-screen flex flex-col items-center justify-center">
     <div class="flex flex-col w-80 mb-2">
       <div class="text-black-dark text-xl">
-        Choose your methods for the Analyze Phase.
+        Choose your methods for the {{ currentPhase.label }} Phase.
       </div>
       <div class="space-y-2.5 mt-6 mb-2">
         <div
-            class="flex items-center space-x-4"
+          v-for="step in currentPhase.stepProcesses"
+          :key="step.value"
+          class="flex items-center justify-between"
         >
-          <div class="flex">
-            <div
-                class="flex items-center justify-center w-16 h-10 rounded-md font-bold text-lg text-white"
-            >
-              icon
-            </div>
-            <div>Problem Valuation</div>
+          <div class="flex items-center space-x-4">
+            <AppIcon :icon="step.icon" />
+            <div class="text-black-light font-medium">{{ step.label }}</div>
           </div>
-          <div>
-            <div class="text-lg text-black-light">On/Off toggle</div>
-            <div>Question mark</div>
+          <div class="flex space-x-4">
+            <div class="text-lg text-black-light">On/Off</div>
+            <div>?</div>
           </div>
         </div>
       </div>
@@ -28,7 +26,10 @@
 </template>
 
 <script>
+import { computed } from "vue";
 import NavigationButtonGroup from "@/components/NavigationButtonGroup";
+import AppIcon from "@/components/AppIcon";
+import { designThinkingProcesses } from "@/data/api";
 
 export default {
   name: "Phase",
@@ -37,7 +38,16 @@ export default {
     phase: Object,
   },
   components: {
+    AppIcon,
     NavigationButtonGroup,
+  },
+  setup() {
+    const currentPhase = computed(function () {
+      return designThinkingProcesses.discover;
+    });
+    return {
+      currentPhase,
+    };
   },
 };
 </script>

@@ -13,23 +13,27 @@ export const brand = {
 export const designThinkingProcesses = {
   discover: {
     label: "Discover",
+    value: "discover",
     goal: "Gathering data",
     phaseStepOrder: 1,
     backgroundColor: "bg-navyBlue-dark",
     stepProcesses: [
       {
+        icon: "StakeholderInterview",
         label: "Stakeholder Interview",
         value: "stakeholderInterview",
         tooltipContent:
           "Gain a deeper understanding of client's expectations. Start with predefined questions to ask your stakeholder.",
       },
       {
+        icon: "UserInterview",
         label: "User Interview",
         value: "userInterview",
         tooltipContent:
           "Recognize the problems and paint points of your target audience while talking to them.",
       },
       {
+        icon: "CompetitorAnalysis",
         label: "Competitor Analysis",
         value: "competitorAnalysis",
         tooltipContent:
@@ -39,6 +43,7 @@ export const designThinkingProcesses = {
   },
   analyze: {
     label: "Analyze",
+    value: "analyze",
     goal: "Finding patterns",
     phaseStepOrder: 2,
     backgroundColor: "bg-ocean-dark-2",
@@ -71,6 +76,7 @@ export const designThinkingProcesses = {
   },
   prototype: {
     label: "Prototype",
+    value: "prototype",
     goal: "Visualize findings",
     phaseStepOrder: 3,
     backgroundColor: "bg-purple-dark",
