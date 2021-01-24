@@ -5,7 +5,7 @@
     v-if="state.matches('customizeFirstProject')"
     :send="send"
   />
-<!--  <AddProjectName v-if="state.matches('addEmail')" :send="send" />-->
+  <AddProjectName v-if="state.matches('addProjectName')" :send="send" />
 </template>
 
 <script>

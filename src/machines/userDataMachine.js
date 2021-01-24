@@ -93,12 +93,39 @@ export const userDataMachine = Machine({
     },
     customizeFirstProject: {
       on: {
+        NEXT: "addProjectName",
         BACK: "addPassword",
+      },
+      invoke: {
+        src: updateFormMachine,
+        data: (ctx) => ctx,
+        onDone: {
+          target: UserDataStates.addPassword,
+          actions: assign({
+            userData: (_, { data }) => data?.userData ?? null,
+          }),
+        },
+      },
+    },
+    addProjectName: {
+      on: {
+        NEXT: "complete",
+        BACK: "customizeFirstProject",
+      },
+      invoke: {
+        src: updateFormMachine,
+        data: (ctx) => ctx,
+        onDone: {
+          target: UserDataStates.addPassword,
+          actions: assign({
+            userData: (_, { data }) => data?.userData ?? null,
+          }),
+        },
       },
     },
     complete: {
       on: {
-        BACK: "customizeFirstProject",
+        BACK: "addProjectName",
       },
     },
   },
