@@ -5,3 +5,7 @@ export const userAddEmail = {
 export const userAddPassword = {
   password: "123456",
 };
+
+export const brand = {
+  label: "Senote",
+};
