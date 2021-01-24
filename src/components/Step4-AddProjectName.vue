@@ -37,9 +37,9 @@ export default {
   },
   setup() {
     return {
-      brand
-    }
-  }
+      brand,
+    };
+  },
 };
 </script>
 

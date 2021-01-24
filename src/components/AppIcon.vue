@@ -3,8 +3,9 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from "vue"
-const lazyLoad = (iconName) => defineAsyncComponent(() => import(`./icons/${iconName}.vue`))
+import { defineAsyncComponent } from "vue";
+const lazyLoad = (iconName) =>
+  defineAsyncComponent(() => import(`./icons/${iconName}.vue`));
 export default {
   name: "AppIcon",
   props: {
@@ -27,5 +28,5 @@ export default {
     UserInterview: lazyLoad("UserInterview"),
     CompetitorAnalysis: lazyLoad("CompetitorAnalysis"),
   },
-}
+};
 </script>
