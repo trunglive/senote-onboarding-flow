@@ -15,7 +15,7 @@
             <div class="text-black-light font-medium">{{ step.label }}</div>
           </div>
           <div class="flex space-x-4">
-            <div class="text-lg text-black-light">On/Off</div>
+            <Switch />
             <div>?</div>
           </div>
         </div>
@@ -30,6 +30,7 @@ import { computed } from "vue";
 import NavigationButtonGroup from "@/components/NavigationButtonGroup";
 import AppIcon from "@/components/AppIcon";
 import { designThinkingProcesses } from "@/data/api";
+import Switch from "@/base/Switch";
 
 export default {
   name: "Phase",
@@ -38,6 +39,7 @@ export default {
     phase: Object,
   },
   components: {
+    Switch,
     AppIcon,
     NavigationButtonGroup,
   },

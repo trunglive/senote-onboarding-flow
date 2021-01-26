@@ -29,6 +29,7 @@ import BusinessGoalIntroduction from "@/components/Step5-BusinessGoalIntroductio
 import DesignThinkingProcess from "@/components/Step6-DesignThinkingProcess";
 import Phase from "@/components/Phase";
 
+
 export default {
   name: "App",
   components: {
