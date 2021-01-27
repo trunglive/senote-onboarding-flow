@@ -6,6 +6,9 @@ export const UserDataStates = {
   addProjectName: "addProjectName",
   businessGoalIntroduction: "businessGoalIntroduction",
   designThinkingProcesses: "designThinkingProcesses",
+  discoverPhase: "discoverPhase",
+  analyzePhase: "analyzePhase",
+  prototypePhase: "prototypePhase",
   complete: "complete",
 };
 
@@ -17,6 +20,10 @@ export const UserDataMachineStates = {
     [UserDataStates.customizeFirstProject]: {},
     [UserDataStates.addProjectName]: {},
     [UserDataStates.businessGoalIntroduction]: {},
+    [UserDataStates.designThinkingProcesses]: {},
+    [UserDataStates.discoverPhase]: {},
+    [UserDataStates.analyzePhase]: {},
+    [UserDataStates.prototypePhase]: {},
     [UserDataStates.complete]: {},
   },
 };
@@ -28,6 +35,9 @@ export const UserDataEvents = {
   ENTER_PROJECT_NAME: "ENTER_PROJECT_NAME",
   BUSINESS_GOAL_INTRODUCTION: "BUSINESS_GOAL_INTRODUCTION",
   DESIGN_THINKING_PROCESSES: "DESIGN_THINKING_PROCESSES",
+  DISCOVER_PHASE: "DISCOVER_PHASE",
+  ANALYZE_PHASE: "ANALYZE_PHASE",
+  PROTOTYPE_PHASE: "PROTOTYPE_PHASE",
   NEXT: "NEXT",
   BACK: "BACK",
 };

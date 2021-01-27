@@ -14,9 +14,9 @@
     v-if="state.matches('designThinkingProcesses')"
     :send="send"
   />
-  <Phase :send="send" phaseName="discover" />
-  <Phase :send="send" phaseName="analyze" />
-  <Phase :send="send" phaseName="prototype" />
+  <Phase v-if="state.matches('discoverPhase')" :send="send" phaseName="discover" />
+  <Phase v-if="state.matches('analyzePhase')" :send="send" phaseName="analyze" />
+  <Phase v-if="state.matches('prototypePhase')" :send="send" phaseName="prototype" />
 </template>
 <script>
 import { ref } from "vue";

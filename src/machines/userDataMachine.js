@@ -141,8 +141,56 @@ export const userDataMachine = Machine({
     },
     designThinkingProcesses: {
       on: {
-        NEXT: "complete",
+        NEXT: "discoverPhase",
         BACK: "businessGoalIntroduction",
+      },
+      invoke: {
+        src: updateFormMachine,
+        data: (ctx) => ctx,
+        onDone: {
+          target: UserDataStates.complete,
+          actions: assign({
+            userData: (_, { data }) => data?.userData ?? null,
+          }),
+        },
+      },
+    },
+    discoverPhase: {
+      on: {
+        NEXT: "analyzePhase",
+        BACK: "designThinkingProcesses",
+      },
+      invoke: {
+        src: updateFormMachine,
+        data: (ctx) => ctx,
+        onDone: {
+          target: UserDataStates.complete,
+          actions: assign({
+            userData: (_, { data }) => data?.userData ?? null,
+          }),
+        },
+      },
+    },
+    analyzePhase: {
+      on: {
+        NEXT: "prototypePhase",
+        BACK: "discoverPhase",
+      },
+      invoke: {
+        src: updateFormMachine,
+        data: (ctx) => ctx,
+        onDone: {
+          target: UserDataStates.complete,
+          actions: assign({
+            userData: (_, { data }) => data?.userData ?? null,
+          }),
+        },
+      },
+    },
+    prototypePhase: {
+      on: {
+        NEXT: "complete",
+        BACK: "analyzePhase",
       },
       invoke: {
         src: updateFormMachine,
