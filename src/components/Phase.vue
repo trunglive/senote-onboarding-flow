@@ -36,16 +36,16 @@ export default {
   name: "Phase",
   props: {
     send: Function,
-    phase: Object,
+    phaseName: String,
   },
   components: {
     Switch,
     AppIcon,
     NavigationButtonGroup,
   },
-  setup() {
+  setup(props) {
     const currentPhase = computed(function () {
-      return designThinkingProcesses.prototype; // discover, analyze, prototype
+      return designThinkingProcesses[props.phaseName]; // discover, analyze, prototype
     });
     return {
       currentPhase,

@@ -14,7 +14,9 @@
     v-if="state.matches('designThinkingProcesses')"
     :send="send"
   />
-  <Phase :send="send" />
+  <Phase :send="send" phaseName="discover" />
+  <Phase :send="send" phaseName="analyze" />
+  <Phase :send="send" phaseName="prototype" />
 </template>
 <script>
 import { ref } from "vue";
@@ -28,7 +30,7 @@ import AddProjectName from "@/components/Step4-AddProjectName";
 import BusinessGoalIntroduction from "@/components/Step5-BusinessGoalIntroduction";
 import DesignThinkingProcess from "@/components/Step6-DesignThinkingProcess";
 import Phase from "@/components/Phase";
-
+// import AnalyzeProcess from '@/components/Step7-DiscoveryPhase';
 
 export default {
   name: "App",
