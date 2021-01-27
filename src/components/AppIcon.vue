@@ -31,6 +31,7 @@ export default {
     Personas: lazyLoad("Personas"),
     SolutionValuation: lazyLoad("SolutionValuation"),
     Flows: lazyLoad("Flows"),
+    Prototype: lazyLoad("Prototype"),
   },
 };
 </script>

@@ -49,24 +49,28 @@ export const designThinkingProcesses = {
     backgroundColor: "bg-ocean-dark-2",
     stepProcesses: [
       {
+        icon: "ProblemValuation",
         label: "Problem Valuation",
         value: "problemValuation",
         tooltipContent:
           "Examine your data and evaluate all the problems you discovered so far from your interviews.",
       },
       {
+        icon: "Personas",
         label: "Personas",
         value: "personas",
         tooltipContent:
           "Streamline your research data and represent the specific considerations for fundamentally different groups of people.",
       },
       {
+        icon: "SolutionValuation",
         label: "Solution Valuation",
         value: "solutionValuation",
         tooltipContent:
           "Tackle the most crucial problems by brainstorming different solutions. Come up with as many solutions as possible.",
       },
       {
+        icon: "Flows",
         label: "Flows",
         value: "flows",
         tooltipContent:
@@ -82,12 +86,14 @@ export const designThinkingProcesses = {
     backgroundColor: "bg-purple-dark",
     stepProcesses: [
       {
+        icon: "Prototype",
         label: "Paper Prototype",
         value: "paperPrototype",
         tooltipContent:
           "Start with simple prototypes created on paper. It's a simple and cheap way to test your product without much effort.",
       },
       {
+        icon: "Prototype",
         label: "Interactive Prototype",
         value: "interactivePrototype",
         tooltipContent:

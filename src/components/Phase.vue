@@ -45,7 +45,7 @@ export default {
   },
   setup() {
     const currentPhase = computed(function () {
-      return designThinkingProcesses.discover;
+      return designThinkingProcesses.prototype; // discover, analyze, prototype
     });
     return {
       currentPhase,
