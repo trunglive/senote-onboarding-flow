@@ -27,6 +27,10 @@ export default {
     StakeholderInterview: lazyLoad("StakeholderInterview"),
     UserInterview: lazyLoad("UserInterview"),
     CompetitorAnalysis: lazyLoad("CompetitorAnalysis"),
+    ProblemValuation: lazyLoad("ProblemValuation"),
+    Personas: lazyLoad("Personas"),
+    SolutionValuation: lazyLoad("SolutionValuation"),
+    Flows: lazyLoad("Flows"),
   },
 };
 </script>
