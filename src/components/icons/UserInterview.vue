@@ -5,8 +5,16 @@
     height="32"
     viewBox="0 0 32 32"
   >
-    <g fill="none" fill-rule="evenodd">
-      <rect width="32" height="32" fill="#192262" rx="1.333" />
+    <g
+      fill="none"
+      fill-rule="evenodd"
+    >
+      <rect
+        width="32"
+        height="32"
+        fill="#192262"
+        rx="1.333"
+      />
       <g
         fill="#FFF"
         stroke="#FFF"
@@ -30,6 +38,6 @@
 
 <script>
 export default {
-  name: "UserInterview",
-};
+	name: "UserInterview"
+}
 </script>

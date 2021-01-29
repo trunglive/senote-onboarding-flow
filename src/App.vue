@@ -1,11 +1,20 @@
 <template>
-  <AddEmail v-if="state.matches('addEmail')" :send="send" />
-  <AddPassword v-if="state.matches('addPassword')" :send="send" />
+  <AddEmail
+    v-if="state.matches('addEmail')"
+    :send="send"
+  />
+  <AddPassword
+    v-if="state.matches('addPassword')"
+    :send="send"
+  />
   <CustomizeFirstProject
     v-if="state.matches('customizeFirstProject')"
     :send="send"
   />
-  <AddProjectName v-if="state.matches('addProjectName')" :send="send" />
+  <AddProjectName
+    v-if="state.matches('addProjectName')"
+    :send="send"
+  />
   <BusinessGoalIntroduction
     v-if="state.matches('businessGoalIntroduction')"
     :send="send"
@@ -14,62 +23,74 @@
     v-if="state.matches('designThinkingProcesses')"
     :send="send"
   />
-  <Phase v-if="state.matches('discoverPhase')" :send="send" phaseName="discover" />
-  <Phase v-if="state.matches('analyzePhase')" :send="send" phaseName="analyze" />
-  <Phase v-if="state.matches('prototypePhase')" :send="send" phaseName="prototype" />
+  <Phase
+    v-if="state.matches('discoverPhase')"
+    :send="send"
+    phase-name="discover"
+  />
+  <Phase
+    v-if="state.matches('analyzePhase')"
+    :send="send"
+    phase-name="analyze"
+  />
+  <Phase
+    v-if="state.matches('prototypePhase')"
+    :send="send"
+    phase-name="prototype"
+  />
 </template>
 <script>
-import { ref } from "vue";
-import { useMachine } from "@xstate/vue";
-import { userDataMachine } from "@/machines/userDataMachine";
-import { UserDataStates } from "@/machines/userDataMachine.types";
-import AddEmail from "@/components/Step1-AddEmail";
-import AddPassword from "@/components/Step2-AddPassword";
-import CustomizeFirstProject from "@/components/Step3-CustomizeFirstProject";
-import AddProjectName from "@/components/Step4-AddProjectName";
-import BusinessGoalIntroduction from "@/components/Step5-BusinessGoalIntroduction";
-import DesignThinkingProcess from "@/components/Step6-DesignThinkingProcess";
-import Phase from "@/components/Phase";
+import { ref } from "vue"
+import { useMachine } from "@xstate/vue"
+import { userDataMachine } from "@/machines/userDataMachine"
+import { UserDataStates } from "@/machines/userDataMachine.types"
+import AddEmail from "@/components/Step1-AddEmail"
+import AddPassword from "@/components/Step2-AddPassword"
+import CustomizeFirstProject from "@/components/Step3-CustomizeFirstProject"
+import AddProjectName from "@/components/Step4-AddProjectName"
+import BusinessGoalIntroduction from "@/components/Step5-BusinessGoalIntroduction"
+import DesignThinkingProcess from "@/components/Step6-DesignThinkingProcess"
+import Phase from "@/components/Phase"
 // import AnalyzeProcess from '@/components/Step7-DiscoveryPhase';
 
 export default {
-  name: "App",
-  components: {
-    BusinessGoalIntroduction,
-    AddEmail,
-    AddPassword,
-    CustomizeFirstProject,
-    AddProjectName,
-    DesignThinkingProcess,
-    Phase,
-  },
-  setup() {
-    const { state, send } = useMachine(userDataMachine);
-    const currentActiveStep = ref(0);
+	name: "App",
+	components: {
+		BusinessGoalIntroduction,
+		AddEmail,
+		AddPassword,
+		CustomizeFirstProject,
+		AddProjectName,
+		DesignThinkingProcess,
+		Phase
+	},
+	setup() {
+		const { state, send } = useMachine(userDataMachine)
+		const currentActiveStep = ref(0)
 
-    const isCurrentState = function (dataState) {
-      return state.matches(UserDataStates[dataState]);
-    };
+		const isCurrentState = function(dataState) {
+			return state.matches(UserDataStates[dataState])
+		}
 
-    console.log(state, "state:: ");
+		console.log(state, "state:: ")
 
-    return {
-      currentActiveStep,
-      state,
-      send,
-      isCurrentState,
-    };
-  },
-};
+		return {
+			currentActiveStep,
+			state,
+			send,
+			isCurrentState
+		}
+	}
+}
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+	font-family: Avenir, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	color: #2c3e50;
+	margin-top: 60px;
 }
 </style>

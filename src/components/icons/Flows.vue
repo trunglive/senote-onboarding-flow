@@ -5,15 +5,27 @@
     height="32"
     viewBox="0 0 32 32"
   >
-    <g fill="none" fill-rule="evenodd">
-      <rect width="32" height="32" fill="#194962" rx="1.333" />
+    <g
+      fill="none"
+      fill-rule="evenodd"
+    >
+      <rect
+        width="32"
+        height="32"
+        fill="#194962"
+        rx="1.333"
+      />
       <g
         fill="#FFF"
         stroke="#FFF"
         stroke-width=".667"
         transform="translate(7.111 8.444)"
       >
-        <rect width="11.556" height="3.556" rx=".333" />
+        <rect
+          width="11.556"
+          height="3.556"
+          rx=".333"
+        />
         <rect
           width="11.111"
           height="3.556"
@@ -22,7 +34,13 @@
           opacity=".5"
           rx=".333"
         />
-        <rect width="11.111" height="3.556" x="7.111" y="11.556" rx=".333" />
+        <rect
+          width="11.111"
+          height="3.556"
+          x="7.111"
+          y="11.556"
+          rx=".333"
+        />
       </g>
     </g>
   </svg>
@@ -30,6 +48,6 @@
 
 <script>
 export default {
-  name: "Flows",
-};
+	name: "Flows"
+}
 </script>

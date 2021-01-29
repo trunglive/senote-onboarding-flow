@@ -12,7 +12,9 @@
         >
           <div class="flex items-center space-x-4">
             <AppIcon :icon="step.icon" />
-            <div class="text-black-light font-medium">{{ step.label }}</div>
+            <div class="text-black-light font-medium">
+              {{ step.label }}
+            </div>
           </div>
           <div class="flex space-x-4">
             <Switch />
@@ -26,32 +28,32 @@
 </template>
 
 <script>
-import { computed } from "vue";
-import NavigationButtonGroup from "@/components/NavigationButtonGroup";
-import AppIcon from "@/components/AppIcon";
-import { designThinkingProcesses } from "@/data/api";
-import Switch from "@/base/Switch";
+import { computed } from "vue"
+import NavigationButtonGroup from "@/components/NavigationButtonGroup"
+import AppIcon from "@/components/AppIcon"
+import { designThinkingProcesses } from "@/data/api"
+import Switch from "@/base/Switch"
 
 export default {
-  name: "Phase",
-  props: {
-    send: Function,
-    phaseName: String,
-  },
-  components: {
-    Switch,
-    AppIcon,
-    NavigationButtonGroup,
-  },
-  setup(props) {
-    const currentPhase = computed(function () {
-      return designThinkingProcesses[props.phaseName]; // discover, analyze, prototype
-    });
-    return {
-      currentPhase,
-    };
-  },
-};
+	name: "Phase",
+	props: {
+		send: Function,
+		phaseName: String
+	},
+	components: {
+		Switch,
+		AppIcon,
+		NavigationButtonGroup
+	},
+	setup(props) {
+		const currentPhase = computed(function() {
+			return designThinkingProcesses[props.phaseName] // discover, analyze, prototype
+		})
+		return {
+			currentPhase
+		}
+	}
+}
 </script>
 
 <style scoped></style>

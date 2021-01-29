@@ -15,7 +15,7 @@
         required
         class="appearance-none rounded-none w-full py-2 placeholder-gray-500 text-center text-gray-900 focus:outline-none focus:z-10"
         placeholder="Research Project"
-      />
+      >
       <div class="border-t border-dashed">
         <NavigationButtonGroup :send="send" />
       </div>
@@ -24,23 +24,23 @@
 </template>
 
 <script>
-import NavigationButtonGroup from "@/components/NavigationButtonGroup";
-import { brand } from "@/data/api";
+import NavigationButtonGroup from "@/components/NavigationButtonGroup"
+import { brand } from "@/data/api"
 
 export default {
-  name: "AddProjectName",
-  props: {
-    send: Function,
-  },
-  components: {
-    NavigationButtonGroup,
-  },
-  setup() {
-    return {
-      brand,
-    };
-  },
-};
+	name: "AddProjectName",
+	props: {
+		send: Function
+	},
+	components: {
+		NavigationButtonGroup
+	},
+	setup() {
+		return {
+			brand
+		}
+	}
+}
 </script>
 
 <style scoped></style>

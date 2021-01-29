@@ -5,9 +5,21 @@
     height="32"
     viewBox="0 0 32 32"
   >
-    <g fill="none" fill-rule="evenodd">
-      <rect width="32" height="32" fill="#4F1962" rx="1.333" />
-      <g stroke="#FFF" stroke-linecap="round" stroke-linejoin="round">
+    <g
+      fill="none"
+      fill-rule="evenodd"
+    >
+      <rect
+        width="32"
+        height="32"
+        fill="#4F1962"
+        rx="1.333"
+      />
+      <g
+        stroke="#FFF"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <path
           fill="#FFF"
           stroke-width=".667"
@@ -27,6 +39,6 @@
 
 <script>
 export default {
-  name: "Prototype",
-};
+	name: "Prototype"
+}
 </script>

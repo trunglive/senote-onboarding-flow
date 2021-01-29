@@ -6,7 +6,9 @@
       >
         S
       </div>
-      <div class="text-black-dark font-bold text-xl mt-6">Create Account</div>
+      <div class="text-black-dark font-bold text-xl mt-6">
+        Create Account
+      </div>
     </div>
     <div>
       <input
@@ -18,7 +20,7 @@
         required
         class="appearance-none rounded-none w-full py-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:z-10"
         placeholder="Please input email"
-      />
+      >
       <div class="border-t border-dashed">
         <NavigationButtonGroup :send="send" />
       </div>
@@ -27,17 +29,18 @@
 </template>
 
 <script>
-import NavigationButtonGroup from "@/components/NavigationButtonGroup";
+import NavigationButtonGroup from "@/components/NavigationButtonGroup"
+
 export default {
-  name: "AddEmail",
-  components: {
-    NavigationButtonGroup,
-  },
-  props: {
-    msg: String,
-    send: Function,
-  },
-};
+	name: "AddEmail",
+	components: {
+		NavigationButtonGroup
+	},
+	props: {
+		msg: String,
+		send: Function
+	}
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

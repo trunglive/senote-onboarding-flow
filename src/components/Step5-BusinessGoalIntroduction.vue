@@ -11,23 +11,23 @@
 </template>
 
 <script>
-import NavigationButtonGroup from "@/components/NavigationButtonGroup";
-import { brand } from "@/data/api";
+import NavigationButtonGroup from "@/components/NavigationButtonGroup"
+import { brand } from "@/data/api"
 
 export default {
-  name: "BusinessGoalIntroduction",
-  props: {
-    send: Function,
-  },
-  components: {
-    NavigationButtonGroup,
-  },
-  setup() {
-    return {
-      brand,
-    };
-  },
-};
+	name: "BusinessGoalIntroduction",
+	props: {
+		send: Function
+	},
+	components: {
+		NavigationButtonGroup
+	},
+	setup() {
+		return {
+			brand
+		}
+	}
+}
 </script>
 
 <style scoped></style>

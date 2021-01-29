@@ -17,7 +17,9 @@
           >
             {{ process.label }}
           </div>
-          <div class="text-lg text-black-light">{{ process.goal }}</div>
+          <div class="text-lg text-black-light">
+            {{ process.goal }}
+          </div>
         </div>
       </div>
     </div>
@@ -26,24 +28,24 @@
 </template>
 
 <script>
-import NavigationButtonGroup from "@/components/NavigationButtonGroup";
-import { brand, designThinkingProcesses } from "@/data/api";
+import NavigationButtonGroup from "@/components/NavigationButtonGroup"
+import { brand, designThinkingProcesses } from "@/data/api"
 
 export default {
-  name: "DesignThinkingProcess",
-  props: {
-    send: Function,
-  },
-  components: {
-    NavigationButtonGroup,
-  },
-  setup() {
-    return {
-      brand,
-      designThinkingProcesses,
-    };
-  },
-};
+	name: "DesignThinkingProcess",
+	props: {
+		send: Function
+	},
+	components: {
+		NavigationButtonGroup
+	},
+	setup() {
+		return {
+			brand,
+			designThinkingProcesses
+		}
+	}
+}
 </script>
 
 <style scoped></style>

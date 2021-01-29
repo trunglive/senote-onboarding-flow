@@ -29,15 +29,15 @@
         dur="1s"
         values="0 50 50;360 50 50"
         keyTimes="0;1"
-      ></animateTransform>
+      />
     </circle>
   </svg>
 </template>
 
 <script>
 export default {
-  name: "Spinner",
-};
+	name: "Spinner"
+}
 </script>
 
 <style scoped></style>

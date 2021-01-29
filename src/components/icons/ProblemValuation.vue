@@ -5,8 +5,16 @@
     height="32"
     viewBox="0 0 32 32"
   >
-    <g fill="none" fill-rule="evenodd">
-      <rect width="32" height="32" fill="#194962" rx="1.333" />
+    <g
+      fill="none"
+      fill-rule="evenodd"
+    >
+      <rect
+        width="32"
+        height="32"
+        fill="#194962"
+        rx="1.333"
+      />
       <g
         stroke="#FFF"
         stroke-linecap="round"
@@ -30,6 +38,6 @@
 
 <script>
 export default {
-  name: "ProblemValuation",
-};
+	name: "ProblemValuation"
+}
 </script>

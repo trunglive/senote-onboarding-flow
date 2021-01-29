@@ -5,10 +5,26 @@
     height="32"
     viewBox="0 0 32 32"
   >
-    <g fill="none" fill-rule="evenodd">
-      <rect width="32" height="32" fill="#192262" rx="1.333" />
-      <g fill="#FFF" transform="translate(8 7.556)">
-        <circle cx="8" cy="8" r="8" opacity=".4" />
+    <g
+      fill="none"
+      fill-rule="evenodd"
+    >
+      <rect
+        width="32"
+        height="32"
+        fill="#192262"
+        rx="1.333"
+      />
+      <g
+        fill="#FFF"
+        transform="translate(8 7.556)"
+      >
+        <circle
+          cx="8"
+          cy="8"
+          r="8"
+          opacity=".4"
+        />
         <path
           stroke="#FFF"
           stroke-linecap="round"
@@ -23,6 +39,6 @@
 
 <script>
 export default {
-  name: "CompetitorAnalysis",
-};
+	name: "CompetitorAnalysis"
+}
 </script>

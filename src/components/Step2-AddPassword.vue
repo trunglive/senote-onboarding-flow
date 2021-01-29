@@ -20,7 +20,7 @@
         required
         class="appearance-none rounded-none w-full py-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:z-10"
         placeholder="Enter your password"
-      />
+      >
       <div class="border-t border-dashed">
         <div class="mt-4 text-sm text-left">
           <span>Password should be at least</span>
@@ -33,15 +33,15 @@
 </template>
 
 <script>
-import NavigationButtonGroup from "@/components/NavigationButtonGroup";
+import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 
 export default {
-  name: "AddPassword",
-  props: {
-    send: Function,
-  },
-  components: { NavigationButtonGroup },
-};
+	name: "AddPassword",
+	props: {
+		send: Function
+	},
+	components: { NavigationButtonGroup }
+}
 </script>
 
 <style scoped></style>
