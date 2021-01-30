@@ -1,4 +1,5 @@
 <template>
+  <ProgressBar percentage="40" />
   <AddEmail
     v-if="state.matches('addEmail')"
     :send="send"
@@ -51,11 +52,12 @@ import AddProjectName from "@/components/AddProjectName"
 import BusinessGoalIntroduction from "@/components/BusinessGoalIntroduction"
 import DesignThinkingProcess from "@/components/DesignThinkingProcess"
 import Phase from "@/components/Phase"
-// import AnalyzeProcess from '@/components/Step7-DiscoveryPhase';
+import ProgressBar from "@/base/ProgressBar"
 
 export default {
 	name: "App",
 	components: {
+		ProgressBar,
 		BusinessGoalIntroduction,
 		AddEmail,
 		AddPassword,

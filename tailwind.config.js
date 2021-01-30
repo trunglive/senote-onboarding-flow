@@ -37,6 +37,10 @@ module.exports = {
 				DEFAULT: colors.white,
 			},
 		},
+		width: theme => ({
+			...theme("spacing"),
+			"navigation-button": "21.25rem",
+		}),
 		extend: {},
 	},
 	variants: {

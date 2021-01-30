@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen flex flex-col items-center justify-center">
-    <div class="flex flex-col w-80 mb-2">
+    <div class="flex flex-col w-navigation-button mb-2">
       <StepInfo :title="composeStepTitle()" />
     </div>
     <NavigationButtonGroup :send="send" />

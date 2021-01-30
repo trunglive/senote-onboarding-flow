@@ -9,7 +9,7 @@
             ? 'bg-ocean-blur pointer-event-none'
             : 'bg-ocean hover:bg-ocean-dark'
         "
-        class="w-80 h-12 flex flex-col items-center justify-center rounded-md text-white font-bold duration-200 ease-in-out"
+        class="w-navigation-button h-12 flex flex-col items-center justify-center rounded-md text-white font-bold duration-200 ease-in-out"
       >
         <Spinner
           v-show="showSpinner"
@@ -22,7 +22,7 @@
     <a
       @click="handleClickBack"
       href="#"
-      class="text-black w-80 h-12 flex flex-col items-center justify-center hover:text-black-light duration-100 ease-in-out"
+      class="text-black w-navigation-button h-12 flex flex-col items-center justify-center hover:text-black-light duration-100 ease-in-out"
     >
       Back
     </a>
