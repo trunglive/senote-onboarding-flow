@@ -68,6 +68,12 @@ export const userDataMachine = Machine({
 						userData: (_, { userData }) => userData,
 					}),
 				},
+				[UserDataEvents.CONFIRM_TRIAL]: {
+					target: UserDataStates.confirmTrial,
+					actions: assign({
+						userData: (_, { userData }) => userData,
+					}),
+				},
 			},
 			invoke: {
 				// eslint-disable-next-line no-unused-vars
@@ -225,8 +231,24 @@ export const userDataMachine = Machine({
 		},
 		prototypePhase: {
 			on: {
-				NEXT: "complete",
+				NEXT: "confirmTrial",
 				BACK: "analyzePhase",
+			},
+			invoke: {
+				src: updateFormMachine,
+				data: ctx => ctx,
+				onDone: {
+					target: UserDataStates.confirmTrial,
+					actions: assign({
+						userData: (_, { data }) => data?.userData ?? null,
+					}),
+				},
+			},
+		},
+		confirmTrial: {
+			on: {
+				NEXT: "complete",
+				BACK: "prototypePhase",
 			},
 			invoke: {
 				src: updateFormMachine,
@@ -241,7 +263,7 @@ export const userDataMachine = Machine({
 		},
 		complete: {
 			on: {
-				BACK: "prototypePhase",
+				BACK: "confirmTrial",
 			},
 		},
 	},

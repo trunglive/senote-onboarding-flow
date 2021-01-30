@@ -9,6 +9,7 @@ export const UserDataStates = {
 	discoverPhase: "discoverPhase",
 	analyzePhase: "analyzePhase",
 	prototypePhase: "prototypePhase",
+	confirmTrial: "confirmTrial",
 	complete: "complete",
 }
 
@@ -24,6 +25,7 @@ export const UserDataMachineStates = {
 		[UserDataStates.discoverPhase]: {},
 		[UserDataStates.analyzePhase]: {},
 		[UserDataStates.prototypePhase]: {},
+		[UserDataStates.confirmTrial]: {},
 		[UserDataStates.complete]: {},
 	},
 }
@@ -38,6 +40,7 @@ export const UserDataEvents = {
 	DISCOVER_PHASE: "DISCOVER_PHASE",
 	ANALYZE_PHASE: "ANALYZE_PHASE",
 	PROTOTYPE_PHASE: "PROTOTYPE_PHASE",
+	CONFIRM_TRIAL: "CONFIRM_TRIAL",
 	NEXT: "NEXT",
 	BACK: "BACK",
 }

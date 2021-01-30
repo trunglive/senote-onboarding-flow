@@ -39,6 +39,10 @@
     :send="send"
     phase-name="prototype"
   />
+  <ConfirmTrial
+    v-if="state.matches('confirmTrial')"
+    :send="send"
+  />
 </template>
 <script>
 import { ref } from "vue"
@@ -53,10 +57,12 @@ import BusinessGoalIntroduction from "@/components/BusinessGoalIntroduction"
 import DesignThinkingProcess from "@/components/DesignThinkingProcess"
 import Phase from "@/components/Phase"
 import ProgressBar from "@/base/ProgressBar"
+import ConfirmTrial from "@/components/ConfirmTrial"
 
 export default {
 	name: "App",
 	components: {
+		ConfirmTrial,
 		ProgressBar,
 		BusinessGoalIntroduction,
 		AddEmail,
@@ -80,6 +86,7 @@ export default {
 				discoverPhase: 70,
 				analyzePhase: 80,
 				prototypePhase: 90,
+				confirmTrial: 100,
 			}
 			return mapping[currentState]
 		}
