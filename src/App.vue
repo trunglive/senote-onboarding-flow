@@ -1,5 +1,5 @@
 <template>
-  <ProgressBar percentage="40" />
+  <ProgressBar :percentage="calculateProgressBarPercentage(state.value)" />
   <AddEmail
     v-if="state.matches('addEmail')"
     :send="send"
@@ -68,19 +68,26 @@ export default {
 	},
 	setup() {
 		const { state, send } = useMachine(userDataMachine)
-		const currentActiveStep = ref(0)
 
-		const isCurrentState = function (dataState) {
-			return state.matches(UserDataStates[dataState])
+		const calculateProgressBarPercentage = currentState => {
+			const mapping = {
+				addEmail: 10,
+				addPassword: 20,
+				customizeFirstProject: 30,
+				addProjectName: 40,
+				businessGoalIntroduction: 50,
+				designThinkingProcesses: 60,
+				discoverPhase: 70,
+				analyzePhase: 80,
+				prototypePhase: 90,
+			}
+			return mapping[currentState]
 		}
 
-		console.log(state, "state:: ")
-
 		return {
-			currentActiveStep,
 			state,
 			send,
-			isCurrentState,
+			calculateProgressBarPercentage,
 		}
 	},
 }

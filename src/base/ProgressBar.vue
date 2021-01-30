@@ -11,36 +11,24 @@
 export default {
 	name: "ProgressBar",
 	props: {
-		percentage: String,
+		percentage: Number,
 	},
 }
 </script>
 
 <style scoped>
 div.progress-bar {
-	background-color: #f8f9fa;
-	border-radius: 10px;
-	box-sizing: border-box;
-	color: #252729;
-	display: block;
-	font-family: Lato, sans-serif;
-	font-size: 14px;
 	height: 8px;
-	line-height: 20px;
-	margin: 0 auto;
+	margin: 30px auto 0;
+	background-color: #f8f9fa;
+	border-radius: 200px;
 }
 
 div.progress-bar__bar {
-	background-color: #007b83;
-	border-radius: 200px;
-	box-sizing: border-box;
-	color: #252729;
-	display: block;
-	font-family: Lato, sans-serif;
-	font-size: 14px;
-	height: 100%;
-	line-height: 20px;
-	transition: all 0.2s ease 0s;
 	width: 12.5%;
+	height: 100%;
+	background-color: #007b83;
+	transition: all 0.2s ease 0s;
+	border-radius: 200px;
 }
 </style>
