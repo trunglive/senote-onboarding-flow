@@ -1,20 +1,23 @@
 <template>
-  <div class="min-h-screen flex flex-col items-center justify-center">
+  <div class="flex flex-col items-center justify-center">
     <AvatarGroup
       avatar-title="S"
       avatar-text="Create Account"
     />
     <div>
-      <input
-        v-model="emailInput"
-        id="email"
-        name="email"
-        type="email"
-        autocomplete="off"
-        required
-        class="appearance-none rounded-none w-full py-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:z-10"
-        placeholder="Please input email"
-      >
+      <div class="flex items-center justify-between w-navigation-button">
+        <input
+          v-model="emailInput"
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="off"
+          required
+          class="appearance-none rounded-none py-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:z-10"
+          placeholder="Please input email"
+        >
+        <Checkmark />
+      </div>
       <div class="border-t border-dashed">
         <NavigationButtonGroup :send="send" />
       </div>
@@ -25,12 +28,14 @@
 <script>
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import AvatarGroup from "@/components/AvatarGroup"
+import Checkmark from "@/components/icons/Checkmark"
 
 export default {
 	name: "AddEmail",
 	components: {
 		AvatarGroup,
-		NavigationButtonGroup
+		NavigationButtonGroup,
+		Checkmark,
 	},
 	props: {
 		msg: String,

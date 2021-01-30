@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col items-center justify-center">
+  <div class="flex flex-col items-center justify-center">
     <div class="flex flex-col w-navigation-button mb-2">
       <StepInfo :title="composeStepTitle()" />
     </div>

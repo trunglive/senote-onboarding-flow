@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col items-center justify-center">
+  <div class="flex flex-col items-center justify-center">
     <div class="flex flex-col items-center w-navigation-button mb-2">
       <div class="text-black-dark text-xl mt-6">
         Customize your first project
