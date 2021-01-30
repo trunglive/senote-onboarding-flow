@@ -32,6 +32,42 @@ export const userDataMachine = Machine({
 						userData: (_, { userData }) => userData,
 					}),
 				},
+				[UserDataEvents.ENTER_PROJECT_NAME]: {
+					target: UserDataStates.addProjectName,
+					actions: assign({
+						userData: (_, { userData }) => userData,
+					}),
+				},
+				[UserDataEvents.BUSINESS_GOAL_INTRODUCTION]: {
+					target: UserDataStates.businessGoalIntroduction,
+					actions: assign({
+						userData: (_, { userData }) => userData,
+					}),
+				},
+				[UserDataEvents.DESIGN_THINKING_PROCESSES]: {
+					target: UserDataStates.designThinkingProcesses,
+					actions: assign({
+						userData: (_, { userData }) => userData,
+					}),
+				},
+				[UserDataEvents.DISCOVER_PHASE]: {
+					target: UserDataStates.discoverPhase,
+					actions: assign({
+						userData: (_, { userData }) => userData,
+					}),
+				},
+				[UserDataEvents.ANALYZE_PHASE]: {
+					target: UserDataStates.analyzePhase,
+					actions: assign({
+						userData: (_, { userData }) => userData,
+					}),
+				},
+				[UserDataEvents.PROTOTYPE_PHASE]: {
+					target: UserDataStates.prototypePhase,
+					actions: assign({
+						userData: (_, { userData }) => userData,
+					}),
+				},
 			},
 			invoke: {
 				// eslint-disable-next-line no-unused-vars
@@ -148,7 +184,7 @@ export const userDataMachine = Machine({
 				src: updateFormMachine,
 				data: ctx => ctx,
 				onDone: {
-					target: UserDataStates.complete,
+					target: UserDataStates.discoverPhase,
 					actions: assign({
 						userData: (_, { data }) => data?.userData ?? null,
 					}),
@@ -164,7 +200,7 @@ export const userDataMachine = Machine({
 				src: updateFormMachine,
 				data: ctx => ctx,
 				onDone: {
-					target: UserDataStates.complete,
+					target: UserDataStates.analyzePhase,
 					actions: assign({
 						userData: (_, { data }) => data?.userData ?? null,
 					}),
@@ -180,7 +216,7 @@ export const userDataMachine = Machine({
 				src: updateFormMachine,
 				data: ctx => ctx,
 				onDone: {
-					target: UserDataStates.complete,
+					target: UserDataStates.prototypePhase,
 					actions: assign({
 						userData: (_, { data }) => data?.userData ?? null,
 					}),
@@ -205,7 +241,7 @@ export const userDataMachine = Machine({
 		},
 		complete: {
 			on: {
-				BACK: "businessGoalIntroduction",
+				BACK: "prototypePhase",
 			},
 		},
 	},
