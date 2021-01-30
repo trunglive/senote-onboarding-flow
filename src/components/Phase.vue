@@ -1,9 +1,7 @@
 <template>
   <div class="min-h-screen flex flex-col items-center justify-center">
     <div class="flex flex-col w-80 mb-2">
-      <div class="text-black-dark text-xl">
-        Choose your methods for the {{ currentPhase.label }} Phase.
-      </div>
+      <StepInfo :title="composeStepTitle()" />
       <div class="space-y-2.5 mt-6 mb-2">
         <div
           v-for="step in currentPhase.stepProcesses"
@@ -31,8 +29,9 @@
 import { computed } from "vue"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import AppIcon from "@/components/AppIcon"
-import { designThinkingProcesses } from "@/data/api"
+import { brand, designThinkingProcesses } from "@/data/api"
 import Switch from "@/base/Switch"
+import StepInfo from "@/components/StepIntro"
 
 export default {
 	name: "Phase",
@@ -41,6 +40,7 @@ export default {
 		phaseName: String
 	},
 	components: {
+		StepInfo,
 		Switch,
 		AppIcon,
 		NavigationButtonGroup
@@ -49,8 +49,14 @@ export default {
 		const currentPhase = computed(function() {
 			return designThinkingProcesses[props.phaseName] // discover, analyze, prototype
 		})
+
+		function composeStepTitle() {
+			return `Choose your methods for the ${currentPhase.value.label} Phase.`
+		}
+
 		return {
-			currentPhase
+			currentPhase,
+			composeStepTitle,
 		}
 	}
 }

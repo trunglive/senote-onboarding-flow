@@ -1,15 +1,9 @@
 <template>
   <div class="min-h-screen flex flex-col items-center justify-center">
-    <div class="flex flex-col items-center mb-10">
-      <div
-        class="flex flex-col items-center justify-center w-16 h-16 rounded-md bg-blue-light font-bold text-2xl"
-      >
-        S
-      </div>
-      <div class="text-black-dark font-bold text-xl mt-6">
-        Create Account
-      </div>
-    </div>
+    <AvatarGroup
+      avatar-title="S"
+      avatar-text="Create Account"
+    />
     <div>
       <input
         v-model="emailInput"
@@ -30,10 +24,12 @@
 
 <script>
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
+import AvatarGroup from "@/components/AvatarGroup"
 
 export default {
 	name: "AddEmail",
 	components: {
+		AvatarGroup,
 		NavigationButtonGroup
 	},
 	props: {

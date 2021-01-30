@@ -1,15 +1,9 @@
 <template>
   <div class="min-h-screen flex flex-col items-center justify-center">
-    <div class="flex flex-col items-center mb-10">
-      <div
-        class="flex flex-col items-center justify-center w-16 h-16 rounded-md bg-blue-light font-bold text-2xl"
-      >
-        S
-      </div>
-      <div class="text-black-dark font-bold text-xl mt-6">
-        Set your password
-      </div>
-    </div>
+    <AvatarGroup
+      avatar-title="S"
+      avatar-text="Set your password"
+    />
     <div>
       <input
         v-model="passwordInput"
@@ -34,13 +28,14 @@
 
 <script>
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
+import AvatarGroup from "@/components/AvatarGroup"
 
 export default {
 	name: "AddPassword",
 	props: {
 		send: Function
 	},
-	components: { NavigationButtonGroup }
+	components: { AvatarGroup, NavigationButtonGroup }
 }
 </script>
 

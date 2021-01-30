@@ -1,10 +1,7 @@
 <template>
   <div class="min-h-screen flex flex-col items-center justify-center">
     <div class="flex flex-col w-80 mb-2">
-      <div class="text-black-dark text-xl">
-        {{ brand.label }} is equipped with predefined design thinking processes
-        divided into three phrases.
-      </div>
+      <StepInfo :title="composeStepTitle()" />
       <div class="space-y-2.5 mt-6 mb-2">
         <div
           v-for="process in designThinkingProcesses"
@@ -30,6 +27,7 @@
 <script>
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import { brand, designThinkingProcesses } from "@/data/api"
+import StepInfo from "@/components/StepIntro"
 
 export default {
 	name: "DesignThinkingProcess",
@@ -37,12 +35,19 @@ export default {
 		send: Function
 	},
 	components: {
+		StepInfo,
 		NavigationButtonGroup
 	},
 	setup() {
+		function composeStepTitle() {
+			return `${brand.label} is equipped with predefined design thinking processes
+        divided into three phrases.`
+		}
+
 		return {
 			brand,
-			designThinkingProcesses
+			designThinkingProcesses,
+			composeStepTitle,
 		}
 	}
 }

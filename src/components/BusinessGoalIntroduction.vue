@@ -1,10 +1,7 @@
 <template>
   <div class="min-h-screen flex flex-col items-center justify-center">
-    <div class="flex flex-col items-center w-80 mb-2">
-      <div class="text-black-dark text-xl mt-6">
-        {{ brand.label }} is designed for easy collaboration with your clients
-        and team members on new product research.
-      </div>
+    <div class="flex flex-col w-80 mb-2">
+      <StepInfo :title="composeStepTitle()" />
     </div>
     <NavigationButtonGroup :send="send" />
   </div>
@@ -13,18 +10,24 @@
 <script>
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import { brand } from "@/data/api"
+import StepInfo from "@/components/StepIntro"
 
 export default {
 	name: "BusinessGoalIntroduction",
 	props: {
-		send: Function
+		send: Function,
 	},
 	components: {
+		StepInfo,
 		NavigationButtonGroup
 	},
 	setup() {
+		function composeStepTitle() {
+			return `${brand.label} is designed for easy collaboration with your clients
+        and team members on new product research.`
+		}
 		return {
-			brand
+			composeStepTitle,
 		}
 	}
 }
