@@ -14,7 +14,7 @@
         <Spinner
           v-show="showSpinner"
           class="w-6 h-6"
-          :class="showSpinner && 'opacity-100'"
+          :class="showSpinner && 'bg-ocean-blur'"
         />
         <span v-show="!showSpinner">Continue</span>
       </a>

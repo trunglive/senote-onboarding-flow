@@ -6,7 +6,7 @@ module.exports = {
 	theme: {
 		colors: {
 			ocean: {
-				blur: "#cbdbdb",
+				blur: "#abc0c8",
 				// light: '',
 				DEFAULT: "#059fa3",
 				dark: "#1d5f75",
@@ -28,7 +28,7 @@ module.exports = {
 				dark: "#4f1a62",
 			},
 			black: {
-				light: "#747474",
+				light: "#646464",
 				DEFAULT: "#40474f",
 				dark: "#212528",
 			},

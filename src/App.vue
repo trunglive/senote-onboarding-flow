@@ -62,13 +62,13 @@ export default {
 		CustomizeFirstProject,
 		AddProjectName,
 		DesignThinkingProcess,
-		Phase
+		Phase,
 	},
 	setup() {
 		const { state, send } = useMachine(userDataMachine)
 		const currentActiveStep = ref(0)
 
-		const isCurrentState = function(dataState) {
+		const isCurrentState = function (dataState) {
 			return state.matches(UserDataStates[dataState])
 		}
 
@@ -78,19 +78,17 @@ export default {
 			currentActiveStep,
 			state,
 			send,
-			isCurrentState
+			isCurrentState,
 		}
-	}
+	},
 }
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
 #app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
+	font-family: Lato, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
-	margin-top: 60px;
 }
 </style>

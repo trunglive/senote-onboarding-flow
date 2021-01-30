@@ -13,7 +13,7 @@
         type="email"
         autocomplete="off"
         required
-        class="appearance-none rounded-none w-full py-2 placeholder-gray-500 text-center text-gray-900 focus:outline-none focus:z-10"
+        class="appearance-none rounded-none w-full py-2 placeholder-gray-500 text-center text-black-light focus:outline-none focus:z-10"
         placeholder="Research Project"
       >
       <div class="border-t border-dashed">
