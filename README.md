@@ -1,4 +1,4 @@
-# vue-onboarding-flow
+# senote-onboarding-flow
 
 ## Project setup
 
