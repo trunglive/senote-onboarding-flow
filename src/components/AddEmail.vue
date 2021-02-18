@@ -7,7 +7,7 @@
     <div>
       <div class="flex items-center justify-between w-navigation-button">
         <input
-          v-model="emailInput"
+          v-model="state.emailAddress"
           id="email"
           name="email"
           type="email"
@@ -16,7 +16,7 @@
           class="appearance-none rounded-none py-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:z-10"
           placeholder="Please input email"
         >
-        <Checkmark />
+        <Checkmark v-if="!v$.emailAddress.$invalid" />
       </div>
       <div class="border-t border-dashed">
         <NavigationButtonGroup :send="send" />
@@ -26,9 +26,12 @@
 </template>
 
 <script>
+import { ref, reactive } from "vue"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import AvatarGroup from "@/components/AvatarGroup"
 import Checkmark from "@/components/icons/Checkmark"
+import { email, required } from '@vuelidate/validators'
+import { useVuelidate } from '@vuelidate/core'
 
 export default {
 	name: "AddEmail",
@@ -40,6 +43,16 @@ export default {
 	props: {
 		msg: String,
 		send: Function
+	},
+	setup() {
+		const state = reactive({
+			emailAddress: ''
+		})
+		const rules = {
+			emailAddress: { required, email }
+		}
+		const v$ = useVuelidate(rules, state)
+		return { state, v$ }
 	}
 }
 </script>
