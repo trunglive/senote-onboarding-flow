@@ -19,14 +19,17 @@
         <Checkmark v-if="!v$.emailAddress.$invalid" />
       </div>
       <div class="border-t border-dashed">
-        <NavigationButtonGroup :send="send" />
+        <NavigationButtonGroup
+          :send="send"
+          :disable-continue-button="v$.emailAddress.$invalid"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, reactive } from "vue"
+import { reactive } from "vue"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import AvatarGroup from "@/components/AvatarGroup"
 import Checkmark from "@/components/icons/Checkmark"
