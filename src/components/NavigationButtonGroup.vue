@@ -5,10 +5,10 @@
         @click="handleClickContinue"
         :class="
           showSpinner || disableContinueButton
-            ? 'bg-ocean-blur pointer-event-none'
+            ? 'bg-ocean-light opacity-50 pointer-event-none'
             : 'bg-ocean hover:bg-ocean-dark'
         "
-        class="w-navigation-button h-12 flex flex-col items-center justify-center rounded-md text-white font-bold duration-200 ease-in-out"
+        class="w-navigation-button h-navigation-button flex flex-col items-center justify-center rounded-md text-white font-bold duration-200 ease-in-out"
       >
         <Spinner
           v-show="showSpinner"

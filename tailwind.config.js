@@ -6,10 +6,9 @@ module.exports = {
 	theme: {
 		colors: {
 			ocean: {
-				blur: "#abc0c8",
-				// light: '',
+				light: "#abc0c8",
 				DEFAULT: "#059fa3",
-				dark: "#1d5f75",
+				dark: "#036f72",
 				"dark-2": "#1b4962",
 			},
 			blue: {
@@ -40,6 +39,10 @@ module.exports = {
 		width: theme => ({
 			...theme("spacing"),
 			"navigation-button": "21.25rem",
+		}),
+		height: theme => ({
+			...theme("spacing"),
+			"navigation-button": "3.25rem",
 		}),
 		extend: {},
 	},
