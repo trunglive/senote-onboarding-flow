@@ -47,7 +47,7 @@
       />
     </div>
     <div :class="isPhaseLoaded ? 'w-1/2' : 'hidden'">
-      <Abstract />
+      <Creator />
     </div>
   </div>
 </template>
@@ -65,12 +65,11 @@ import DesignThinkingProcess from "@/components/DesignThinkingProcess"
 import Phase from "@/components/Phase"
 import ProgressBar from "@/base/ProgressBar"
 import ConfirmTrial from "@/components/ConfirmTrial"
-import Abstract from "@/components/icons/Abstract"
+import Creator from "@/components/Creator"
 
 export default {
 	name: "App",
 	components: {
-		Abstract,
 		ConfirmTrial,
 		ProgressBar,
 		BusinessGoalIntroduction,
@@ -80,6 +79,7 @@ export default {
 		AddProjectName,
 		DesignThinkingProcess,
 		Phase,
+		Creator,
 	},
 	setup() {
 		const { state, send } = useMachine(userDataMachine)
