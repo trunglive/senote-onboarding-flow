@@ -1,0 +1,67 @@
+<template>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:serif="http://www.serif.com/"
+    width="100%"
+    height="100%"
+    viewBox="0 0 914 1179"
+    version="1.1"
+    xml:space="preserve"
+    style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;"
+  ><g id="abstract-bg"><rect
+    id="Rectangle"
+    x="0"
+    y="0"
+    width="914"
+    height="1179"
+    style="fill:#f5f5f5;"
+  /><path
+    id="Line"
+    d="M966,1389c-95.051,-237.585 -232.101,-410.397 -411.15,-518.435c-179.048,-108.039 -363.998,-168.56 -554.85,-181.565"
+    style="fill:none;stroke:url(#_Linear1);stroke-width:345px;"
+  /><circle
+    id="Oval"
+    cx="706"
+    cy="308"
+    r="194"
+    style="fill:url(#_Linear2);"
+  /></g><defs><linearGradient
+    id="_Linear1"
+    x1="0"
+    y1="0"
+    x2="1"
+    y2="0"
+    gradientUnits="userSpaceOnUse"
+    gradientTransform="matrix(-478.086,-123.794,-123.794,478.086,678.953,1016.56)"
+  ><stop
+    offset="0"
+    style="stop-color:#f5f5f5;stop-opacity:1"
+  /><stop
+    offset="1"
+    style="stop-color:#e7e7e7;stop-opacity:1"
+  /></linearGradient><linearGradient
+    id="_Linear2"
+    x1="0"
+    y1="0"
+    x2="1"
+    y2="0"
+    gradientUnits="userSpaceOnUse"
+    gradientTransform="matrix(10.7461,581.645,-581.645,10.7461,706,114)"
+  ><stop
+    offset="0"
+    style="stop-color:#f5f5f5;stop-opacity:1"
+  /><stop
+    offset="1"
+    style="stop-color:#e7e7e7;stop-opacity:1"
+  /></linearGradient></defs></svg>
+</template>
+
+<script>
+export default {
+name: "Abstract",
+}
+</script>
+
+
+

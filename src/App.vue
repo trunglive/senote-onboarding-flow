@@ -1,51 +1,58 @@
 <template>
-  <ProgressBar :percentage="calculateProgressBarPercentage(state.value)" />
-  <AddEmail
-    v-if="state.matches('addEmail')"
-    :send="send"
-  />
-  <AddPassword
-    v-if="state.matches('addPassword')"
-    :send="send"
-  />
-  <CustomizeFirstProject
-    v-if="state.matches('customizeFirstProject')"
-    :send="send"
-  />
-  <AddProjectName
-    v-if="state.matches('addProjectName')"
-    :send="send"
-  />
-  <BusinessGoalIntroduction
-    v-if="state.matches('businessGoalIntroduction')"
-    :send="send"
-  />
-  <DesignThinkingProcess
-    v-if="state.matches('designThinkingProcesses')"
-    :send="send"
-  />
-  <Phase
-    v-if="state.matches('discoverPhase')"
-    :send="send"
-    phase-name="discover"
-  />
-  <Phase
-    v-if="state.matches('analyzePhase')"
-    :send="send"
-    phase-name="analyze"
-  />
-  <Phase
-    v-if="state.matches('prototypePhase')"
-    :send="send"
-    phase-name="prototype"
-  />
-  <ConfirmTrial
-    v-if="state.matches('confirmTrial')"
-    :send="send"
-  />
+  <div class="flex">
+    <div :class="isPhaseLoaded ? 'w-1/2' : 'w-full'">
+      <ProgressBar :percentage="calculateProgressBarPercentage(state.value)" />
+      <AddEmail
+        v-if="state.matches('addEmail')"
+        :send="send"
+      />
+      <AddPassword
+        v-if="state.matches('addPassword')"
+        :send="send"
+      />
+      <CustomizeFirstProject
+        v-if="state.matches('customizeFirstProject')"
+        :send="send"
+      />
+      <AddProjectName
+        v-if="state.matches('addProjectName')"
+        :send="send"
+      />
+      <BusinessGoalIntroduction
+        v-if="state.matches('businessGoalIntroduction')"
+        :send="send"
+      />
+      <DesignThinkingProcess
+        v-if="state.matches('designThinkingProcesses')"
+        :send="send"
+      />
+      <Phase
+        v-if="state.matches('discoverPhase')"
+        :send="send"
+        phase-name="discover"
+      />
+      <Phase
+        v-if="state.matches('analyzePhase')"
+        :send="send"
+        phase-name="analyze"
+      />
+      <Phase
+        v-if="state.matches('prototypePhase')"
+        :send="send"
+        phase-name="prototype"
+      />
+      <ConfirmTrial
+        v-if="state.matches('confirmTrial')"
+        :send="send"
+      />
+    </div>
+    <div :class="isPhaseLoaded ? 'w-1/2' : 'hidden'">
+      <Abstract />
+    </div>
+  </div>
 </template>
 <script>
-import { ref } from "vue"
+import { computed } from "vue"
 import { useMachine } from "@xstate/vue"
 import { userDataMachine } from "@/machines/userDataMachine"
 import { UserDataStates } from "@/machines/userDataMachine.types"
@@ -58,10 +65,12 @@ import DesignThinkingProcess from "@/components/DesignThinkingProcess"
 import Phase from "@/components/Phase"
 import ProgressBar from "@/base/ProgressBar"
 import ConfirmTrial from "@/components/ConfirmTrial"
+import Abstract from "@/components/icons/Abstract"
 
 export default {
 	name: "App",
 	components: {
+		Abstract,
 		ConfirmTrial,
 		ProgressBar,
 		BusinessGoalIntroduction,
@@ -74,6 +83,9 @@ export default {
 	},
 	setup() {
 		const { state, send } = useMachine(userDataMachine)
+
+		const phaseArray = ["discoverPhase", "analyzePhase", "prototypePhase"]
+		const isPhaseLoaded = computed(() => phaseArray.some(phase => state.value.matches(phase)))
 
 		const calculateProgressBarPercentage = currentState => {
 			const mapping = {
@@ -95,6 +107,7 @@ export default {
 			state,
 			send,
 			calculateProgressBarPercentage,
+			isPhaseLoaded,
 		}
 	},
 }
