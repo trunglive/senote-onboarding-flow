@@ -4,6 +4,7 @@
       avatar-title="S"
       avatar-text="Create Account"
     />
+    <Mailbox />
     <div>
       <div class="flex items-center justify-between w-navigation-button">
         <input
@@ -32,6 +33,7 @@
 import { reactive } from "vue"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import AvatarGroup from "@/components/AvatarGroup"
+import Mailbox from "@/components/icons/Mailbox"
 import Checkmark from "@/components/icons/Checkmark"
 import { email, required } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
@@ -39,6 +41,7 @@ import { useVuelidate } from '@vuelidate/core'
 export default {
 	name: "AddEmail",
 	components: {
+		Mailbox,
 		AvatarGroup,
 		NavigationButtonGroup,
 		Checkmark,
