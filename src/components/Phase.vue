@@ -6,8 +6,8 @@
         :title="composeStepTitle()"
       />
       <div
-        class="mt-6 mb-2"
-        :class="!hideSwitchButtonGroup && 'space-y-2.5'"
+        class="mb-2"
+        :class="!hideSwitchButtonGroup ? 'space-y-2.5 mt-6' : 'mt-2'"
       >
         <div
           v-for="step in currentPhase.stepProcesses"
@@ -18,7 +18,8 @@
             <AppIcon :icon="step.icon" />
             <div class="text-black-light text-sm">
               <div
-                class="creator__item-name"
+                class="m-2"
+                :class="blurPhaseStepLabel && 'creator__item-name'"
               >
                 {{ step.label }}
               </div>
@@ -54,6 +55,7 @@ export default {
 	props: {
 		send: Function,
 		phaseName: String,
+		blurPhaseStepLabel: Boolean,
 		hideStepInfo: Boolean,
 		hideSwitchButtonGroup: Boolean,
 		hideNavigationButtonGroup: Boolean,
@@ -85,7 +87,6 @@ export default {
 .creator__item-name {
 	color: #646464;
 	display: inline-block;
-	margin: 0.5rem 0;
 	outline: none;
 	position: relative;
 	right: 0;

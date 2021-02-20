@@ -1,7 +1,7 @@
 <template>
   <div class="creator-wrapper">
     <div class="creator-inner">
-      <div class="text-3xl">
+      <div class="text-3xl mb-8">
         Research Me
       </div>
       <div>
@@ -22,6 +22,7 @@
           </div>
           <Phase
             phase-name="analyze"
+            :blur-phase-step-label="state.value === 'discoverPhase'"
             hide-step-info
             hide-switch-button-group
             hide-navigation-button-group
@@ -33,6 +34,7 @@
           </div>
           <Phase
             phase-name="prototype"
+            :blur-phase-step-label="state.value === 'discoverPhase' || state.value === 'analyzePhase'"
             hide-step-info
             hide-switch-button-group
             hide-navigation-button-group
@@ -47,6 +49,9 @@
 import Phase from "@/components/Phase"
 export default {
 	name: "Creator",
+	props: {
+		state: Object,
+	},
 	components: { Phase },
 	// components: { Abstract },
 }

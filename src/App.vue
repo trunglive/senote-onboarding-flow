@@ -47,7 +47,7 @@
       />
     </div>
     <div :class="isPhaseLoaded ? 'w-1/2' : 'hidden'">
-      <Creator />
+      <Creator :state="state" />
     </div>
   </div>
 </template>
