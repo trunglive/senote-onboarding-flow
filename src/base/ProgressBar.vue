@@ -19,7 +19,7 @@ export default {
 <style scoped>
 div.progress-bar {
 	height: 8px;
-	margin: 30px auto 200px;
+	margin: 70px auto 200px;
 	background-color: #f8f9fa;
 	border-radius: 200px;
 }

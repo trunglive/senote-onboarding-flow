@@ -13,7 +13,7 @@
           type="password"
           autocomplete="off"
           required
-          class="appearance-none rounded-none py-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:z-10"
+          class="w-navigation-button appearance-none rounded-none py-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:z-10"
           placeholder="Enter your password"
         >
         <Checkmark v-if="!v$.password.$invalid" />
