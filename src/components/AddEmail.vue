@@ -1,10 +1,8 @@
 <template>
   <div class="flex flex-col items-center justify-center">
     <AvatarGroup
-      avatar-title="S"
-      avatar-text="Create Account"
+      :avatar-letter="avatarLetter"
     />
-    <Mailbox />
     <div>
       <div class="flex items-center justify-between w-navigation-button">
         <input
@@ -15,7 +13,7 @@
           autocomplete="off"
           required
           class="appearance-none rounded-none py-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:z-10"
-          placeholder="Please input email"
+          placeholder="Enter email"
         >
         <Checkmark v-if="!v$.emailAddress.$invalid" />
       </div>
@@ -30,10 +28,9 @@
 </template>
 
 <script>
-import { reactive } from "vue"
+import { reactive, computed } from "vue"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import AvatarGroup from "@/components/AvatarGroup"
-import Mailbox from "@/components/icons/Mailbox"
 import Checkmark from "@/components/icons/Checkmark"
 import { email, required } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
@@ -41,7 +38,6 @@ import { useVuelidate } from '@vuelidate/core'
 export default {
 	name: "AddEmail",
 	components: {
-		Mailbox,
 		AvatarGroup,
 		NavigationButtonGroup,
 		Checkmark,
@@ -54,11 +50,12 @@ export default {
 		const state = reactive({
 			emailAddress: ''
 		})
+		const avatarLetter = computed(() => state.emailAddress?.[0])
 		const rules = {
 			emailAddress: { required, email }
 		}
 		const v$ = useVuelidate(rules, state)
-		return { state, v$ }
+		return { state, avatarLetter, v$ }
 	}
 }
 </script>

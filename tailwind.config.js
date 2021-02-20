@@ -34,6 +34,7 @@ module.exports = {
 			white: {
 				light: "#ebebeb",
 				DEFAULT: colors.white,
+				dark: "#e6edf0",
 			},
 		},
 		width: theme => ({

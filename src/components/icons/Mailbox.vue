@@ -23,7 +23,6 @@ export default {
 <style scoped>
 span.icon.icon--normal.icon--mail {
 	font-size: 24px;
-	height: 1em;
 	line-height: 1;
 	text-align: center;
 	width: 1em;
