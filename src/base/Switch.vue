@@ -11,8 +11,11 @@ import { ref } from "vue"
 
 export default {
 	name: "Switch",
-	setup() {
-		const toggleStatus = ref(false)
+	props: {
+		enabled: Boolean,
+	},
+	setup(props) {
+		const toggleStatus = ref(props.enabled)
 
 		function handleToggleSwitch() {
 			toggleStatus.value = !toggleStatus.value

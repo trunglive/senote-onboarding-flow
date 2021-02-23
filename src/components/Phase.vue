@@ -14,7 +14,10 @@
           :key="step.value"
           class="flex items-center justify-between"
         >
-          <div class="flex items-center space-x-4">
+          <div
+            v-if="step.enabled || !stepHiddenOnSwitchOff"
+            class="flex items-center space-x-4"
+          >
             <AppIcon :icon="step.icon" />
             <div class="text-black-light text-sm">
               <div
@@ -29,7 +32,7 @@
             v-show="!hideSwitchButtonGroup"
             class="flex space-x-4"
           >
-            <Switch />
+            <Switch :enabled="step.enabled" />
             <div>?</div>
           </div>
         </div>
@@ -59,6 +62,7 @@ export default {
 		hideStepInfo: Boolean,
 		hideSwitchButtonGroup: Boolean,
 		hideNavigationButtonGroup: Boolean,
+		stepHiddenOnSwitchOff: Boolean,
 	},
 	components: {
 		StepInfo,
@@ -67,6 +71,7 @@ export default {
 		NavigationButtonGroup
 	},
 	setup(props) {
+		console.log(props.stepHiddenOnSwitchOff)
 		const currentPhase = computed(function() {
 			return designThinkingProcesses[props.phaseName] // discover, analyze, prototype
 		})

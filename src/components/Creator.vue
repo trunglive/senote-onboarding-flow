@@ -14,6 +14,7 @@
             hide-step-info
             hide-switch-button-group
             hide-navigation-button-group
+            step-hidden-on-switch-off
           />
         </div>
         <div>
@@ -26,6 +27,7 @@
             hide-step-info
             hide-switch-button-group
             hide-navigation-button-group
+            step-hidden-on-switch-off
           />
         </div>
         <div>
@@ -38,6 +40,7 @@
             hide-step-info
             hide-switch-button-group
             hide-navigation-button-group
+            step-hidden-on-switch-off
           />
         </div>
       </div>
