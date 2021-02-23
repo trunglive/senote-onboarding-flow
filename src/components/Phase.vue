@@ -10,7 +10,7 @@
         :class="!hideSwitchButtonGroup ? 'space-y-2.5 mt-6' : 'mt-2'"
       >
         <div
-          v-for="step in currentPhase.stepProcesses"
+          v-for="step in currentPhase?.stepProcesses"
           :key="step.value"
           class="flex items-center justify-between"
         >
@@ -47,9 +47,9 @@
 
 <script>
 import { computed } from "vue"
+import { useStore } from "vuex"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import AppIcon from "@/components/AppIcon"
-import { brand, designThinkingProcesses } from "@/data/api"
 import Switch from "@/base/Switch"
 import StepInfo from "@/components/StepIntro"
 
@@ -71,13 +71,12 @@ export default {
 		NavigationButtonGroup
 	},
 	setup(props) {
-		console.log(props.stepHiddenOnSwitchOff)
-		const currentPhase = computed(function() {
-			return designThinkingProcesses[props.phaseName] // discover, analyze, prototype
-		})
+		const store = useStore()
+		const designThinkingProcesses = computed(() => store.getters.designThinkingProcesses)
+		const currentPhase = computed(() => designThinkingProcesses.value?.[props.phaseName]) // discover, analyze, prototype
 
 		function composeStepTitle() {
-			return `Choose your methods for the ${currentPhase.value.label} Phase.`
+			return `Choose your methods for the ${currentPhase.value?.label} Phase.`
 		}
 
 		return {
