@@ -45,6 +45,7 @@
     <NavigationButtonGroup
       v-show="!hideNavigationButtonGroup"
       :send="send"
+      :disable-continue-button="isContinueButtonDisabled"
     />
   </div>
 </template>
@@ -76,8 +77,10 @@ export default {
 	},
 	setup(props) {
 		const store = useStore()
+
 		const designThinkingProcesses = computed(() => store.getters.designThinkingProcesses)
 		const currentPhase = computed(() => designThinkingProcesses.value?.[props.phaseName]) // discover, analyze, prototype
+		const isContinueButtonDisabled = computed(() => currentPhase.value?.stepProcesses.every(step => !step.enabled))
 
 		function composeStepTitle() {
 			return `Choose your methods for the ${currentPhase.value?.label} Phase.`
@@ -89,6 +92,7 @@ export default {
 
 		return {
 			currentPhase,
+			isContinueButtonDisabled,
 			composeStepTitle,
 			handleToggleSwitch,
 		}

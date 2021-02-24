@@ -30,7 +30,7 @@ export const designThinkingProcesses = {
 				icon: "UserInterview",
 				label: "User Interview",
 				value: "userInterview",
-				enabled: false,
+				enabled: true,
 				tooltipContent:
 					"Recognize the problems and paint points of your target audience while talking to them.",
 			},
