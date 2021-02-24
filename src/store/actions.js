@@ -5,3 +5,7 @@ export const getAllData = ({ commit }) => {
 		commit("getAll", data)
 	})
 }
+
+export const toggleSwitch = ({ commit }, payload) => {
+	commit("toggleSwitch", payload)
+}

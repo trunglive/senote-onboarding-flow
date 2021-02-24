@@ -1,7 +1,7 @@
 <template>
   <span
     class="base-checkbox base-checkbox--switch"
-    :class="{ 'base-checkbox--checked': toggleStatus }"
+    :class="{ 'base-checkbox--checked': enabled }"
     @click="handleToggleSwitch"
   />
 </template>
@@ -13,16 +13,18 @@ export default {
 	name: "Switch",
 	props: {
 		enabled: Boolean,
+		value: {
+			type: String,
+			default: '',
+		},
 	},
-	setup(props) {
-		const toggleStatus = ref(props.enabled)
-
+	emits: ['handleToggleSwitch'],
+	setup(props, { emit }) {
 		function handleToggleSwitch() {
-			toggleStatus.value = !toggleStatus.value
+			emit('handleToggleSwitch', props.value)
 		}
 
 		return {
-			toggleStatus,
 			handleToggleSwitch,
 		}
 	},

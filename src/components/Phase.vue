@@ -32,7 +32,11 @@
             v-show="!hideSwitchButtonGroup"
             class="flex space-x-4"
           >
-            <Switch :enabled="step.enabled" />
+            <Switch
+              :enabled="step.enabled"
+              :value="step.value"
+              @handleToggleSwitch="handleToggleSwitch"
+            />
             <div>?</div>
           </div>
         </div>
@@ -79,9 +83,14 @@ export default {
 			return `Choose your methods for the ${currentPhase.value?.label} Phase.`
 		}
 
+		function handleToggleSwitch(value) {
+			store.dispatch("toggleSwitch", { phaseName: props.phaseName, value })
+		}
+
 		return {
 			currentPhase,
 			composeStepTitle,
+			handleToggleSwitch,
 		}
 	}
 }
