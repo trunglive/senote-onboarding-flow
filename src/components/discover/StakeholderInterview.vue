@@ -1,35 +1,58 @@
 <template>
   <div class="flex flex-col items-center justify-center">
-    <div>
-      <div class="flex items-center justify-between w-navigation-button">
-        <input
-          v-model="state.emailAddress"
-          id="email"
-          name="email"
-          type="email"
-          autocomplete="off"
-          required
-          class="w-navigation-button appearance-none rounded-none py-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:z-10"
-          placeholder="Enter email"
-        >
-        <Checkmark />
+    <div class="space-y-10">
+      <div>
+        <div class="text-lg pl-4 pb-2">
+          What are the main marketing messages?
+        </div>
+        <div class="flex items-center justify-between pr-4 z-40">
+          <input
+            v-model="state.marketingMessage"
+            @blur="v$.marketingMessage.$touch"
+            :class="v$.marketingMessage.$dirty && v$.marketingMessage.$invalid ? 'outline-red' : 'outline-none'"
+            name="marketingMessage"
+            type="text"
+            autocomplete="off"
+            class="w-long-text appearance-none rounded-none px-4 py-3 placeholder-gray-500 text-gray-900 focus:z-10 hover:bg-white-light"
+            placeholder="Add answer..."
+          >
+        </div>
       </div>
-      <div class="border-t border-dashed">
-        <NavigationButtonGroup :send="send" />
+      <div>
+        <div class="text-lg pl-4 pb-2">
+          What's the worst thing that could happen in this project?
+        </div>
+        <div class="flex items-center justify-between">
+          <input
+            v-model="state.worstThingHappened"
+            @blur="v$.worstThingHappened.$touch"
+            :class="v$.worstThingHappened.$dirty && v$.worstThingHappened.$invalid ? 'outline-red' : 'outline-none'"
+            name="worstThingHappened"
+            type="text"
+            autocomplete="off"
+            class="w-long-text appearance-none rounded-none px-4 py-3 placeholder-gray-500 text-gray-900 focus:z-10 hover:bg-white-light"
+            placeholder="Add answer..."
+          >
+        </div>
       </div>
+    </div>
+    <div class="pt-10">
+      <NavigationButtonGroup
+        :send="send"
+        :disable-continue-button="v$.marketingMessage.$invalid || v$.worstThingHappened.$invalid"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
-import Checkmark from "@/components/icons/Checkmark"
 import { computed, reactive } from "vue"
 import { email, required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
 
 export default {
-	components: { NavigationButtonGroup, Checkmark },
+	components: { NavigationButtonGroup },
 	props: {
 		msg: String,
 		send: Function,
@@ -38,10 +61,22 @@ export default {
 	name: "StakeholderInterview",
 	setup() {
 		const state = reactive({
-			emailAddress: ''
+			marketingMessage: '',
+			worstThingHappened: '',
 		})
 
-		return { state }
+		const rules = {
+			marketingMessage: {
+				required
+			},
+			worstThingHappened: {
+				required
+			}
+		}
+
+		const v$ = useVuelidate(rules, state)
+
+		return { state, v$ }
 	}
 }
 </script>

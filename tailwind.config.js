@@ -26,13 +26,16 @@ module.exports = {
 				DEFAULT: "",
 				dark: "#4f1a62",
 			},
+			red: {
+				DEFAULT: "#d0021b",
+			},
 			black: {
 				light: "#646464",
 				DEFAULT: "#40474f",
 				dark: "#212528",
 			},
 			white: {
-				light: "#ebebeb",
+				light: "#f8f9fa",
 				DEFAULT: colors.white,
 				dark: "#e6edf0",
 			},
@@ -70,6 +73,7 @@ module.exports = {
 			min: "min-content",
 			max: "max-content",
 			"navigation-button": "21.25rem",
+			"long-text": "30rem",
 		}),
 		height: theme => ({
 			auto: "auto",
@@ -78,7 +82,14 @@ module.exports = {
 			screen: "100vh",
 			"navigation-button": "3.25rem",
 		}),
-		extend: {},
+		borderWidth: theme => ({
+			1: "1px",
+		}),
+		extend: {
+			outline: {
+				red: "1px solid #d0021b",
+			},
+		},
 	},
 	variants: {
 		extend: {},
