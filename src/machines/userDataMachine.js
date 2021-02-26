@@ -247,6 +247,54 @@ export const userDataMachine = Machine({
 				},
 			},
 		},
+		stakeholderInterview: {
+			on: {
+				NEXT: "userInterview",
+				BACK: "prototypePhase",
+			},
+			invoke: {
+				src: updateFormMachine,
+				data: ctx => ctx,
+				onDone: {
+					target: UserDataStates.discoverPhase.stakeholderInterview,
+					actions: assign({
+						userData: (_, { data }) => data?.userData ?? null,
+					}),
+				},
+			},
+		},
+		userInterview: {
+			on: {
+				NEXT: "competitorAnalysis",
+				BACK: "stakeholderInterview",
+			},
+			invoke: {
+				src: updateFormMachine,
+				data: ctx => ctx,
+				onDone: {
+					target: UserDataStates.discoverPhase.userInterview,
+					actions: assign({
+						userData: (_, { data }) => data?.userData ?? null,
+					}),
+				},
+			},
+		},
+		competitorAnalysis: {
+			on: {
+				NEXT: "confirmTrial",
+				BACK: "userInterview",
+			},
+			invoke: {
+				src: updateFormMachine,
+				data: ctx => ctx,
+				onDone: {
+					target: UserDataStates.discoverPhase.competitorAnalysis,
+					actions: assign({
+						userData: (_, { data }) => data?.userData ?? null,
+					}),
+				},
+			},
+		},
 		confirmTrial: {
 			on: {
 				NEXT: "complete",
