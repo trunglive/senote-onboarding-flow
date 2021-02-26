@@ -40,7 +40,7 @@ import Checkmark from "@/components/icons/Checkmark"
 import { minLength, required } from "@vuelidate/validators"
 import { useVuelidate } from '@vuelidate/core'
 
-const passwordMinLength = 8
+const passwordMinLength = 5
 
 export default {
 	name: "AddPassword",

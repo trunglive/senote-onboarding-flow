@@ -119,7 +119,7 @@ export const userDataMachine = Machine({
 		},
 		addPassword: {
 			on: {
-				NEXT: "customizeFirstProject",
+				NEXT: "addProjectName",
 				BACK: "addEmail",
 			},
 			invoke: {
@@ -134,6 +134,7 @@ export const userDataMachine = Machine({
 			},
 		},
 		customizeFirstProject: {
+			// skip this step for now
 			on: {
 				NEXT: "addProjectName",
 				BACK: "addPassword",
@@ -151,8 +152,8 @@ export const userDataMachine = Machine({
 		},
 		addProjectName: {
 			on: {
-				NEXT: "businessGoalIntroduction",
-				BACK: "customizeFirstProject",
+				NEXT: "designThinkingProcesses",
+				BACK: "addPassword",
 			},
 			invoke: {
 				src: updateFormMachine,
@@ -166,6 +167,7 @@ export const userDataMachine = Machine({
 			},
 		},
 		businessGoalIntroduction: {
+			// skip this step for now
 			on: {
 				NEXT: "designThinkingProcesses",
 				BACK: "addProjectName",
@@ -184,7 +186,7 @@ export const userDataMachine = Machine({
 		designThinkingProcesses: {
 			on: {
 				NEXT: "discoverPhase",
-				BACK: "businessGoalIntroduction",
+				BACK: "addProjectName",
 			},
 			invoke: {
 				src: updateFormMachine,
