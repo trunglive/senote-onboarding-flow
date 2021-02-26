@@ -233,14 +233,14 @@ export const userDataMachine = Machine({
 		},
 		prototypePhase: {
 			on: {
-				NEXT: "confirmTrial",
+				NEXT: "stakeholderInterview",
 				BACK: "analyzePhase",
 			},
 			invoke: {
 				src: updateFormMachine,
 				data: ctx => ctx,
 				onDone: {
-					target: UserDataStates.confirmTrial,
+					target: UserDataStates.discoverPhases.stakeholderInterview,
 					actions: assign({
 						userData: (_, { data }) => data?.userData ?? null,
 					}),
@@ -256,7 +256,7 @@ export const userDataMachine = Machine({
 				src: updateFormMachine,
 				data: ctx => ctx,
 				onDone: {
-					target: UserDataStates.discoverPhase.stakeholderInterview,
+					target: UserDataStates.discoverPhases.userInterview,
 					actions: assign({
 						userData: (_, { data }) => data?.userData ?? null,
 					}),
@@ -272,7 +272,7 @@ export const userDataMachine = Machine({
 				src: updateFormMachine,
 				data: ctx => ctx,
 				onDone: {
-					target: UserDataStates.discoverPhase.userInterview,
+					target: UserDataStates.discoverPhases.competitorAnalysis,
 					actions: assign({
 						userData: (_, { data }) => data?.userData ?? null,
 					}),
@@ -288,7 +288,7 @@ export const userDataMachine = Machine({
 				src: updateFormMachine,
 				data: ctx => ctx,
 				onDone: {
-					target: UserDataStates.discoverPhase.competitorAnalysis,
+					target: UserDataStates.confirmTrial,
 					actions: assign({
 						userData: (_, { data }) => data?.userData ?? null,
 					}),
@@ -298,7 +298,7 @@ export const userDataMachine = Machine({
 		confirmTrial: {
 			on: {
 				NEXT: "complete",
-				BACK: "prototypePhase",
+				BACK: "competitorAnalysis",
 			},
 			invoke: {
 				src: updateFormMachine,

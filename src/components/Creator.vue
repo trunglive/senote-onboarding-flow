@@ -10,6 +10,8 @@
             Phase 1 - Discover
           </div>
           <Phase
+            :is-phase-step-loaded="isPhaseStepLoaded"
+            :current-state="currentState"
             phase-name="discover"
             hide-step-info
             hide-switch-button-group
@@ -22,8 +24,10 @@
             Phase 2 - Analyze
           </div>
           <Phase
+            :is-phase-step-loaded="isPhaseStepLoaded"
+            :current-state="currentState"
             phase-name="analyze"
-            :blur-phase-step-label="state.value === 'discoverPhase'"
+            :blur-phase-step-label="currentState.value === 'discoverPhase'"
             hide-step-info
             hide-switch-button-group
             hide-navigation-button-group
@@ -35,8 +39,10 @@
             Phase 3 - Prototype
           </div>
           <Phase
+            :is-phase-step-loaded="isPhaseStepLoaded"
+            :current-state="currentState"
             phase-name="prototype"
-            :blur-phase-step-label="state.value === 'discoverPhase' || state.value === 'analyzePhase'"
+            :blur-phase-step-label="currentState.value === 'discoverPhase' || currentState.value === 'analyzePhase'"
             hide-step-info
             hide-switch-button-group
             hide-navigation-button-group
@@ -53,7 +59,8 @@ import Phase from "@/components/Phase"
 export default {
 	name: "Creator",
 	props: {
-		state: Object,
+		isPhaseStepLoaded: Boolean,
+		currentState: Object,
 	},
 	components: { Phase },
 	// components: { Abstract },

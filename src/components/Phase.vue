@@ -13,6 +13,7 @@
           v-for="step in currentPhase?.stepProcesses"
           :key="step.value"
           class="flex items-center justify-between"
+          :class="isPhaseStepLoaded && step.value !== currentState && 'opacity-30'"
         >
           <div
             v-if="step.enabled || !stepHiddenOnSwitchOff"
@@ -61,6 +62,8 @@ import StepInfo from "@/components/StepIntro"
 export default {
 	name: "Phase",
 	props: {
+		currentState: String,
+		isPhaseStepLoaded: Boolean,
 		send: Function,
 		phaseName: String,
 		blurPhaseStepLabel: Boolean,

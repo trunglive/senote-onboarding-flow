@@ -1,6 +1,10 @@
 <template>
   <div class="flex">
-    <div :class="isPhaseLoaded ? 'w-1/2' : 'w-full'">
+    <div
+      :class="
+        isPhaseEntityLoaded ? (isPhaseStepLoaded ? 'w-3/5' : 'w-1/2') : 'w-full'
+      "
+    >
       <ProgressBar :percentage="calculateProgressBarPercentage(state.value)" />
       <AddEmail
         v-if="state.matches('addEmail')"
@@ -30,24 +34,43 @@
         v-if="state.matches('discoverPhase')"
         :send="send"
         phase-name="discover"
+        :is-phase-step-loaded="isPhaseStepLoaded"
+        :current-state="state.value"
       />
       <Phase
         v-if="state.matches('analyzePhase')"
         :send="send"
         phase-name="analyze"
+        :is-phase-step-loaded="isPhaseStepLoaded"
+        :current-state="state.value"
       />
       <Phase
         v-if="state.matches('prototypePhase')"
         :send="send"
         phase-name="prototype"
+        :is-phase-step-loaded="isPhaseStepLoaded"
+        :current-state="state.value"
+      />
+      <StakeholderInterview
+        v-if="state.matches('stakeholderInterview')"
+        :send="send"
+        :is-phase-step-loaded="isPhaseStepLoaded"
+        :current-state="state.value"
       />
       <ConfirmTrial
         v-if="state.matches('confirmTrial')"
         :send="send"
       />
     </div>
-    <div :class="isPhaseLoaded ? 'w-1/2' : 'hidden'">
-      <Creator :state="state" />
+    <div
+      :class="
+        isPhaseEntityLoaded ? (isPhaseStepLoaded ? 'w-2/5' : 'w-1/2') : 'hidden'
+      "
+    >
+      <Creator
+        :is-phase-step-loaded="isPhaseStepLoaded"
+        :current-state="state.value"
+      />
     </div>
   </div>
 </template>
@@ -66,10 +89,12 @@ import Phase from "@/components/Phase"
 import ProgressBar from "@/base/ProgressBar"
 import ConfirmTrial from "@/components/ConfirmTrial"
 import Creator from "@/components/Creator"
+import StakeholderInterview from "@/components/discover/StakeholderInterview"
 
 export default {
 	name: "App",
 	components: {
+		StakeholderInterview,
 		ConfirmTrial,
 		ProgressBar,
 		BusinessGoalIntroduction,
@@ -84,8 +109,34 @@ export default {
 	setup() {
 		const { state, send } = useMachine(userDataMachine)
 
-		const phaseArray = ["discoverPhase", "analyzePhase", "prototypePhase"]
-		const isPhaseLoaded = computed(() => phaseArray.some(phase => state.value.matches(phase)))
+		const phaseMap = {
+			discoverPhase: [
+				"stakeholderInterview",
+				"userInterview",
+				"competitorAnalysis",
+			],
+			analyzePhase: [
+				"problemValuation",
+				"personas",
+				"solutionValuation",
+				"flows",
+			],
+			prototypePhase: ["paperPrototype", "interactivePrototype"],
+		}
+
+		// phase entity includes both phase & phase steps
+		const isPhaseEntityLoaded = computed(() =>
+			[
+				...Object.keys(phaseMap),
+				...Object.values(phaseMap).flat(),
+			].some(entity => state.value.matches(entity))
+		)
+
+		const isPhaseStepLoaded = computed(() =>
+			Object.values(phaseMap)
+				.flat()
+				.some(phaseStep => state.value.matches(phaseStep))
+		)
 
 		const calculateProgressBarPercentage = currentState => {
 			const mapping = {
@@ -107,7 +158,8 @@ export default {
 			state,
 			send,
 			calculateProgressBarPercentage,
-			isPhaseLoaded,
+			isPhaseEntityLoaded,
+			isPhaseStepLoaded,
 		}
 	},
 }
