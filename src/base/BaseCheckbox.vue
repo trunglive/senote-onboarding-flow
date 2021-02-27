@@ -1,14 +1,14 @@
 <template>
-  <div class="checkbox-item-container">
+  <div class="checkbox-item-container text-black">
     <div class="price-checkbox__less-than-ten checkbox-item">
       <input
         type="checkbox"
-        id="less-than-ten"
-        name="priceRange"
-        value="less-than-ten"
-      ><label for="less-than-ten" />
+        :id="value"
+        :name="name"
+        :value="value"
+      ><label :for="value" />
     </div><label
-      for="less-than-ten"
+      :for="value"
       class="label-text"
     >{{ label }}</label>
   </div>
@@ -17,7 +17,9 @@
 <script>
 export default {
 	props: {
+		value: String,
 		label: String,
+		name: String, // use name for grouping all checkboxes in same group together
 	},
 	name: "BaseCheckbox"
 }
@@ -34,6 +36,7 @@ export default {
 
 .label-text:hover {
 	color: #808080;
+	cursor: pointer;
 }
 
 .checkbox-item {

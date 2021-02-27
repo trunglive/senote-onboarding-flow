@@ -1,7 +1,13 @@
 <template>
   <div class="flex flex-col items-center justify-center">
-    <div class="space-y-10">
-      <BaseCheckbox label="okay" />
+    <div class="flex space-x-8">
+      <BaseCheckbox
+        v-for="question in questions"
+        :key="question.value"
+        :value="question.value"
+        :label="question.label"
+        name="userInterviewQuestions"
+      />
     </div>
     <div class="pt-20">
       <NavigationButtonGroup
@@ -16,6 +22,24 @@
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import BaseCheckbox from "@/base/BaseCheckbox"
 
+const questions = [
+	{
+		value: 'morning',
+		label: 'Morning',
+		checked: false,
+	},
+	{
+		value: 'afternoon',
+		label: 'Afternoon',
+		checked: false,
+	},
+	{
+		value: 'night',
+		label: 'Night',
+		checked: false,
+	},
+]
+
 export default {
 	name: "UserInterview",
 	components: { BaseCheckbox, NavigationButtonGroup },
@@ -24,7 +48,11 @@ export default {
 		send: Function,
 		currentState: String,
 	},
-	setup() {}
+	setup() {
+		return {
+			questions
+		}
+	}
 }
 </script>
 
