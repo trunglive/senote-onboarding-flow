@@ -8,8 +8,8 @@
         <div class="flex items-center justify-between pr-4 z-40">
           <input
             v-model="state.marketingMessage"
-            @blur="$v.marketingMessage.$touch"
-            :class="$v.marketingMessage.$dirty && $v.marketingMessage.$invalid ? 'outline-red' : 'outline-none'"
+            @blur="v$.marketingMessage.$touch"
+            :class="v$.marketingMessage.$dirty && v$.marketingMessage.$invalid ? 'outline-red' : 'outline-none'"
             name="marketingMessage"
             type="text"
             autocomplete="off"
@@ -25,8 +25,8 @@
         <div class="flex items-center justify-between">
           <input
             v-model="state.worstThingHappened"
-            @blur="$v.worstThingHappened.$touch()"
-            :class="$v.worstThingHappened.$dirty && $v.worstThingHappened.$invalid ? 'outline-red' : 'outline-none'"
+            @blur="v$.worstThingHappened.$touch"
+            :class="v$.worstThingHappened.$dirty && v$.worstThingHappened.$invalid ? 'outline-red' : 'outline-none'"
             name="worstThingHappened"
             type="text"
             autocomplete="off"
@@ -39,7 +39,7 @@
     <div class="pt-10">
       <NavigationButtonGroup
         :send="send"
-        :disable-continue-button="$v.marketingMessage.$invalid || $v.worstThingHappened.$invalid"
+        :disable-continue-button="v$.marketingMessage.$invalid || v$.worstThingHappened.$invalid"
       />
     </div>
   </div>
@@ -74,9 +74,9 @@ export default {
 			}
 		}
 
-		const $v = useVuelidate(rules, state)
+		const v$ = useVuelidate(rules, state)
 
-		return { state, $v }
+		return { state, v$ }
 	}
 }
 </script>

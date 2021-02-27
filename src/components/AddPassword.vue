@@ -16,7 +16,7 @@
           class="w-navigation-button appearance-none rounded-none py-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:z-10"
           placeholder="Enter your password"
         >
-        <Checkmark v-if="!$v.password.$invalid" />
+        <Checkmark v-if="!v$.password.$invalid" />
       </div>
       <div class="border-t border-dashed">
         <div class="mt-4 text-sm text-left">
@@ -25,7 +25,7 @@
         </div>
         <NavigationButtonGroup
           :send="send"
-          :disable-continue-button="$v.password.$invalid"
+          :disable-continue-button="v$.password.$invalid"
         />
       </div>
     </div>
@@ -54,8 +54,8 @@ export default {
 		const rules = {
 			password: { required, minLength: minLength(passwordMinLength) }
 		}
-		const $v = useVuelidate(rules, state)
-		return { state, $v, passwordMinLength }
+		const v$ = useVuelidate(rules, state)
+		return { state, v$, passwordMinLength }
 	},
 	components: { AvatarGroup, NavigationButtonGroup, Checkmark }
 }

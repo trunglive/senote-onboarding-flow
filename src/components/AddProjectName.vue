@@ -17,7 +17,7 @@
       <div class="border-t border-dashed">
         <NavigationButtonGroup
           :send="send"
-          :disable-continue-button="$v.projectName.$invalid"
+          :disable-continue-button="v$.projectName.$invalid"
         />
       </div>
     </div>
@@ -50,7 +50,7 @@ export default {
 				required
 			}
 		}
-		const $v = useVuelidate(rules, state)
+		const v$ = useVuelidate(rules, state)
 
 		function composeStepTitle() {
 			return `What's the name of the project you want to use on ${brand.label}?`
@@ -58,7 +58,7 @@ export default {
 		return {
 			composeStepTitle,
 			state,
-			$v,
+			v$,
 		}
 	}
 }

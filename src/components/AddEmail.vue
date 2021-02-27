@@ -15,12 +15,12 @@
           class="w-navigation-button appearance-none rounded-none py-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:z-10"
           placeholder="Enter email"
         >
-        <Checkmark v-if="!$v.emailAddress.$invalid" />
+        <Checkmark v-if="!v$.emailAddress.$invalid" />
       </div>
       <div class="border-t border-dashed">
         <NavigationButtonGroup
           :send="send"
-          :disable-continue-button="$v.emailAddress.$invalid"
+          :disable-continue-button="v$.emailAddress.$invalid"
         />
       </div>
     </div>
@@ -54,8 +54,8 @@ export default {
 		const rules = {
 			emailAddress: { required, email }
 		}
-		const $v = useVuelidate(rules, state)
-		return { state, avatarLetter, $v }
+		const v$ = useVuelidate(rules, state)
+		return { state, avatarLetter, v$ }
 	}
 }
 </script>
