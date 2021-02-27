@@ -33,34 +33,35 @@ import { required } from "@vuelidate/validators"
 import useVuelidate from "@vuelidate/core"
 
 export default {
-	name: "AddProjectName",
-	props: {
-		send: Function,
-	},
-	components: {
-		StepInfo,
-		NavigationButtonGroup
-	},
-	setup(props) {
-		const state = reactive({
-			projectName: ''
-		})
-		const rules = {
-			projectName: {
-				required
-			}
-		}
-		const v$ = useVuelidate(rules, state)
+  name: "AddProjectName",
+  props: {
+    send: Function
+  },
+  components: {
+    StepInfo,
+    NavigationButtonGroup
+  },
+  setup(props) {
+    const state = reactive({
+      projectName: ""
+    })
+    const rules = {
+      projectName: {
+        required
+      }
+    }
+    const v$ = useVuelidate(rules, state)
 
-		function composeStepTitle() {
-			return `What's the name of the project you want to use on ${brand.label}?`
-		}
-		return {
-			composeStepTitle,
-			state,
-			v$,
-		}
-	}
+    function composeStepTitle() {
+      return `What's the name of the project you want to use on ${brand.label}?`
+    }
+
+    return {
+      composeStepTitle,
+      state,
+      v$
+    }
+  }
 }
 </script>
 

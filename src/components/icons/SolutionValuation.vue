@@ -35,6 +35,6 @@
 
 <script>
 export default {
-	name: "SolutionValuation"
+  name: "SolutionValuation"
 }
 </script>

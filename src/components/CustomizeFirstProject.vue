@@ -16,11 +16,11 @@
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 
 export default {
-	name: "CustomizeFirstProject",
-	props: {
-		send: Function
-	},
-	components: { NavigationButtonGroup }
+  name: "CustomizeFirstProject",
+  props: {
+    send: Function
+  },
+  components: { NavigationButtonGroup }
 }
 </script>
 

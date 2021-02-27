@@ -12,19 +12,20 @@ import StepInfo from "@/components/StepIntro"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 
 export default {
-	name: "ConfirmTrial",
-	props: {
-		send: Function,
-	},
-	components: { StepInfo, NavigationButtonGroup },
-	setup() {
-		function composeStepTitle() {
-			return "That’s it! You’re ready to go. Start your free 7-days trial."
-		}
-		return {
-			composeStepTitle,
-		}
-	},
+  name: "ConfirmTrial",
+  props: {
+    send: Function
+  },
+  components: { StepInfo, NavigationButtonGroup },
+  setup() {
+    function composeStepTitle() {
+      return "That’s it! You’re ready to go. Start your free 7-days trial."
+    }
+
+    return {
+      composeStepTitle
+    }
+  }
 }
 </script>
 

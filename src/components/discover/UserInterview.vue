@@ -29,49 +29,49 @@ import { required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
 
 const userInterviewData = {
-	title: "On a typical day, when do you get focused the most?",
-	name: "userInterviewQuestions",
-	checked: [],
-	options: [
-		{
-			value: "morning",
-			label: "Morning",
-		},
-		{
-			value: "afternoon",
-			label: "Afternoon",
-		},
-		{
-			value: "night",
-			label: "Night",
-		},
-	],
+  title: "On a typical day, when do you get focused the most?",
+  name: "userInterviewQuestions",
+  checked: [],
+  options: [
+    {
+      value: "morning",
+      label: "Morning"
+    },
+    {
+      value: "afternoon",
+      label: "Afternoon"
+    },
+    {
+      value: "night",
+      label: "Night"
+    }
+  ]
 }
 
 export default {
-	name: "UserInterview",
-	components: { BaseCheckboxGroup,  NavigationButtonGroup },
-	props: {
-		msg: String,
-		send: Function,
-		currentState: String,
-	},
-	setup() {
-		const data = reactive(userInterviewData)
+  name: "UserInterview",
+  components: { BaseCheckboxGroup, NavigationButtonGroup },
+  props: {
+    msg: String,
+    send: Function,
+    currentState: String
+  },
+  setup() {
+    const data = reactive(userInterviewData)
 
-		const rules = {
-			checked: {
-				required
-			},
-		}
+    const rules = {
+      checked: {
+        required
+      }
+    }
 
-		const v$ = useVuelidate(rules, data)
+    const v$ = useVuelidate(rules, data)
 
-		return {
-			data,
-			v$,
-		}
-	}
+    return {
+      data,
+      v$
+    }
+  }
 }
 </script>
 

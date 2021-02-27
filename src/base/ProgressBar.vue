@@ -9,26 +9,26 @@
 
 <script>
 export default {
-	name: "ProgressBar",
-	props: {
-		percentage: Number,
-	},
+  name: "ProgressBar",
+  props: {
+    percentage: Number
+  }
 }
 </script>
 
 <style scoped>
 div.progress-bar {
-	height: 8px;
-	margin: 70px auto 200px;
-	background-color: #f8f9fa;
-	border-radius: 200px;
+  height: 8px;
+  margin: 70px auto 200px;
+  background-color: #f8f9fa;
+  border-radius: 200px;
 }
 
 div.progress-bar__bar {
-	width: 12.5%;
-	height: 100%;
-	background-color: #007b83;
-	transition: all 0.2s ease 0s;
-	border-radius: 200px;
+  width: 12.5%;
+  height: 100%;
+  background-color: #007b83;
+  transition: all 0.2s ease 0s;
+  border-radius: 200px;
 }
 </style>

@@ -39,6 +39,6 @@
 
 <script>
 export default {
-	name: "StakeholderInterview"
+  name: "StakeholderInterview"
 }
 </script>

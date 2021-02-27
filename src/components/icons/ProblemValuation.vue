@@ -38,6 +38,6 @@
 
 <script>
 export default {
-	name: "ProblemValuation"
+  name: "ProblemValuation"
 }
 </script>

@@ -38,26 +38,26 @@ import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import AvatarGroup from "@/components/AvatarGroup"
 import Checkmark from "@/components/icons/Checkmark"
 import { minLength, required } from "@vuelidate/validators"
-import { useVuelidate } from '@vuelidate/core'
+import { useVuelidate } from "@vuelidate/core"
 
 const passwordMinLength = 5
 
 export default {
-	name: "AddPassword",
-	props: {
-		send: Function
-	},
-	setup() {
-		const state = reactive({
-			password: ''
-		})
-		const rules = {
-			password: { required, minLength: minLength(passwordMinLength) }
-		}
-		const v$ = useVuelidate(rules, state)
-		return { state, v$, passwordMinLength }
-	},
-	components: { AvatarGroup, NavigationButtonGroup, Checkmark }
+  name: "AddPassword",
+  props: {
+    send: Function
+  },
+  setup() {
+    const state = reactive({
+      password: ""
+    })
+    const rules = {
+      password: { required, minLength: minLength(passwordMinLength) }
+    }
+    const v$ = useVuelidate(rules, state)
+    return { state, v$, passwordMinLength }
+  },
+  components: { AvatarGroup, NavigationButtonGroup, Checkmark }
 }
 </script>
 

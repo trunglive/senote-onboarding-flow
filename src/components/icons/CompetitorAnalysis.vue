@@ -39,6 +39,6 @@
 
 <script>
 export default {
-	name: "CompetitorAnalysis"
+  name: "CompetitorAnalysis"
 }
 </script>

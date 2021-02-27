@@ -21,12 +21,12 @@
 import Mailbox from "@/components/icons/Mailbox"
 
 export default {
-	components: { Mailbox },
-	props: {
-		avatarLetter: {
-			type: String,
-		},
-	}
+  components: { Mailbox },
+  props: {
+    avatarLetter: {
+      type: String
+    }
+  }
 }
 </script>
 

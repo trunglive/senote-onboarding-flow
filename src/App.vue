@@ -99,89 +99,91 @@ import StakeholderInterview from "@/components/discover/StakeholderInterview"
 import UserInterview from "@/components/discover/UserInterview"
 
 export default {
-	name: "App",
-	components: {
-		ConfirmTrial,
-		ProgressBar,
-		BusinessGoalIntroduction,
-		AddEmail,
-		AddPassword,
-		CustomizeFirstProject,
-		AddProjectName,
-		DesignThinkingProcess,
-		Phase,
-		Creator,
-		StakeholderInterview,
-		UserInterview,
-	},
-	setup() {
-		const { state, send } = useMachine(userDataMachine)
+  name: "App",
+  components: {
+    ConfirmTrial,
+    ProgressBar,
+    BusinessGoalIntroduction,
+    AddEmail,
+    AddPassword,
+    CustomizeFirstProject,
+    AddProjectName,
+    DesignThinkingProcess,
+    Phase,
+    Creator,
+    StakeholderInterview,
+    UserInterview
+  },
+  setup() {
+    const { state, send } = useMachine(userDataMachine)
 
-		const phaseMap = {
-			discoverPhase: [
-				"stakeholderInterview",
-				"userInterview",
-				"competitorAnalysis",
-			],
-			analyzePhase: [
-				"problemValuation",
-				"personas",
-				"solutionValuation",
-				"flows",
-			],
-			prototypePhase: ["paperPrototype", "interactivePrototype"],
-		}
+    const phaseMap = {
+      discoverPhase: [
+        "stakeholderInterview",
+        "userInterview",
+        "competitorAnalysis"
+      ],
+      analyzePhase: [
+        "problemValuation",
+        "personas",
+        "solutionValuation",
+        "flows"
+      ],
+      prototypePhase: ["paperPrototype", "interactivePrototype"]
+    }
 
-		// phase entity includes both phase & phase steps
-		const isPhaseEntityLoaded = computed(() =>
-			[
-				...Object.keys(phaseMap),
-				...Object.values(phaseMap).flat(),
-			].some(entity => state.value.matches(entity))
-		)
+    // phase entity includes both phase & phase steps
+    const isPhaseEntityLoaded = computed(() =>
+      [
+        ...Object.keys(phaseMap),
+        ...Object.values(phaseMap).flat()
+      ].some(entity => state.value.matches(entity))
+    )
 
-		const isPhaseStepLoaded = computed(() =>
-			Object.values(phaseMap)
-				.flat()
-				.some(phaseStep => state.value.matches(phaseStep))
-		)
+    const isPhaseStepLoaded = computed(() =>
+      Object.values(phaseMap)
+        .flat()
+        .some(phaseStep => state.value.matches(phaseStep))
+    )
 
-		const calculateProgressBarPercentage = currentState => {
-			const mapping = {
-				addEmail: 10,
-				addPassword: 20,
-				customizeFirstProject: 30,
-				addProjectName: 40,
-				businessGoalIntroduction: 50,
-				designThinkingProcesses: 60,
-				discoverPhase: 70,
-				analyzePhase: 80,
-				prototypePhase: 90,
-				confirmTrial: 100,
-			}
-			return mapping[currentState]
-		}
+    const calculateProgressBarPercentage = currentState => {
+      const mapping = {
+        addEmail: 10,
+        addPassword: 20,
+        customizeFirstProject: 30,
+        addProjectName: 40,
+        businessGoalIntroduction: 50,
+        designThinkingProcesses: 60,
+        discoverPhase: 70,
+        analyzePhase: 80,
+        prototypePhase: 90,
+        confirmTrial: 100
+      }
+      return mapping[currentState]
+    }
 
-		return {
-			state,
-			send,
-			calculateProgressBarPercentage,
-			isPhaseEntityLoaded,
-			isPhaseStepLoaded,
-		}
-	},
+    return {
+      state,
+      send,
+      calculateProgressBarPercentage,
+      isPhaseEntityLoaded,
+      isPhaseStepLoaded
+    }
+  }
 }
 </script>
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
+
 #app {
-	font-family: Lato, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  font-family: Lato, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
 pre {
-	-moz-tab-size: 4;
-	tab-size: 4;
+  -moz-tab-size: 4;
+  tab-size: 4;
 }
 </style>

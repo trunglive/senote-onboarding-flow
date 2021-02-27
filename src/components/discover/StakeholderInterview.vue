@@ -52,32 +52,32 @@ import { email, required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
 
 export default {
-	components: { NavigationButtonGroup },
-	props: {
-		msg: String,
-		send: Function,
-		currentState: String,
-	},
-	name: "StakeholderInterview",
-	setup() {
-		const state = reactive({
-			marketingMessage: '',
-			worstThingHappened: '',
-		})
+  components: { NavigationButtonGroup },
+  props: {
+    msg: String,
+    send: Function,
+    currentState: String
+  },
+  name: "StakeholderInterview",
+  setup() {
+    const state = reactive({
+      marketingMessage: "",
+      worstThingHappened: ""
+    })
 
-		const rules = {
-			marketingMessage: {
-				required
-			},
-			worstThingHappened: {
-				required
-			}
-		}
+    const rules = {
+      marketingMessage: {
+        required
+      },
+      worstThingHappened: {
+        required
+      }
+    }
 
-		const v$ = useVuelidate(rules, state)
+    const v$ = useVuelidate(rules, state)
 
-		return { state, v$ }
-	}
+    return { state, v$ }
+  }
 }
 </script>
 

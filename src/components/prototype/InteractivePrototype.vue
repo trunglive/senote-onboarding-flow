@@ -6,7 +6,7 @@
 
 <script>
 export default {
-	name: "InteractivePrototype"
+  name: "InteractivePrototype"
 }
 </script>
 

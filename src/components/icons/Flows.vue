@@ -48,6 +48,6 @@
 
 <script>
 export default {
-	name: "Flows"
+  name: "Flows"
 }
 </script>

@@ -12,14 +12,14 @@
 
 <script>
 export default {
-	name: "BaseInput",
-	props: {
-		modelValue: {
-			type: String,
-			default: '',
-		}
-	},
-	emits: ['update:modelValue']
+  name: "BaseInput",
+  props: {
+    modelValue: {
+      type: String,
+      default: ""
+    }
+  },
+  emits: ["update:modelValue"]
 }
 </script>
 

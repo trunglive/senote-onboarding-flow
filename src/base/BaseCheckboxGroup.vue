@@ -19,34 +19,35 @@
 
 <script>
 import BaseCheckbox from "@/base/BaseCheckbox"
+
 export default {
-	name: "BaseCheckboxGroup",
-	emits: ['update:modelValue'],
-	props: {
-		options: {
-			type: Array,
-			required: true
-		},
-		name: {
-			type: String,
-			required: true
-		},
-		modelValue: {
-			type: Array,
-			required: true
-		},
-		vertical: {
-			type: Boolean,
-			default: false
-		}
-	},
-	components: { BaseCheckbox },
+  name: "BaseCheckboxGroup",
+  emits: ["update:modelValue"],
+  props: {
+    options: {
+      type: Array,
+      required: true
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    modelValue: {
+      type: Array,
+      required: true
+    },
+    vertical: {
+      type: Boolean,
+      default: false
+    }
+  },
+  components: { BaseCheckbox }
 
 }
 </script>
 
 <style scoped>
 .horizontal {
-	margin-right: 0;
+  margin-right: 0;
 }
 </style>

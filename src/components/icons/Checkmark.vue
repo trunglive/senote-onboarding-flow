@@ -23,43 +23,43 @@
 
 <script>
 export default {
-	name: "Checkmark",
+  name: "Checkmark"
 }
 </script>
 
 <style scoped>
 .base-input__valid {
-	width: 26px;
-	height: 26px;
-	border-radius: 50%;
-	background-color: #67bf64;
-	-webkit-transition: all 0.15s ease-in-out;
-	transition: all 0.15s ease-in-out;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	font-size: 14px;
-	color: #fff;
-	pointer-events: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: #67bf64;
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #fff;
+  pointer-events: none;
 }
 
 .icon {
-	display: inline-block;
-	width: 1em;
-	height: 1em;
-	line-height: 1;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
 }
 
 .icon img, .icon svg {
-	width: 100%;
-	height: 100%;
-	fill: currentColor;
-	vertical-align: top;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+  vertical-align: top;
 }
 </style>

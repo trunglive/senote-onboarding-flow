@@ -6,10 +6,10 @@
 
 <script>
 export default {
-	name: "StepInfo",
-	props: {
-		title: String,
-	}
+  name: "StepInfo",
+  props: {
+    title: String
+  }
 }
 </script>
 

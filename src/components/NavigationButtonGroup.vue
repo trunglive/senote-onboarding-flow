@@ -1,6 +1,8 @@
 <template>
   <div class="flex flex-col mt-4">
-    <div :class="{ 'cursor-not-allowed': showSpinner || disableContinueButton, 'cursor-pointer': !disableContinueButton }">
+    <div
+      :class="{ 'cursor-not-allowed': showSpinner || disableContinueButton, 'cursor-pointer': !disableContinueButton }"
+    >
       <a
         @click="handleClickContinue"
         :class="
@@ -33,39 +35,39 @@ import Spinner from "@/components/Spinner"
 import { ref } from "vue"
 
 export default {
-	name: "NavigationButtonGroup",
-	props: {
-		send: Function,
-		disableContinueButton: Boolean,
-	},
-	components: { Spinner },
-	setup(props, { emit }) {
-		const showSpinner = ref(false)
+  name: "NavigationButtonGroup",
+  props: {
+    send: Function,
+    disableContinueButton: Boolean
+  },
+  components: { Spinner },
+  setup(props, { emit }) {
+    const showSpinner = ref(false)
 
-		function handleClickContinue() {
-			if (!props.disableContinueButton) {
-				showSpinner.value = true
-				return new Promise((resolve) => {
-					setTimeout(() => {
-						resolve("success")
-						showSpinner.value = false
-						props.send("NEXT")
-						emit("nextStep", { currentStep: 0 })
-					}, 300)
-				})
-			}
-		}
+    function handleClickContinue() {
+      if (!props.disableContinueButton) {
+        showSpinner.value = true
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve("success")
+            showSpinner.value = false
+            props.send("NEXT")
+            emit("nextStep", { currentStep: 0 })
+          }, 300)
+        })
+      }
+    }
 
-		function handleClickBack() {
-			props.send("BACK")
-		}
+    function handleClickBack() {
+      props.send("BACK")
+    }
 
-		return {
-			showSpinner,
-			handleClickContinue,
-			handleClickBack,
-		}
-	}
+    return {
+      showSpinner,
+      handleClickContinue,
+      handleClickBack
+    }
+  }
 }
 </script>
 

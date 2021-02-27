@@ -32,31 +32,31 @@ import { reactive, computed } from "vue"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import AvatarGroup from "@/components/AvatarGroup"
 import Checkmark from "@/components/icons/Checkmark"
-import { email, required } from '@vuelidate/validators'
-import { useVuelidate } from '@vuelidate/core'
+import { email, required } from "@vuelidate/validators"
+import { useVuelidate } from "@vuelidate/core"
 
 export default {
-	name: "AddEmail",
-	components: {
-		AvatarGroup,
-		NavigationButtonGroup,
-		Checkmark,
-	},
-	props: {
-		msg: String,
-		send: Function
-	},
-	setup() {
-		const state = reactive({
-			emailAddress: ''
-		})
-		const avatarLetter = computed(() => state.emailAddress?.[0])
-		const rules = {
-			emailAddress: { required, email }
-		}
-		const v$ = useVuelidate(rules, state)
-		return { state, avatarLetter, v$ }
-	}
+  name: "AddEmail",
+  components: {
+    AvatarGroup,
+    NavigationButtonGroup,
+    Checkmark
+  },
+  props: {
+    msg: String,
+    send: Function
+  },
+  setup() {
+    const state = reactive({
+      emailAddress: ""
+    })
+    const avatarLetter = computed(() => state.emailAddress?.[0])
+    const rules = {
+      emailAddress: { required, email }
+    }
+    const v$ = useVuelidate(rules, state)
+    return { state, avatarLetter, v$ }
+  }
 }
 </script>
 

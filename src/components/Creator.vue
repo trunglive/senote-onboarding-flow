@@ -56,36 +56,38 @@
 
 <script>
 import Phase from "@/components/Phase"
+
 export default {
-	name: "Creator",
-	props: {
-		isPhaseStepLoaded: Boolean,
-		currentState: Object,
-	},
-	components: { Phase },
-	// components: { Abstract },
+  name: "Creator",
+  props: {
+    isPhaseStepLoaded: Boolean,
+    currentState: Object
+  },
+  components: { Phase }
+  // components: { Abstract },
 }
 </script>
 
 <style scoped>
 .creator-wrapper {
-	position: relative;
-	width: 100%;
-	height: 100vh;
-	background-image: url("icons/Abstract.svg");
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-image: url("icons/Abstract.svg");
 }
+
 .creator-inner {
-	overflow: auto;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 480px;
-	height: 600px;
-	padding: 30px 50px 50px 50px;
-	background-color: #ffffff;
-	border-radius: 0.6em;
-	box-shadow: rgba(0, 0, 0, 0.2) 0 2.2em 7.4em 0;
-	transition: height 0.4s ease 0s, margin 0.4s ease 0s;
+  overflow: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  height: 600px;
+  padding: 30px 50px 50px 50px;
+  background-color: #ffffff;
+  border-radius: 0.6em;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 2.2em 7.4em 0;
+  transition: height 0.4s ease 0s, margin 0.4s ease 0s;
 }
 </style>

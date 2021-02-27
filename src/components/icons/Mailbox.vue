@@ -16,15 +16,15 @@
 
 <script>
 export default {
-	name: "Mailbox",
+  name: "Mailbox"
 }
 </script>
 
 <style scoped>
 span.icon.icon--normal.icon--mail {
-	font-size: 24px;
-	line-height: 1;
-	text-align: center;
-	width: 1em;
+  font-size: 24px;
+  line-height: 1;
+  text-align: center;
+  width: 1em;
 }
 </style>

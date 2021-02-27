@@ -30,26 +30,26 @@ import { brand, designThinkingProcesses } from "@/data/api"
 import StepInfo from "@/components/StepIntro"
 
 export default {
-	name: "DesignThinkingProcess",
-	props: {
-		send: Function
-	},
-	components: {
-		StepInfo,
-		NavigationButtonGroup
-	},
-	setup() {
-		function composeStepTitle() {
-			return `${brand.label} is equipped with predefined design thinking processes
+  name: "DesignThinkingProcess",
+  props: {
+    send: Function
+  },
+  components: {
+    StepInfo,
+    NavigationButtonGroup
+  },
+  setup() {
+    function composeStepTitle() {
+      return `${brand.label} is equipped with predefined design thinking processes
         divided into three phrases.`
-		}
+    }
 
-		return {
-			brand,
-			designThinkingProcesses,
-			composeStepTitle,
-		}
-	}
+    return {
+      brand,
+      designThinkingProcesses,
+      composeStepTitle
+    }
+  }
 }
 </script>
 
