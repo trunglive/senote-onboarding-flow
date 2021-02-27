@@ -1,6 +1,8 @@
 <template>
   <input
-    :class="[error ? 'outline-red' : 'outline-none', customClass]"
+    :id="id"
+    :ref="id"
+    :class="[error ? 'outline-red' : 'outline-none', customClass, disableInput && 'cursor-pointer bg-white' ]"
     class="base-input appearance-none rounded-none px-4 py-3 rounded placeholder-gray-500 text-gray-900 focus:z-10 hover:bg-white-light"
     type="text"
     autocomplete="off"
@@ -9,6 +11,8 @@
     :placeholder="placeholder"
     @input="$emit('update:modelValue', $event.target.value)"
     @blur="$emit('blur')"
+    @keyup.enter="$emit('enter', { value: $event.target.value, id })"
+    :disabled="disableInput"
   >
 </template>
 
@@ -31,9 +35,17 @@ export default {
     modelValue: {
       type: [String, Number],
       default: ''
+    },
+    id: {
+      type: String,
+      default: '',
+    },
+    disableInput: {
+      type: Boolean,
+      default: false,
     }
   },
-  emits: ["update:modelValue", 'blur']
+  emits: ["update:modelValue", 'blur', 'enter']
 }
 </script>
 

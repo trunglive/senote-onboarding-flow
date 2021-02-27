@@ -1,6 +1,6 @@
 export const UserDataStates = {
 	init: "init",
-	addEmail: "competitorAnalysis",
+	addEmail: "personas",
 	addPassword: "addPassword",
 	customizeFirstProject: "customizeFirstProject",
 	addProjectName: "addProjectName",
