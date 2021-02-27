@@ -1,32 +1,22 @@
 <template>
   <div class="flex flex-col items-center justify-center">
     <div class="space-y-10">
-      <div>
-        <div class="text-lg pl-4 pb-2">
-          What are the main marketing messages?
-        </div>
-        <div class="flex items-center justify-between pr-4 z-40">
-          <BaseInput
-            v-model="state.marketingMessage"
-            :error="v$.marketingMessage.$error"
-            @blur="v$.marketingMessage.$touch"
-            placeholder="Add Answer..."
-          />
-        </div>
-      </div>
-      <div>
-        <div class="text-lg pl-4 pb-2">
-          What's the worst thing that could happen in this project?
-        </div>
-        <div class="flex items-center justify-between">
-          <BaseInput
-            v-model="state.worstThingHappened"
-            :error="v$.worstThingHappened.$error"
-            @blur="v$.worstThingHappened.$touch"
-            placeholder="Add Answer..."
-          />
-        </div>
-      </div>
+      <TitleWrapper title="What are the main marketing messages?">
+        <BaseInput
+          v-model="state.marketingMessage"
+          :error="v$.marketingMessage.$error"
+          @blur="v$.marketingMessage.$touch"
+          placeholder="Add Answer..."
+        />
+      </TitleWrapper>
+      <TitleWrapper title="What's the worst thing that could happen in this project?">
+        <BaseInput
+          v-model="state.worstThingHappened"
+          :error="v$.worstThingHappened.$error"
+          @blur="v$.worstThingHappened.$touch"
+          placeholder="Add Answer..."
+        />
+      </TitleWrapper>
     </div>
     <div class="pt-20">
       <NavigationButtonGroup
@@ -43,9 +33,10 @@ import { required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
 import BaseInput from "@/base/BaseInput"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
+import TitleWrapper from "@/base/wrapper/TitleWrapper"
 
 export default {
-  components: { BaseInput, NavigationButtonGroup },
+  components: { TitleWrapper, BaseInput, NavigationButtonGroup },
   props: {
     msg: String,
     send: Function,
