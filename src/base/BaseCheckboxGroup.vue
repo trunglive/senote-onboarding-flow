@@ -31,7 +31,7 @@ export default {
     modelValue: {
       type: Array,
       required: true
-    },
+    }
   },
   components: { BaseCheckbox }
 

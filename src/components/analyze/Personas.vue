@@ -60,85 +60,88 @@ import { v4 as uuidv4 } from "uuid"
 const minPersonas = 2
 
 export default {
-	name: "Personas",
-	props: {
-		send: Function,
-	},
-	components: {
-		TitleWrapper,
-		BaseInput,
-		NavigationButtonGroup,
-		AvatarSquareBox,
-	},
-	setup() {
-		const state = reactive({
-			personaList: [{ id: uuidv4(), value: "", entered: false }],
-		})
+  name: "Personas",
+  props: {
+    send: Function
+  },
+  components: {
+    TitleWrapper,
+    BaseInput,
+    NavigationButtonGroup,
+    AvatarSquareBox
+  },
+  setup() {
+    const state = reactive({
+      personaList: [{ id: uuidv4(), value: "", entered: false }]
+    })
 
-		const rules = {
-			personaList: [
-				{
-					value: {
-						required,
-					},
-				},
-			],
-		}
+    const rules = {
+      personaList: [
+        {
+          value: {
+            required
+          }
+        }
+      ]
+    }
 
-		const v$ = useVuelidate(rules, state)
+    const v$ = useVuelidate(rules, state)
 
-		const minPersonasText = `Please add at least ${minPersonas} persona${
-			minPersonas === 1 ? "" : "s"
-		}`
+    const minPersonasText = `Please add at least ${minPersonas} persona${
+      minPersonas === 1 ? "" : "s"
+    }`
 
-		const disableContinueButton = computed(
-			() =>
-				state.personaList.filter(persona => persona.entered).length <
-				minPersonas
-		)
+    const disableContinueButton = computed(
+      () =>
+        state.personaList.filter(persona => persona.entered).length <
+        minPersonas
+    )
 
-		function handleHitEnter({ value, id }) {
-			if (value) {
-				state.personaList = state.personaList.map(persona => {
-					if (persona.id === id) {
-						return {
-							...persona,
-							entered: true,
-						}
-					}
-					return persona
-				})
+    function handleHitEnter({ value, id }) {
+      if (value) {
+        state.personaList = state.personaList.map(persona => {
+          if (persona.id === id) {
+            return {
+              ...persona,
+              entered: true
+            }
+          }
+          return persona
+        })
 
-				const nextId = uuidv4()
+        const nextId = uuidv4()
 
-				state.personaList.push({
-					id: nextId,
-					value: "",
-					entered: false,
-				})
+        state.personaList.push({
+          id: nextId,
+          value: "",
+          entered: false
+        })
 
-				// focus on next input on next component re-render
-				// convert to ref in vue 3 later
-				nextTick(() => document.getElementById(nextId).focus())
-			}
-		}
+        // focus on next input on next component re-render
+        // convert to ref in vue 3 later
+        nextTick(() => document.getElementById(nextId).focus())
+      }
+    }
 
-		return { state, v$, minPersonasText, disableContinueButton, handleHitEnter }
-	},
+    return { state, v$, minPersonasText, disableContinueButton, handleHitEnter }
+  }
 }
 </script>
 
 <style scoped>
 #personas-wrapper {
-	margin-top: -80px;
+  margin-top: -80px;
 }
+
 .avatar-input-wrapper:hover .avatar--inner-circle {
-	background-color: #f2f4f6;
+  background-color: #f2f4f6;
 }
+
 .avatar-input-wrapper:hover .avatar--inner-circle:before {
-	background-color: #e7ebee;
+  background-color: #e7ebee;
 }
+
 .avatar-input-wrapper:hover .base-input {
-	background-color: #f8f9fa;
+  background-color: #f8f9fa;
 }
 </style>

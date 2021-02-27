@@ -19,40 +19,41 @@
 
 <script>
 import Mailbox from "@/components/icons/Mailbox"
+
 export default {
-	name: "AvatarSquareBox",
-	props: {
-		customSize: {
-			type: String,
-			default: "w-16 h-16",
-		},
-		customBackgroundColor: {
-			type: String,
-			default: "bg-white-dark",
-		},
-		avatarLetter: {
-			type: String,
-			default: null,
-		},
-		enableEmptyAvatar: {
-			type: Boolean,
-			default: false,
-		},
-	},
-	components: { Mailbox },
+  name: "AvatarSquareBox",
+  props: {
+    customSize: {
+      type: String,
+      default: "w-16 h-16"
+    },
+    customBackgroundColor: {
+      type: String,
+      default: "bg-white-dark"
+    },
+    avatarLetter: {
+      type: String,
+      default: null
+    },
+    enableEmptyAvatar: {
+      type: Boolean,
+      default: false
+    }
+  },
+  components: { Mailbox }
 }
 </script>
 
 <style scoped>
 .avatar--inner-circle:before {
-	content: "";
-	width: 32px;
-	height: 32px;
-	background-color: #edf0f2;
-	border-radius: 50%;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
+  content: "";
+  width: 32px;
+  height: 32px;
+  background-color: #edf0f2;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>

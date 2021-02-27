@@ -92,7 +92,7 @@ export default {
   name: "CompetitorAnalysis",
   components: { BaseInput, TitleWrapper, NavigationButtonGroup },
   props: {
-    send: Function,
+    send: Function
   },
   setup() {
     const state = reactive({
@@ -100,10 +100,10 @@ export default {
         website: "",
         yearFounded: null,
         activeUsers: "",
-        funding: "",
+        funding: ""
       },
       strength: "",
-      weakness: "",
+      weakness: ""
     })
 
     const rules = {
@@ -111,8 +111,8 @@ export default {
         website: { required },
         yearFounded: { required },
         activeUsers: { required },
-        funding: { required },
-      },
+        funding: { required }
+      }
     }
 
     const v$ = useVuelidate(rules, state)

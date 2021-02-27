@@ -15,7 +15,7 @@ export default {
   props: {
     avatarLetter: {
       type: String,
-      default: undefined,
+      default: undefined
     }
   }
 }

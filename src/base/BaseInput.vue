@@ -22,30 +22,30 @@ export default {
   props: {
     customClass: {
       type: String,
-      default: 'w-long-input',
+      default: "w-long-input"
     },
     error: {
       type: Boolean,
-      default: false,
+      default: false
     },
     placeholder: {
       type: String,
-      default: ''
+      default: ""
     },
     modelValue: {
       type: [String, Number],
-      default: ''
+      default: ""
     },
     id: {
       type: String,
-      default: '',
+      default: ""
     },
     disableInput: {
       type: Boolean,
-      default: false,
+      default: false
     }
   },
-  emits: ["update:modelValue", 'blur', 'enter']
+  emits: ["update:modelValue", "blur", "enter"]
 }
 </script>
 
