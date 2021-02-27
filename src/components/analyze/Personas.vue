@@ -1,12 +1,14 @@
 <template>
   <div>
-    this is personas component
+    <AvatarSquareBox avatar-letter="K" />
   </div>
 </template>
 
 <script>
+import AvatarSquareBox from "@/components/AvatarSquareBox"
 export default {
-  name: "Personas"
+  name: "Personas",
+  components: { AvatarSquareBox }
 }
 </script>
 
