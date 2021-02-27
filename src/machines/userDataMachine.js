@@ -298,7 +298,7 @@ export const userDataMachine = Machine({
 		personas: {
 			on: {
 				NEXT: "confirmTrial",
-				BACK: "userInterview",
+				BACK: "competitorAnalysis",
 			},
 			invoke: {
 				src: updateFormMachine,
