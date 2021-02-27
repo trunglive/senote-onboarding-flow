@@ -1,5 +1,5 @@
 <template>
-  <div class="checkbox-item-container text-black">
+  <div class="checkbox-item-container">
     <div class="price-checkbox__less-than-ten checkbox-item">
       <input
         type="checkbox"
@@ -50,7 +50,7 @@ export default {
 	width: 18px;
 	height: 18px;
 	background-color: #fff;
-	border: 1px solid #036f72;
+	border: 1px solid #40474f;
 	border-radius: 3px;
 	cursor: pointer;
 }
@@ -81,5 +81,6 @@ export default {
 input[type="checkbox"]:checked ~ label {
 	color: #808080;
 	background-color: #036f72;
+	border: 1px solid #036f72;
 }
 </style>

@@ -1,13 +1,18 @@
 <template>
   <div class="flex flex-col items-center justify-center">
-    <div class="flex space-x-8">
-      <BaseCheckbox
-        v-for="question in questions"
-        :key="question.value"
-        :value="question.value"
-        :label="question.label"
-        name="userInterviewQuestions"
-      />
+    <div class="space-y-4">
+      <div class="text-lg">
+        {{ data.title }}
+      </div>
+      <div class="flex space-x-8">
+        <BaseCheckbox
+          v-for="question in data.questions"
+          :key="question.value"
+          :value="question.value"
+          :label="question.label"
+          name="userInterviewQuestions"
+        />
+      </div>
     </div>
     <div class="pt-20">
       <NavigationButtonGroup
@@ -22,23 +27,26 @@
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import BaseCheckbox from "@/base/BaseCheckbox"
 
-const questions = [
-	{
-		value: 'morning',
-		label: 'Morning',
-		checked: false,
-	},
-	{
-		value: 'afternoon',
-		label: 'Afternoon',
-		checked: false,
-	},
-	{
-		value: 'night',
-		label: 'Night',
-		checked: false,
-	},
-]
+const data = {
+	title: "On a typical day, when do you get focused the most?",
+	questions: [
+		{
+			value: "morning",
+			label: "Morning",
+			checked: false,
+		},
+		{
+			value: "afternoon",
+			label: "Afternoon",
+			checked: false,
+		},
+		{
+			value: "night",
+			label: "Night",
+			checked: false,
+		},
+	],
+}
 
 export default {
 	name: "UserInterview",
@@ -50,11 +58,10 @@ export default {
 	},
 	setup() {
 		return {
-			questions
+			data,
 		}
-	}
+	},
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
