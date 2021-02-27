@@ -9,7 +9,7 @@
           <input
             v-model="state.marketingMessage"
             @blur="v$.marketingMessage.$touch"
-            :class="v$.marketingMessage.$dirty && v$.marketingMessage.$invalid ? 'outline-red' : 'outline-none'"
+            :class="v$.marketingMessage.$error ? 'outline-red' : 'outline-none'"
             name="marketingMessage"
             type="text"
             autocomplete="off"
@@ -26,7 +26,7 @@
           <input
             v-model="state.worstThingHappened"
             @blur="v$.worstThingHappened.$touch"
-            :class="v$.worstThingHappened.$dirty && v$.worstThingHappened.$invalid ? 'outline-red' : 'outline-none'"
+            :class="v$.worstThingHappened.$error ? 'outline-red' : 'outline-none'"
             name="worstThingHappened"
             type="text"
             autocomplete="off"
@@ -36,7 +36,7 @@
         </div>
       </div>
     </div>
-    <div class="pt-10">
+    <div class="pt-20">
       <NavigationButtonGroup
         :send="send"
         :disable-continue-button="v$.marketingMessage.$invalid || v$.worstThingHappened.$invalid"
