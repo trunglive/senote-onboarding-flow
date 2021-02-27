@@ -57,6 +57,12 @@
         :is-phase-step-loaded="isPhaseStepLoaded"
         :current-state="state.value"
       />
+      <UserInterview
+        v-if="state.matches('userInterview')"
+        :send="send"
+        :is-phase-step-loaded="isPhaseStepLoaded"
+        :current-state="state.value"
+      />
       <ConfirmTrial
         v-if="state.matches('confirmTrial')"
         :send="send"
@@ -90,11 +96,11 @@ import ProgressBar from "@/base/ProgressBar"
 import ConfirmTrial from "@/components/ConfirmTrial"
 import Creator from "@/components/Creator"
 import StakeholderInterview from "@/components/discover/StakeholderInterview"
+import UserInterview from "@/components/discover/UserInterview"
 
 export default {
 	name: "App",
 	components: {
-		StakeholderInterview,
 		ConfirmTrial,
 		ProgressBar,
 		BusinessGoalIntroduction,
@@ -105,6 +111,8 @@ export default {
 		DesignThinkingProcess,
 		Phase,
 		Creator,
+		StakeholderInterview,
+		UserInterview,
 	},
 	setup() {
 		const { state, send } = useMachine(userDataMachine)
