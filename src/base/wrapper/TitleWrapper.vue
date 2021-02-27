@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="text-lg pl-4 pb-2">
-      {{ title }}
+      {{ title }} <span
+        v-show="required"
+        class="text-red"
+      >*</span>
     </div>
     <div class="flex items-center justify-between pr-4 z-40">
       <slot />
@@ -16,6 +19,10 @@ export default {
     title: {
       type: String,
       default: '',
+    },
+    required: {
+      type: Boolean,
+      default: false,
     }
   }
 }

@@ -1,11 +1,7 @@
 <template>
-  <component
+  <div
     v-for="option in options"
     :key="option.value"
-    :is="vertical ? 'div' : 'span'"
-    :class="{
-      'horizontal': !vertical
-    }"
   >
     <BaseCheckbox
       :label="option.label"
@@ -14,7 +10,7 @@
       :name="name"
       @update:modelValue="$emit('update:modelValue', $event)"
     />
-  </component>
+  </div>
 </template>
 
 <script>
@@ -36,10 +32,6 @@ export default {
       type: Array,
       required: true
     },
-    vertical: {
-      type: Boolean,
-      default: false
-    }
   },
   components: { BaseCheckbox }
 
@@ -47,7 +39,4 @@ export default {
 </script>
 
 <style scoped>
-.horizontal {
-  margin-right: 0;
-}
 </style>

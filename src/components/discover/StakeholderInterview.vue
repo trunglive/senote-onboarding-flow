@@ -1,7 +1,10 @@
 <template>
   <div class="flex flex-col items-center justify-center">
     <div class="space-y-10">
-      <TitleWrapper title="What are the main marketing messages?">
+      <TitleWrapper
+        title="What are the main marketing messages?"
+        required
+      >
         <BaseInput
           v-model="state.marketingMessage"
           :error="v$.marketingMessage.$error"
@@ -9,7 +12,10 @@
           placeholder="Add Answer..."
         />
       </TitleWrapper>
-      <TitleWrapper title="What's the worst thing that could happen in this project?">
+      <TitleWrapper
+        title="What's the worst thing that could happen in this project?"
+        required
+      >
         <BaseInput
           v-model="state.worstThingHappened"
           :error="v$.worstThingHappened.$error"

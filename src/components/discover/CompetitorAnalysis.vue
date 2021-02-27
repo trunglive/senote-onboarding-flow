@@ -4,7 +4,10 @@
     class="flex flex-col items-center justify-center"
   >
     <div class="space-y-10">
-      <TitleWrapper title="Website">
+      <TitleWrapper
+        title="Website"
+        required
+      >
         <BaseInput
           v-model="state.summary.website"
           :error="v$.summary.website.$error"
@@ -14,7 +17,10 @@
         />
       </TitleWrapper>
       <div class="flex">
-        <TitleWrapper title="Year Founded">
+        <TitleWrapper
+          title="Year Founded"
+          required
+        >
           <BaseInput
             v-model="state.summary.yearFounded"
             :error="v$.summary.yearFounded.$error"
@@ -23,7 +29,10 @@
             custom-class="w-52"
           />
         </TitleWrapper>
-        <TitleWrapper title="Active Users">
+        <TitleWrapper
+          title="Active Users"
+          required
+        >
           <BaseInput
             v-model="state.summary.activeUsers"
             :error="v$.summary.activeUsers.$error"
@@ -32,7 +41,10 @@
             custom-class="w-52"
           />
         </TitleWrapper>
-        <TitleWrapper title="Funding">
+        <TitleWrapper
+          title="Funding"
+          required
+        >
           <BaseInput
             v-model="state.summary.funding"
             :error="v$.summary.funding.$error"
@@ -46,8 +58,6 @@
         <TitleWrapper title="Strength">
           <BaseInput
             v-model="state.strength"
-            :error="v$.strength.$error"
-            @blur="v$.strength.$touch"
             placeholder="Add strength..."
             custom-class="w-80"
           />
@@ -55,8 +65,6 @@
         <TitleWrapper title="Weakness">
           <BaseInput
             v-model="state.weakness"
-            :error="v$.weakness.$error"
-            @blur="v$.weakness.$touch"
             placeholder="Add weakness..."
             custom-class="w-80"
           />
@@ -104,12 +112,6 @@ export default {
         yearFounded: { required },
         activeUsers: { required },
         funding: { required },
-      },
-      strength: {
-        required
-      },
-      weakness: {
-        required
       },
     }
 

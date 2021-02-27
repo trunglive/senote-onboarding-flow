@@ -1,17 +1,17 @@
 <template>
   <div class="flex flex-col items-center justify-center">
-    <div class="space-y-4">
-      <div class="text-lg">
-        {{ data.title }}
-      </div>
-      <div class="flex space-x-8">
+    <TitleWrapper
+      :title="data.title"
+      required
+    >
+      <div class="flex pl-4 pt-4 space-x-10">
         <BaseCheckboxGroup
           v-model="data.checked"
           :name="data.name"
           :options="data.options"
         />
       </div>
-    </div>
+    </TitleWrapper>
     <div class="pt-20">
       <NavigationButtonGroup
         :send="send"
@@ -23,10 +23,12 @@
 
 <script>
 import { reactive, ref } from "vue"
+import TitleWrapper from "@/base/wrapper/TitleWrapper"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import BaseCheckboxGroup from "@/base/BaseCheckboxGroup"
 import { required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
+
 
 const userInterviewData = {
   title: "On a typical day, when do you get focused the most?",
@@ -50,7 +52,7 @@ const userInterviewData = {
 
 export default {
   name: "UserInterview",
-  components: { BaseCheckboxGroup, NavigationButtonGroup },
+  components: { TitleWrapper, BaseCheckboxGroup, NavigationButtonGroup },
   props: {
     msg: String,
     send: Function,
