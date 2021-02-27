@@ -1,20 +1,30 @@
 <template>
-  <div class="flex flex-col items-center justify-center">
+  <div
+    id="personas-wrapper"
+    class="flex flex-col items-center justify-center"
+  >
     <TitleWrapper
       :title="minPersonasText"
       required
     >
-      <div>
+      <div class="h-64 overflow-y-auto">
         <div
-          v-for="persona in state.personaList"
+          v-for="(persona, index) in state.personaList"
           :key="persona.id"
-          class="avatar-input-wrapper flex p-2 hover:bg-white-light"
-          :class="{ 'cursor-pointer': persona.entered }"
+          class="avatar-input-wrapper flex p-4 hover:bg-white-light"
+          :class="{
+            'cursor-pointer': persona.entered,
+            'border-t-1 border-white-light-2': index >= 1,
+          }"
         >
           <AvatarSquareBox
             :avatar-letter="persona.entered && persona.value"
             custom-size="w-12 h-12"
-            :custom-background-color="persona.entered && persona.value ? 'bg-ocean-dark' : 'bg-white-light'"
+            :custom-background-color="
+              persona.entered && persona.value
+                ? 'bg-ocean-dark'
+                : 'bg-white-light'
+            "
             enable-empty-avatar
           />
           <BaseInput
@@ -31,7 +41,7 @@
     <div class="pt-20">
       <NavigationButtonGroup
         :send="send"
-        :disable-continue-button="false"
+        :disable-continue-button="disableContinueButton"
       />
     </div>
   </div>
@@ -42,7 +52,7 @@ import TitleWrapper from "@/base/wrapper/TitleWrapper"
 import AvatarSquareBox from "@/components/AvatarSquareBox"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import BaseInput from "@/base/BaseInput"
-import { nextTick, reactive } from "vue"
+import { nextTick, reactive, computed } from "vue"
 import { required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
 import { v4 as uuidv4 } from "uuid"
@@ -81,34 +91,47 @@ export default {
 			minPersonas === 1 ? "" : "s"
 		}`
 
+		const disableContinueButton = computed(
+			() =>
+				state.personaList.filter(persona => persona.entered).length <
+				minPersonas
+		)
+
 		function handleHitEnter({ value, id }) {
-      state.personaList = state.personaList.map(persona => {
-        if (persona.id === id) {
-          return {
-            ...persona,
-            entered: true,
-          }
-        }
-        return persona
-      });
+			if (value) {
+				state.personaList = state.personaList.map(persona => {
+					if (persona.id === id) {
+						return {
+							...persona,
+							entered: true,
+						}
+					}
+					return persona
+				})
 
-      const nextId = uuidv4()
+				const nextId = uuidv4()
 
-      state.personaList.push({
-        id: nextId, value: '', entered: false
-      })
+				state.personaList.push({
+					id: nextId,
+					value: "",
+					entered: false,
+				})
 
-      // focus on next input on next component re-render
-      // convert to ref in vue 3 later
-      nextTick(() => document.getElementById(nextId).focus())
+				// focus on next input on next component re-render
+				// convert to ref in vue 3 later
+				nextTick(() => document.getElementById(nextId).focus())
+			}
 		}
 
-		return { state, v$, minPersonasText, handleHitEnter }
+		return { state, v$, minPersonasText, disableContinueButton, handleHitEnter }
 	},
 }
 </script>
 
 <style scoped>
+#personas-wrapper {
+	margin-top: -80px;
+}
 .avatar-input-wrapper:hover .avatar--inner-circle {
 	background-color: #f2f4f6;
 }
