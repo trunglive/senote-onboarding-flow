@@ -180,4 +180,8 @@ export default {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+pre {
+	-moz-tab-size: 4;
+	tab-size: 4;
+}
 </style>
