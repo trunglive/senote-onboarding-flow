@@ -15,16 +15,18 @@
     <div class="pt-20">
       <NavigationButtonGroup
         :send="send"
-        :disable-continue-button="false"
+        :disable-continue-button="v$.checked.$invalid"
       />
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from "vue"
+import { reactive, ref } from "vue"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import BaseCheckboxGroup from "@/base/BaseCheckboxGroup"
+import { required } from "@vuelidate/validators"
+import { useVuelidate } from "@vuelidate/core"
 
 const userInterviewData = {
 	title: "On a typical day, when do you get focused the most?",
@@ -55,9 +57,19 @@ export default {
 		currentState: String,
 	},
 	setup() {
-		const data = ref(userInterviewData)
+		const data = reactive(userInterviewData)
+
+		const rules = {
+			checked: {
+				required
+			},
+		}
+
+		const v$ = useVuelidate(rules, data)
+
 		return {
 			data,
+			v$,
 		}
 	}
 }
