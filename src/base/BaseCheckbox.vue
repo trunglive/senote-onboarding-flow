@@ -3,9 +3,12 @@
     <div class="price-checkbox__less-than-ten checkbox-item">
       <input
         type="checkbox"
-        :id="value"
         :name="name"
+        :id="value"
         :value="value"
+        :checked="modelValue.includes(value)"
+        v-bind="$attrs"
+        @change="updateCheckbox"
       ><label :for="value" />
     </div><label
       :for="value"
@@ -15,13 +18,43 @@
 </template>
 
 <script>
+import { ref } from "vue"
 export default {
+	name: "BaseCheckbox",
+	emits: ['update:modelValue'],
 	props: {
-		value: String,
-		label: String,
-		name: String, // use name for grouping all checkboxes in same group together
+		name: {
+			type: String, // use name for grouping all checkboxes in same group together
+			default: '',
+		} ,
+		value: {
+			type: [String, Number],
+			required: true
+		},
+		label: {
+			type: String,
+			default: '',
+		},
+		modelValue: {
+			type: Array,
+			required: true,
+		},
 	},
-	name: "BaseCheckbox"
+	setup(props, { emit }) {
+		function updateCheckbox() {
+			let currentChecked
+			if (props.modelValue.includes(props.value)) {
+				currentChecked = props.modelValue.filter(currentValue => currentValue !== props.value)
+			} else {
+				currentChecked = [...props.modelValue, props.value]
+			}
+			emit('update:modelValue', currentChecked)
+		}
+
+		return {
+			updateCheckbox,
+		}
+	}
 }
 </script>
 

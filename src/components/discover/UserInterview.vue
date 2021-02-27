@@ -5,12 +5,10 @@
         {{ data.title }}
       </div>
       <div class="flex space-x-8">
-        <BaseCheckbox
-          v-for="question in data.questions"
-          :key="question.value"
-          :value="question.value"
-          :label="question.label"
-          name="userInterviewQuestions"
+        <BaseCheckboxGroup
+          v-model="data.checked"
+          :name="data.name"
+          :options="data.options"
         />
       </div>
     </div>
@@ -24,43 +22,44 @@
 </template>
 
 <script>
+import { ref } from "vue"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
-import BaseCheckbox from "@/base/BaseCheckbox"
+import BaseCheckboxGroup from "@/base/BaseCheckboxGroup"
 
-const data = {
+const userInterviewData = {
 	title: "On a typical day, when do you get focused the most?",
-	questions: [
+	name: "userInterviewQuestions",
+	checked: [],
+	options: [
 		{
 			value: "morning",
 			label: "Morning",
-			checked: false,
 		},
 		{
 			value: "afternoon",
 			label: "Afternoon",
-			checked: false,
 		},
 		{
 			value: "night",
 			label: "Night",
-			checked: false,
 		},
 	],
 }
 
 export default {
 	name: "UserInterview",
-	components: { BaseCheckbox, NavigationButtonGroup },
+	components: { BaseCheckboxGroup,  NavigationButtonGroup },
 	props: {
 		msg: String,
 		send: Function,
 		currentState: String,
 	},
 	setup() {
+		const data = ref(userInterviewData)
 		return {
 			data,
 		}
-	},
+	}
 }
 </script>
 
