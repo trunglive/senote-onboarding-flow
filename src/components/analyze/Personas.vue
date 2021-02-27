@@ -1,6 +1,9 @@
 <template>
   <div>
-    <AvatarSquareBox avatar-letter="K" />
+    <AvatarSquareBox
+      custom-size="w-12 h-12"
+      avatar-letter="K"
+    />
   </div>
 </template>
 

@@ -1,6 +1,7 @@
 <template>
   <div
-    class="flex flex-col items-center justify-center w-16 h-16 rounded-md bg-white-dark font-bold text-2xl"
+    :class="[customSize]"
+    class="flex flex-col items-center justify-center rounded-md bg-white-dark font-bold text-2xl"
   >
     <div
       v-if="avatarLetter?.length > 0"
@@ -17,6 +18,10 @@ import Mailbox from "@/components/icons/Mailbox"
 export default {
   name: "AvatarSquareBox",
   props: {
+    customSize: {
+      type: String,
+      default: 'w-16 h-16'
+    },
     avatarLetter: {
       type: String,
       default: null,
