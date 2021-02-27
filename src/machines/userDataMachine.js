@@ -281,6 +281,22 @@ export const userDataMachine = Machine({
 		},
 		competitorAnalysis: {
 			on: {
+				NEXT: "personas",
+				BACK: "userInterview",
+			},
+			invoke: {
+				src: updateFormMachine,
+				data: ctx => ctx,
+				onDone: {
+					target: UserDataStates.analyzePhases.personas,
+					actions: assign({
+						userData: (_, { data }) => data?.userData ?? null,
+					}),
+				},
+			},
+		},
+		personas: {
+			on: {
 				NEXT: "confirmTrial",
 				BACK: "userInterview",
 			},
@@ -298,7 +314,7 @@ export const userDataMachine = Machine({
 		confirmTrial: {
 			on: {
 				NEXT: "complete",
-				BACK: "competitorAnalysis",
+				BACK: "personas",
 			},
 			invoke: {
 				src: updateFormMachine,

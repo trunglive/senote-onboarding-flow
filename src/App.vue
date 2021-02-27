@@ -69,6 +69,12 @@
         :is-phase-step-loaded="isPhaseStepLoaded"
         :current-state="state.value"
       />
+      <Personas
+        v-if="state.matches('personas')"
+        :send="send"
+        :is-phase-step-loaded="isPhaseStepLoaded"
+        :current-state="state.value"
+      />
       <ConfirmTrial
         v-if="state.matches('confirmTrial')"
         :send="send"
@@ -103,10 +109,12 @@ import Creator from "@/components/Creator"
 import StakeholderInterview from "@/components/discover/StakeholderInterview"
 import UserInterview from "@/components/discover/UserInterview"
 import CompetitorAnalysis from "@/components/discover/CompetitorAnalysis"
+import Personas from "@/components/analyze/Personas"
 
 export default {
   name: "App",
   components: {
+    Personas,
     CompetitorAnalysis,
     ConfirmTrial,
     ProgressBar,
