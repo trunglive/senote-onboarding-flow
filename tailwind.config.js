@@ -73,7 +73,7 @@ module.exports = {
 			min: "min-content",
 			max: "max-content",
 			"navigation-button": "21.25rem",
-			"long-text": "30rem",
+			"long-input": "30rem",
 		}),
 		height: theme => ({
 			auto: "auto",

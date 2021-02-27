@@ -63,6 +63,12 @@
         :is-phase-step-loaded="isPhaseStepLoaded"
         :current-state="state.value"
       />
+      <CompetitorAnalysis
+        v-if="state.matches('competitorAnalysis')"
+        :send="send"
+        :is-phase-step-loaded="isPhaseStepLoaded"
+        :current-state="state.value"
+      />
       <ConfirmTrial
         v-if="state.matches('confirmTrial')"
         :send="send"
@@ -84,7 +90,6 @@
 import { computed } from "vue"
 import { useMachine } from "@xstate/vue"
 import { userDataMachine } from "@/machines/userDataMachine"
-import { UserDataStates } from "@/machines/userDataMachine.types"
 import AddEmail from "@/components/AddEmail"
 import AddPassword from "@/components/AddPassword"
 import CustomizeFirstProject from "@/components/CustomizeFirstProject"
@@ -97,10 +102,12 @@ import ConfirmTrial from "@/components/ConfirmTrial"
 import Creator from "@/components/Creator"
 import StakeholderInterview from "@/components/discover/StakeholderInterview"
 import UserInterview from "@/components/discover/UserInterview"
+import CompetitorAnalysis from "@/components/discover/CompetitorAnalysis"
 
 export default {
   name: "App",
   components: {
+    CompetitorAnalysis,
     ConfirmTrial,
     ProgressBar,
     BusinessGoalIntroduction,

@@ -1,7 +1,7 @@
 <template>
   <input
-    :class="error ? 'outline-red' : 'outline-none'"
-    class="w-long-text appearance-none rounded-none px-4 py-3 placeholder-gray-500 text-gray-900 focus:z-10 hover:bg-white-light"
+    :class="[error ? 'outline-red' : 'outline-none', customClass]"
+    class="appearance-none rounded-none px-4 py-3 placeholder-gray-500 text-gray-900 focus:z-10 hover:bg-white-light"
     type="text"
     autocomplete="off"
     v-bind="$attrs"
@@ -16,6 +16,10 @@
 export default {
   name: "BaseInput",
   props: {
+    customClass: {
+      type: String,
+      default: 'w-long-input',
+    },
     error: {
       type: Boolean,
       default: false,
