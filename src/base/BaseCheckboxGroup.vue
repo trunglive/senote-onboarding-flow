@@ -46,5 +46,7 @@ export default {
 </script>
 
 <style scoped>
-
+.horizontal {
+	margin-right: 0;
+}
 </style>
