@@ -51,10 +51,13 @@ export default {
     const state = reactive({
       password: ""
     })
+
     const rules = {
       password: { required, minLength: minLength(passwordMinLength) }
     }
+
     const v$ = useVuelidate(rules, state)
+
     return { state, v$, passwordMinLength }
   },
   components: { AvatarGroup, NavigationButtonGroup, Checkmark }

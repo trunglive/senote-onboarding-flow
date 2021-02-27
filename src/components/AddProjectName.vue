@@ -45,11 +45,13 @@ export default {
     const state = reactive({
       projectName: ""
     })
+
     const rules = {
       projectName: {
         required
       }
     }
+
     const v$ = useVuelidate(rules, state)
 
     function composeStepTitle() {

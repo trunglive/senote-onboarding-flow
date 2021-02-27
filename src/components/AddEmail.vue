@@ -50,11 +50,15 @@ export default {
     const state = reactive({
       emailAddress: ""
     })
+
     const avatarLetter = computed(() => state.emailAddress?.[0])
+
     const rules = {
       emailAddress: { required, email }
     }
+
     const v$ = useVuelidate(rules, state)
+
     return { state, avatarLetter, v$ }
   }
 }
