@@ -6,16 +6,12 @@
           What are the main marketing messages?
         </div>
         <div class="flex items-center justify-between pr-4 z-40">
-          <input
+          <BaseInput
             v-model="state.marketingMessage"
+            :error="v$.marketingMessage.$error"
             @blur="v$.marketingMessage.$touch"
-            :class="v$.marketingMessage.$error ? 'outline-red' : 'outline-none'"
-            name="marketingMessage"
-            type="text"
-            autocomplete="off"
-            class="w-long-text appearance-none rounded-none px-4 py-3 placeholder-gray-500 text-gray-900 focus:z-10 hover:bg-white-light"
-            placeholder="Add answer..."
-          >
+            placeholder="Add Answer..."
+          />
         </div>
       </div>
       <div>
@@ -23,16 +19,12 @@
           What's the worst thing that could happen in this project?
         </div>
         <div class="flex items-center justify-between">
-          <input
+          <BaseInput
             v-model="state.worstThingHappened"
+            :error="v$.worstThingHappened.$error"
             @blur="v$.worstThingHappened.$touch"
-            :class="v$.worstThingHappened.$error ? 'outline-red' : 'outline-none'"
-            name="worstThingHappened"
-            type="text"
-            autocomplete="off"
-            class="w-long-text appearance-none rounded-none px-4 py-3 placeholder-gray-500 text-gray-900 focus:z-10 hover:bg-white-light"
-            placeholder="Add answer..."
-          >
+            placeholder="Add Answer..."
+          />
         </div>
       </div>
     </div>
@@ -46,13 +38,14 @@
 </template>
 
 <script>
-import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import { computed, reactive } from "vue"
-import { email, required } from "@vuelidate/validators"
+import { required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
+import BaseInput from "@/base/BaseInput"
+import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 
 export default {
-  components: { NavigationButtonGroup },
+  components: { BaseInput, NavigationButtonGroup },
   props: {
     msg: String,
     send: Function,
