@@ -75,6 +75,12 @@
         :is-phase-step-loaded="isPhaseStepLoaded"
         :current-state="state.value"
       />
+      <SolutionValuation
+        v-if="state.matches('solutionValuation')"
+        :send="send"
+        :is-phase-step-loaded="isPhaseStepLoaded"
+        :current-state="state.value"
+      />
       <ConfirmTrial
         v-if="state.matches('confirmTrial')"
         :send="send"
@@ -103,31 +109,33 @@ import AddProjectName from "@/components/AddProjectName"
 import BusinessGoalIntroduction from "@/components/BusinessGoalIntroduction"
 import DesignThinkingProcess from "@/components/DesignThinkingProcess"
 import Phase from "@/components/Phase"
-import ProgressBar from "@/base/ProgressBar"
-import ConfirmTrial from "@/components/ConfirmTrial"
 import Creator from "@/components/Creator"
 import StakeholderInterview from "@/components/discover/StakeholderInterview"
 import UserInterview from "@/components/discover/UserInterview"
 import CompetitorAnalysis from "@/components/discover/CompetitorAnalysis"
 import Personas from "@/components/analyze/Personas"
+import SolutionValuation from "@/components/analyze/SolutionValuation"
+import ConfirmTrial from "@/components/ConfirmTrial"
+import ProgressBar from "@/base/ProgressBar"
 
 export default {
   name: "App",
   components: {
-    Personas,
-    CompetitorAnalysis,
-    ConfirmTrial,
     ProgressBar,
-    BusinessGoalIntroduction,
     AddEmail,
     AddPassword,
-    CustomizeFirstProject,
+    CustomizeFirstProject, // skip
     AddProjectName,
+    BusinessGoalIntroduction, // skip
     DesignThinkingProcess,
     Phase,
     Creator,
     StakeholderInterview,
-    UserInterview
+    UserInterview,
+    CompetitorAnalysis,
+    Personas,
+    SolutionValuation,
+    ConfirmTrial,
   },
   setup() {
     const { state, send } = useMachine(userDataMachine)

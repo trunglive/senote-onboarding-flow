@@ -51,14 +51,15 @@ export const designThinkingProcesses = {
 		phaseStepOrder: 2,
 		backgroundColor: "bg-ocean-dark-2",
 		stepProcesses: [
-			{
-				icon: "ProblemValuation",
-				label: "Problem Valuation",
-				value: "problemValuation",
-				enabled: true,
-				tooltipContent:
-					"Examine your data and evaluate all the problems you discovered so far from your interviews.",
-			},
+			// hide Problem Valuation for now
+			// {
+			// 	icon: "ProblemValuation",
+			// 	label: "Problem Valuation",
+			// 	value: "problemValuation",
+			// 	enabled: true,
+			// 	tooltipContent:
+			// 		"Examine your data and evaluate all the problems you discovered so far from your interviews.",
+			// },
 			{
 				icon: "Personas",
 				label: "Personas",
