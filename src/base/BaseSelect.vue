@@ -8,7 +8,7 @@
       disableInput && 'cursor-pointer bg-white',
       dropdownOpen ? 'border-ocean-dark' : 'border-black',
     ]"
-    class="h-base-input flex items-center justify-end bg-white border-1 appearance-none px-4 py-2 rounded placeholder-gray-500 text-gray-900 focus:z-10 cursor-pointer hover:bg-white-light"
+    class="h-base-input flex items-center bg-white border-1 appearance-none px-4 py-2 rounded placeholder-gray-500 text-gray-900 focus:z-10 cursor-pointer hover:bg-white-light"
     v-bind="$attrs"
     :value="modelValue"
     :placeholder="placeholder"
@@ -16,19 +16,24 @@
     @blur="$emit('blur')"
     @click="handleToggleSelect"
   >
-    <div>
-      <AppIcon
-        v-show="!dropdownOpen"
-        icon="DownArrow"
-        width="18"
-        height="27"
-      />
-      <AppIcon
-        v-show="dropdownOpen"
-        icon="UpArrow"
-        width="18"
-        height="27"
-      />
+    <div class="flex justify-between w-full">
+      <div class="text-black-light opacity-50">
+        Select one or more colors
+      </div>
+      <div>
+        <AppIcon
+          v-show="!dropdownOpen"
+          icon="DownArrow"
+          width="18"
+          height="27"
+        />
+        <AppIcon
+          v-show="dropdownOpen"
+          icon="UpArrow"
+          width="18"
+          height="27"
+        />
+      </div>
     </div>
   </div>
   <div
@@ -153,7 +158,6 @@ export default {
 	  let dropdownOpen = ref(false)
 	  function handleToggleSelect() {
 	    dropdownOpen.value = !dropdownOpen.value
-      console.log(dropdownOpen)
     }
 
     return {
