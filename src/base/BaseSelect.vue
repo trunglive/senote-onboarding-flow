@@ -83,6 +83,7 @@
             :key="option.value"
             class="tags-selector__list-item tag-list-item"
             :class="option.selected && 'tag-list-item--selected tags-selector__list-item--selected'"
+            @click="handleToggleSelectItem(option.value)"
           >
             <div
               class="tag-list-item__color"
@@ -153,16 +154,30 @@ export default {
       required: true
     }
 	},
-	emits: ["update:modelValue", "blur", "enter"],
-  setup() {
+	emits: ["update:modelValue", "blur", "enter", 'handleToggleSelectItem'],
+  setup(props, { emit }) {
 	  let dropdownOpen = ref(false)
 	  function handleToggleSelect() {
 	    dropdownOpen.value = !dropdownOpen.value
     }
 
+    function handleToggleSelectItem(itemValue) {
+	    const updatedOptions = props.options.map(item => {
+	      if (item.value === itemValue) {
+	        return {
+	          ...item,
+            selected: !item.selected
+          }
+        }
+	      return item
+      })
+      emit('handleToggleSelectItem', updatedOptions)
+    }
+
     return {
 	    dropdownOpen,
 	    handleToggleSelect,
+      handleToggleSelectItem,
     }
   }
 }

@@ -21,6 +21,7 @@
         <BaseSelect
           custom-class="w-72"
           :options="data.colorData.options"
+          @handleToggleSelectItem="handleToggleSelectItem"
         />
       </div>
     </TitleWrapper>
@@ -112,9 +113,14 @@ export default {
 
 		const v$ = useVuelidate(rules, data)
 
+    function handleToggleSelectItem(updatedOptions) {
+		  data.colorData.options = updatedOptions
+    }
+
 		return {
 			data,
 			v$,
+      handleToggleSelectItem
 		}
 	},
 }
