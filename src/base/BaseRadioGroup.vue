@@ -15,6 +15,7 @@
 
 <script>
 import BaseRadio from "@/base/BaseRadio"
+
 export default {
   components: { BaseRadio },
   props: {
@@ -35,7 +36,7 @@ export default {
       default: false
     }
   },
-  emits: ['update:modelValue']
+  emits: ["update:modelValue"]
 }
 </script>
 
