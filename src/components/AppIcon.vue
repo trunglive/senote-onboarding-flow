@@ -11,6 +11,7 @@ import { defineAsyncComponent } from "vue"
 
 const lazyLoad = iconName =>
 	defineAsyncComponent(() => import(`./icons/${iconName}.vue`))
+
 export default {
 	name: "AppIcon",
 	props: {

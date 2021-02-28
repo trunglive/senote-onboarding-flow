@@ -1,15 +1,15 @@
 <template>
   <div class="flex flex-col items-center space-y-10">
     <TitleWrapper
-      :title="data.title"
+      :title="data.solutionValuationData.title"
       required
     >
       <div class="flex pl-4 pt-4">
         <BaseRadioGroup
-          v-model="data.selected"
-          :name="data.name"
-          :options="data.options"
-          :model-value="data.selected"
+          v-model="data.solutionValuationData.selected"
+          :name="data.solutionValuationData.name"
+          :options="data.solutionValuationData.options"
+          :model-value="data.solutionValuationData.selected"
         />
       </div>
     </TitleWrapper>
@@ -18,13 +18,16 @@
       required
     >
       <div class="pl-4 pt-4">
-        <BaseSelect custom-class="w-72" />
+        <BaseSelect
+          custom-class="w-72"
+          :options="data.colorData.options"
+        />
       </div>
     </TitleWrapper>
     <div class="pt-20">
       <NavigationButtonGroup
         :send="send"
-        :disable-continue-button="v$.selected.$invalid"
+        :disable-continue-button="v$.solutionValuationData.selected.$invalid"
       />
     </div>
   </div>
@@ -53,6 +56,32 @@ const solutionValuationData = {
 	],
 }
 
+const colorData = {
+  title: "What are your favorite colors?",
+  name: "colorQuestions",
+  selected: [],
+  options: [
+    {
+      value: "ocean",
+      label: "Ocean",
+      selected: true,
+      color: "bg-ocean-dark",
+    },
+    {
+      value: "purple",
+      label: "Purple",
+      selected: false,
+      color: "bg-purple-dark",
+    },
+    {
+      value: "red",
+      label: "Red",
+      selected: true,
+      color: "bg-red",
+    },
+  ],
+}
+
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import TitleWrapper from "@/base/wrapper/TitleWrapper"
 import BaseRadioGroup from "@/base/BaseRadioGroup"
@@ -71,12 +100,14 @@ export default {
 		NavigationButtonGroup,
 	},
 	setup() {
-		const data = reactive(solutionValuationData)
+		const data = reactive({ solutionValuationData, colorData })
 
 		const rules = {
-			selected: {
-				required,
-			},
+		  solutionValuationData: {
+        selected: {
+          required,
+        },
+      }
 		}
 
 		const v$ = useVuelidate(rules, data)

@@ -7,7 +7,7 @@
       customClass,
       disableInput && 'cursor-pointer bg-white',
     ]"
-    class="base-input bg-white border-1 border-white-dark-2 appearance-none px-4 py-3 rounded placeholder-gray-500 text-gray-900 focus:z-10 hover:bg-white-light"
+    class="base-input bg-white border-1 border-white-dark-2 appearance-none px-4 py-3 rounded placeholder-gray-500 text-gray-900 focus:z-10 cursor-pointer hover:bg-white-light"
     type="text"
     autocomplete="off"
     v-bind="$attrs"
@@ -15,8 +15,12 @@
     :placeholder="placeholder"
     @input="$emit('update:modelValue', $event.target.value)"
     @blur="$emit('blur')"
+    @click="handleToggleSelect"
   >
-  <div class="tags-selector js-active">
+  <div
+    :class="{'hidden': !dropdownOpen }"
+    class="tags-selector js-active"
+  >
     <div class="tags-selector__header">
       <button
         type="button"
@@ -54,57 +58,31 @@
         class="tags-selector__scroll vb vb-invisible"
         style="position: relative; overflow: hidden"
       >
-        <div
-          class="tags-selector__list vb-content"
-          style="
-						display: block;
-						overflow: hidden scroll;
-						height: 100%;
-						width: 100%;
-						box-sizing: content-box;
-						padding-right: 20px;
-					"
-        >
+        <div class="tags-selector__list vb-content">
           <div
-            class="tags-selector__list-item tag-list-item tag-list-item--focused"
+            v-for="option in options"
+            :key="option.value"
+            class="tags-selector__list-item tag-list-item"
+            :class="option.selected && 'tag-list-item--selected tags-selector__list-item--selected'"
           >
             <div
               class="tag-list-item__color"
-              style="background-color: rgb(159, 85, 177)"
+              :class="option.color"
             />
             <div class="tag-list-item__name">
-              <span>awesome</span>
-            </div>
-            <!---->
-          </div>
-          <div
-            class="tags-selector__list-item tag-list-item tag-list-item--selected tags-selector__list-item--selected"
-          >
-            <div
-              class="tag-list-item__color"
-              style="background-color: rgb(35, 35, 177)"
-            />
-            <div class="tag-list-item__name">
-              <span>chop</span>
+              <span>{{ option.value }}</span>
             </div>
 
-            <div class="mr-1">
+            <div
+              v-if="option.selected"
+              class="mr-1"
+            >
               <AppIcon
                 icon="Tick"
                 width="24"
                 height="10"
               />
             </div>
-          </div>
-          <div class="tags-selector__list-item tag-list-item">
-            <div
-              class="tag-list-item__color"
-              style="background-color: rgb(83, 35, 177)"
-            />
-            <div class="tag-list-item__name">
-              <span>dope</span>
-            </div>
-            <!---->
           </div>
         </div>
         <div
@@ -120,7 +98,9 @@
 </template>
 
 <script>
+import { computed, ref } from "vue"
 import AppIcon from "@/components/AppIcon"
+
 export default {
 	name: "BaseSelect",
 	components: { AppIcon },
@@ -149,16 +129,32 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+    options: {
+		  type: Array,
+      required: true
+    }
 	},
 	emits: ["update:modelValue", "blur", "enter"],
+  setup() {
+	  let dropdownOpen = ref(false)
+	  function handleToggleSelect() {
+	    dropdownOpen.value = !dropdownOpen.value
+      console.log(dropdownOpen)
+    }
+
+    return {
+	    dropdownOpen,
+	    handleToggleSelect,
+    }
+  }
 }
 </script>
 <style scoped>
 div.tags-selector.js-active {
 	width: 288px;
 	padding: 8px 0 8px 8px;
-	border-radius: 3px;
-	box-shadow: 0 15px 18px 0 rgb(0 0 0 / 6%);
+	border-radius: 4px;
+	box-shadow: 0 15px 18px 0 rgba(0, 0, 0, 0.06);
 	border: 1px solid hsla(0, 0%, 92.9%, 0.62);
 	background-color: #fff;
 	color: #3b3b3b;
@@ -282,12 +278,21 @@ div.tags-selector__placeholder {
 	cursor: pointer;
 }
 
+.tags-selector__list .vb-content {
+  display: block;
+  overflow: hidden scroll;
+  height: 100%;
+  width: 100%;
+  box-sizing: content-box;
+  padding-right: 20px;
+}
+
 .tag-list-item:hover {
 	background-color: #f8f9fa;
 }
 
 div.tag-list-item__color {
-	background-color: #9f55b1;
+	/*background-color: #9f55b1;*/
 	border-radius: 50%;
 	color: #252729;
 	cursor: pointer;
