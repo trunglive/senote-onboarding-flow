@@ -13,7 +13,9 @@
           v-for="step in currentPhase?.stepProcesses"
           :key="step.value"
           class="flex items-center justify-between"
-          :class="isPhaseStepLoaded && step.value !== currentState && 'opacity-30'"
+          :class="
+            isPhaseStepLoaded && step.value !== currentState && 'opacity-30'
+          "
         >
           <div
             v-if="step.enabled || !stepHiddenOnSwitchOff"
@@ -70,20 +72,26 @@ export default {
     hideStepInfo: Boolean,
     hideSwitchButtonGroup: Boolean,
     hideNavigationButtonGroup: Boolean,
-    stepHiddenOnSwitchOff: Boolean
+    stepHiddenOnSwitchOff: Boolean,
   },
   components: {
     StepInfo,
     Switch,
     AppIcon,
-    NavigationButtonGroup
+    NavigationButtonGroup,
   },
   setup(props) {
     const store = useStore()
 
-    const designThinkingProcesses = computed(() => store.getters.designThinkingProcesses)
-    const currentPhase = computed(() => designThinkingProcesses.value?.[props.phaseName]) // discover, analyze, prototype
-    const isContinueButtonDisabled = computed(() => currentPhase.value?.stepProcesses.every(step => !step.enabled))
+    const designThinkingProcesses = computed(
+      () => store.getters.designThinkingProcesses
+    )
+    const currentPhase = computed(
+      () => designThinkingProcesses.value?.[props.phaseName]
+    ) // discover, analyze, prototype
+    const isContinueButtonDisabled = computed(() =>
+      currentPhase.value?.stepProcesses.every(step => !step.enabled)
+    )
 
     function composeStepTitle() {
       return `Choose your methods for the ${currentPhase.value?.label} Phase.`
@@ -97,9 +105,9 @@ export default {
       currentPhase,
       isContinueButtonDisabled,
       composeStepTitle,
-      handleToggleSwitch
+      handleToggleSwitch,
     }
-  }
+  },
 }
 </script>
 
