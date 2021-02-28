@@ -17,6 +17,7 @@
     @click="handleToggleSelect"
   >
     <div class="flex justify-between w-full">
+      {{ !searchInputChanged }}
       <div class="text-black-light opacity-50">
         Select one or more colors
       </div>
@@ -58,17 +59,26 @@
     </div>
     <div class="tags-selector__input-container">
       <AppIcon
+        v-show="searchInputFocused"
         icon="Search"
         width="16"
         height="15"
       />
-      <div class="tags-selector__placeholder">
+      <div
+        v-show="!searchInputChanged"
+        class="tags-selector__placeholder"
+        :class="searchInputFocused && 'active'"
+        @click="handleSearchInputFocus"
+      >
         Search or add tag
       </div>
       <input
+        id="search-add-tag-input"
         class="search-add-tag-input"
         type="text"
         tabindex="-1"
+        @click="handleSearchInputFocus"
+        @input="handleSearchInputChange"
       >
     </div>
     <!----><!----><!---->
@@ -157,6 +167,8 @@ export default {
   emits: ["update:modelValue", "blur", "enter", "handleToggleSelectItem"],
   setup(props, { emit }) {
     let dropdownOpen = ref(false)
+    let searchInputFocused = ref(false)
+    let searchInputChanged = ref(false)
 
     function handleToggleSelect() {
       dropdownOpen.value = !dropdownOpen.value
@@ -175,10 +187,25 @@ export default {
       emit("handleToggleSelectItem", updatedOptions)
     }
 
+    function handleSearchInputFocus() {
+      searchInputFocused.value = true
+
+      // convert to ref later
+      document.getElementById('search-add-tag-input').focus()
+    }
+
+    function handleSearchInputChange(event) {
+      searchInputChanged.value = !!event.target.value
+    }
+
     return {
       dropdownOpen,
+      searchInputFocused,
+      searchInputChanged,
       handleToggleSelect,
-      handleToggleSelectItem
+      handleToggleSelectItem,
+      handleSearchInputFocus,
+      handleSearchInputChange
     }
   }
 }
@@ -268,8 +295,7 @@ div.tags-selector__placeholder {
   letter-spacing: normal;
   line-height: 1.43;
   margin-bottom: auto;
-  margin-left: 50px;
-  /*margin-left: calc(50% - 50px);*/
+  margin-left: calc(50% - 50px);
   margin-top: auto;
   opacity: 0.5;
   position: absolute;
@@ -278,6 +304,11 @@ div.tags-selector__placeholder {
   top: 0;
   transition: margin 0.2s linear 0s;
   width: 110px;
+}
+
+div .tags-selector__placeholder.active {
+  margin-left: 42px;
+  pointer-events: none;
 }
 
 .search-add-tag-input {
