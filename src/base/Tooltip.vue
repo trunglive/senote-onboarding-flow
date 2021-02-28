@@ -3,12 +3,12 @@
     <div
       class="tooltip__tip-position"
       style="
-				position: absolute;
-				will-change: transform;
-				top: 0;
-				left: 0;
-				transform: translate3d(34px, 12px, 0px);
-			"
+        position: absolute;
+        will-change: transform;
+        top: 0;
+        left: 0;
+        transform: translate3d(34px, 12px, 0px);
+      "
       x-placement="right"
     >
       <!---->

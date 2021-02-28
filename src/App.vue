@@ -135,7 +135,7 @@ export default {
     CompetitorAnalysis,
     Personas,
     SolutionValuation,
-    ConfirmTrial,
+    ConfirmTrial
   },
   setup() {
     const { state, send } = useMachine(userDataMachine)

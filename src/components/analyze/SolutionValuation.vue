@@ -38,23 +38,23 @@
 import { reactive } from "vue"
 
 const solutionValuationData = {
-	title: "On a typical day, when do you get focused the most?",
-	name: "userInterviewQuestions",
-	selected: "",
-	options: [
-		{
-			value: "morning",
-			label: "Morning",
-		},
-		{
-			value: "afternoon",
-			label: "Afternoon",
-		},
-		{
-			value: "night",
-			label: "Night",
-		},
-	],
+  title: "On a typical day, when do you get focused the most?",
+  name: "userInterviewQuestions",
+  selected: "",
+  options: [
+    {
+      value: "morning",
+      label: "Morning"
+    },
+    {
+      value: "afternoon",
+      label: "Afternoon"
+    },
+    {
+      value: "night",
+      label: "Night"
+    }
+  ]
 }
 
 const colorData = {
@@ -66,21 +66,21 @@ const colorData = {
       value: "ocean",
       label: "Ocean",
       selected: true,
-      color: "bg-ocean-dark",
+      color: "bg-ocean-dark"
     },
     {
       value: "purple",
       label: "Purple",
       selected: false,
-      color: "bg-purple-dark",
+      color: "bg-purple-dark"
     },
     {
       value: "red",
       label: "Red",
       selected: true,
-      color: "bg-red",
-    },
-  ],
+      color: "bg-red"
+    }
+  ]
 }
 
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
@@ -89,40 +89,41 @@ import BaseRadioGroup from "@/base/BaseRadioGroup"
 import BaseSelect from "@/base/BaseSelect"
 import { required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
+
 export default {
-	name: "SolutionValuation",
-	props: {
-		send: Function,
-	},
-	components: {
-		BaseSelect,
-		BaseRadioGroup,
-		TitleWrapper,
-		NavigationButtonGroup,
-	},
-	setup() {
-		const data = reactive({ solutionValuationData, colorData })
+  name: "SolutionValuation",
+  props: {
+    send: Function
+  },
+  components: {
+    BaseSelect,
+    BaseRadioGroup,
+    TitleWrapper,
+    NavigationButtonGroup
+  },
+  setup() {
+    const data = reactive({ solutionValuationData, colorData })
 
-		const rules = {
-		  solutionValuationData: {
+    const rules = {
+      solutionValuationData: {
         selected: {
-          required,
-        },
+          required
+        }
       }
-		}
-
-		const v$ = useVuelidate(rules, data)
-
-    function handleToggleSelectItem(updatedOptions) {
-		  data.colorData.options = updatedOptions
     }
 
-		return {
-			data,
-			v$,
+    const v$ = useVuelidate(rules, data)
+
+    function handleToggleSelectItem(updatedOptions) {
+      data.colorData.options = updatedOptions
+    }
+
+    return {
+      data,
+      v$,
       handleToggleSelectItem
-		}
-	},
+    }
+  }
 }
 </script>
 
