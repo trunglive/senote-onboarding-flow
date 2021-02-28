@@ -6,7 +6,7 @@
         class="text-red"
       >*</span>
     </div>
-    <div class="flex items-center justify-between pr-4 z-40">
+    <div class="flex items-center justify-between pr-4">
       <slot />
     </div>
   </div>
