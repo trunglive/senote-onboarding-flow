@@ -13,11 +13,11 @@
     :value="modelValue"
     :placeholder="placeholder"
     @input="$emit('update:modelValue', $event.target.value)"
-    @blur="$emit('blur')"
     @click="handleToggleSelect"
+    @focusout="handleFocusOutOfDropdown"
+    tabindex="-1"
   >
     <div class="flex justify-between w-full">
-      {{ !searchInputChanged }}
       <div class="text-black-light opacity-50">
         Select one or more colors
       </div>
@@ -38,8 +38,10 @@
     </div>
   </div>
   <div
-    :class="{'hidden': !dropdownOpen }"
-    class="tags-selector js-active"
+    id="select-dropdown-wrapper"
+    tabindex="0"
+    :class="{ hidden: !dropdownOpen }"
+    class="tags-selector js-active outline-none"
   >
     <div class="tags-selector__header">
       <button
@@ -57,7 +59,11 @@
         Colors
       </div>
     </div>
-    <div class="tags-selector__input-container">
+    <div
+      @focusout="handleFocusOutOfSearchInput"
+      tabindex="-1"
+      class="tags-selector__input-container"
+    >
       <AppIcon
         v-show="searchInputFocused"
         icon="Search"
@@ -66,7 +72,9 @@
       />
       <div
         v-show="!searchInputChanged"
-        class="tags-selector__placeholder"
+        id="search-add-tag-text"
+        tabindex="0"
+        class="tags-selector__placeholder outline-none"
         :class="searchInputFocused && 'active'"
         @click="handleSearchInputFocus"
       >
@@ -76,7 +84,6 @@
         id="search-add-tag-input"
         class="search-add-tag-input"
         type="text"
-        tabindex="-1"
         @click="handleSearchInputFocus"
         @input="handleSearchInputChange"
       >
@@ -92,7 +99,10 @@
             v-for="option in options"
             :key="option.value"
             class="tags-selector__list-item tag-list-item"
-            :class="option.selected && 'tag-list-item--selected tags-selector__list-item--selected'"
+            :class="
+              option.selected &&
+                'tag-list-item--selected tags-selector__list-item--selected'
+            "
             @click="handleToggleSelectItem(option.value)"
           >
             <div
@@ -137,32 +147,32 @@ export default {
   props: {
     customClass: {
       type: String,
-      default: "w-long-input"
+      default: "w-long-input",
     },
     error: {
       type: Boolean,
-      default: false
+      default: false,
     },
     placeholder: {
       type: String,
-      default: ""
+      default: "",
     },
     modelValue: {
       type: [String, Number],
-      default: ""
+      default: "",
     },
     id: {
       type: String,
-      default: ""
+      default: "",
     },
     disableInput: {
       type: Boolean,
-      default: false
+      default: false,
     },
     options: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   emits: ["update:modelValue", "blur", "enter", "handleToggleSelectItem"],
   setup(props, { emit }) {
@@ -179,7 +189,7 @@ export default {
         if (item.value === itemValue) {
           return {
             ...item,
-            selected: !item.selected
+            selected: !item.selected,
           }
         }
         return item
@@ -188,14 +198,41 @@ export default {
     }
 
     function handleSearchInputFocus() {
+      // console.log('search input')
       searchInputFocused.value = true
 
       // convert to ref later
-      document.getElementById('search-add-tag-input').focus()
+      document.getElementById("search-add-tag-input").focus()
     }
 
     function handleSearchInputChange(event) {
       searchInputChanged.value = !!event.target.value
+    }
+
+    function handleFocusOutOfSearchInput(event) {
+      // currentTarget is the parent, relatedTarget is the one being clicked
+      // so if parent doesn't contain clicked one => this clicked one is outside of parent
+      // => fire focus out
+      if (!event.currentTarget.contains(event.relatedTarget)) {
+        // console.log('focus out')
+        searchInputFocused.value = false
+        searchInputChanged.value = false
+      }
+    }
+
+    function handleFocusOutOfDropdown(event) {
+      console.log(event.relatedTarget && event.relatedTarget.id)
+      // currentTarget is the parent, relatedTarget is the one being clicked
+      // so if parent doesn't contain clicked one => this clicked one is outside of parent
+      // => fire focus out
+      if (
+        !event.currentTarget.contains(event.relatedTarget) &&
+        (event.relatedTarget?.id !== "select-dropdown-wrapper" &&
+          event.relatedTarget?.id !== "search-add-tag-text")
+      ) {
+        // console.log('focus out')
+        dropdownOpen.value = false
+      }
     }
 
     return {
@@ -205,9 +242,11 @@ export default {
       handleToggleSelect,
       handleToggleSelectItem,
       handleSearchInputFocus,
-      handleSearchInputChange
+      handleSearchInputChange,
+      handleFocusOutOfSearchInput,
+      handleFocusOutOfDropdown,
     }
-  }
+  },
 }
 </script>
 <style scoped>
