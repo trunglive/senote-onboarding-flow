@@ -1,15 +1,14 @@
 <template>
-  <input
+  <div
     :id="id"
     :ref="id"
     :class="[
       error ? 'outline-red' : 'outline-none',
       customClass,
       disableInput && 'cursor-pointer bg-white',
+      dropdownOpen ? 'border-ocean-dark' : 'border-black',
     ]"
-    class="base-input bg-white border-1 border-white-dark-2 appearance-none px-4 py-3 rounded placeholder-gray-500 text-gray-900 focus:z-10 cursor-pointer hover:bg-white-light"
-    type="text"
-    autocomplete="off"
+    class="h-base-input flex items-center justify-end bg-white border-1 appearance-none px-4 py-2 rounded placeholder-gray-500 text-gray-900 focus:z-10 cursor-pointer hover:bg-white-light"
     v-bind="$attrs"
     :value="modelValue"
     :placeholder="placeholder"
@@ -17,6 +16,21 @@
     @blur="$emit('blur')"
     @click="handleToggleSelect"
   >
+    <div>
+      <AppIcon
+        v-show="!dropdownOpen"
+        icon="DownArrow"
+        width="18"
+        height="27"
+      />
+      <AppIcon
+        v-show="dropdownOpen"
+        icon="UpArrow"
+        width="18"
+        height="27"
+      />
+    </div>
+  </div>
   <div
     :class="{'hidden': !dropdownOpen }"
     class="tags-selector js-active"

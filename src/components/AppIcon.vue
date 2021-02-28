@@ -42,6 +42,8 @@ export default {
 		Setting: lazyLoad("Setting"),
 		Search: lazyLoad("Search"),
 		Tick: lazyLoad("Tick"),
-	},
+    UpArrow: lazyLoad("UpArrow"),
+    DownArrow: lazyLoad("DownArrow")
+  },
 }
 </script>

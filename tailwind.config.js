@@ -80,6 +80,7 @@ module.exports = {
 		height: theme => ({
 			auto: "auto",
 			...theme("spacing"),
+			"base-input": "3rem",
 			full: "100%",
 			screen: "100vh",
 			"navigation-button": "3.25rem",

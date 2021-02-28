@@ -17,7 +17,7 @@
       title="What is your favorite color?"
       required
     >
-      <div class="pl-4 pt-4">
+      <div class="pl-4 pt-4 h-80">
         <BaseSelect
           custom-class="w-72"
           :options="data.colorData.options"
