@@ -11,7 +11,7 @@
         <div
           v-for="(persona, index) in state.personaList"
           :key="persona.id"
-          class="avatar-input-wrapper flex p-4 hover:bg-white-light"
+          class="avatar-input-wrapper flex items-center p-4 hover:bg-white-light"
           :class="{
             'cursor-pointer': persona.entered,
             'border-t-1 border-white-light-2': index >= 1,
@@ -35,6 +35,11 @@
             @enter="handleHitEnter"
             :disable-input="persona.entered"
           />
+          <div class="w-8">
+            <EnterSquareGroup
+              :show-enter="!persona.entered && persona.value.length > 0"
+            />
+          </div>
         </div>
       </div>
     </TitleWrapper>
@@ -52,6 +57,7 @@ import TitleWrapper from "@/base/wrapper/TitleWrapper"
 import AvatarSquareBox from "@/components/AvatarSquareBox"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import BaseInput from "@/base/BaseInput"
+import EnterSquareGroup from "@/components/icons/EnterSquareGroup"
 import { nextTick, reactive, computed } from "vue"
 import { required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
@@ -62,27 +68,28 @@ const minPersonas = 2
 export default {
   name: "Personas",
   props: {
-    send: Function
+    send: Function,
   },
   components: {
     TitleWrapper,
+    AvatarSquareBox,
     BaseInput,
+    EnterSquareGroup,
     NavigationButtonGroup,
-    AvatarSquareBox
   },
   setup() {
     const state = reactive({
-      personaList: [{ id: uuidv4(), value: "", entered: false }]
+      personaList: [{ id: uuidv4(), value: "", entered: false }],
     })
 
     const rules = {
       personaList: [
         {
           value: {
-            required
-          }
-        }
-      ]
+            required,
+          },
+        },
+      ],
     }
 
     const v$ = useVuelidate(rules, state)
@@ -103,7 +110,7 @@ export default {
           if (persona.id === id) {
             return {
               ...persona,
-              entered: true
+              entered: true,
             }
           }
           return persona
@@ -114,7 +121,7 @@ export default {
         state.personaList.push({
           id: nextId,
           value: "",
-          entered: false
+          entered: false,
         })
 
         // focus on next input on next component re-render
@@ -124,7 +131,7 @@ export default {
     }
 
     return { state, v$, minPersonasText, disableContinueButton, handleHitEnter }
-  }
+  },
 }
 </script>
 
