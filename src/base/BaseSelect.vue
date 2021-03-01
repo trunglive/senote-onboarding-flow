@@ -99,23 +99,32 @@
             v-for="option in options"
             :key="option.value"
             class="tags-selector__list-item tag-list-item"
-            :class="
+            :class="[
               option.selected &&
-                'tag-list-item--selected tags-selector__list-item--selected'
+                'tag-list-item--selected tags-selector__list-item--selected',
+              tagItemFocus === option.value && 'tag-list-item--focused',
+            ]"
+            @click="
+              mode === 'multiple'
+                ? handleToggleSelectItem(option.value)
+                : handleSelectSingleItem(option.value)
             "
-            @click="handleToggleSelectItem(option.value)"
           >
             <div
               class="tag-list-item__color"
-              :class="option.color"
+              :class="{ [option.color]: true, hidden: mode === 'single' }"
             />
-            <div class="tag-list-item__name">
-              <span>{{ option.value }}</span>
+            <div
+              class="tag-list-item__name"
+              :class="{ 'ml-2.5': mode === 'single' }"
+            >
+              <span>{{ option.label }}</span>
             </div>
 
             <div
               v-if="option.selected"
               class="mr-1"
+              :class="{ hidden: mode === 'single' }"
             >
               <AppIcon
                 icon="Tick"
@@ -173,12 +182,23 @@ export default {
       type: Array,
       required: true,
     },
+    mode: {
+      type: String,
+      default: "single",
+    },
   },
-  emits: ["update:modelValue", "blur", "enter", "handleToggleSelectItem"],
+  emits: [
+    "update:modelValue",
+    "blur",
+    "enter",
+    "handleToggleSelectItem",
+    "handleSelectSingleItem",
+  ],
   setup(props, { emit }) {
     let dropdownOpen = ref(false)
     let searchInputFocused = ref(false)
     let searchInputChanged = ref(false)
+    let tagItemFocus = ref("")
 
     const optionSelectedCount = computed(() => {
       return props.options.filter(option => option.selected)
@@ -195,6 +215,8 @@ export default {
     }
 
     function handleToggleSelectItem(itemValue) {
+      tagItemFocus.value = itemValue
+
       const updatedOptions = props.options.map(item => {
         if (item.value === itemValue) {
           return {
@@ -205,6 +227,24 @@ export default {
         return item
       })
       emit("handleToggleSelectItem", updatedOptions)
+    }
+
+    function handleSelectSingleItem(itemValue) {
+      tagItemFocus.value = itemValue
+
+      const updatedOptions = props.options.map(item => {
+        if (item.value === itemValue) {
+          return {
+            ...item,
+            selected: true,
+          }
+        }
+        return {
+          ...item,
+          selected: false,
+        }
+      })
+      emit("handleSelectSingleItem", updatedOptions)
     }
 
     function handleSearchInputFocus() {
@@ -249,10 +289,12 @@ export default {
       dropdownOpen,
       searchInputFocused,
       searchInputChanged,
+      tagItemFocus,
       optionSelectedCount,
       composeInputPlaceholder,
       handleToggleSelect,
       handleToggleSelectItem,
+      handleSelectSingleItem,
       handleSearchInputFocus,
       handleSearchInputChange,
       handleFocusOutOfSearchInput,
@@ -403,6 +445,10 @@ div .tags-selector__placeholder.active {
   padding-right: 20px;
 }
 
+.tag-list-item--focused {
+  background-color: #f8f9fa;
+}
+
 .tag-list-item:hover {
   background-color: #f8f9fa;
 }
@@ -430,21 +476,21 @@ div.tag-list-item__name span {
   cursor: pointer;
 }
 
-.tag-list-item--focused > svg:not(:root) {
-  overflow: hidden;
-}
+/*.tag-list-item--focused > svg:not(:root) {*/
+/*  overflow: hidden;*/
+/*}*/
 
-.tag-list-item--focused > svg > path {
-  box-sizing: border-box;
-  color: #252729;
-  cursor: pointer;
-  font-family: Lato;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.1px;
-  line-height: 20.02px;
-  text-align: left;
-}
+/*.tag-list-item--focused > svg > path {*/
+/*  box-sizing: border-box;*/
+/*  color: #252729;*/
+/*  cursor: pointer;*/
+/*  font-family: Lato;*/
+/*  font-size: 14px;*/
+/*  font-weight: 600;*/
+/*  letter-spacing: 0.1px;*/
+/*  line-height: 20.02px;*/
+/*  text-align: left;*/
+/*}*/
 
 div.tags-selector__list-item.tag-list-item.tag-list-item--selected.tags-selector__list-item--selected {
   color: #252729;

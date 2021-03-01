@@ -22,6 +22,14 @@
           custom-class="w-72"
           :options="data.colorData.options"
           @handleToggleSelectItem="handleToggleSelectItem"
+          mode="multiple"
+        />
+      </div>
+      <div class="pl-4 pt-4 h-80">
+        <BaseSelect
+          custom-class="w-72"
+          :options="data.colorData2.options"
+          @handleSelectSingleItem="handleSelectSingleItem"
         />
       </div>
     </TitleWrapper>
@@ -107,6 +115,50 @@ const colorData = {
   ]
 }
 
+const colorData2 = {
+  title: "What are your favorite colors?",
+  name: "colorQuestions",
+  selected: [],
+  options: [
+    {
+      value: "black",
+      label: "Black",
+      selected: false,
+      color: "bg-black"
+    },
+    {
+      value: "silver",
+      label: "Silver",
+      selected: false,
+      color: "bg-white-dark-2"
+    },
+    {
+      value: "ocean",
+      label: "Ocean",
+      selected: true,
+      color: "bg-ocean-dark"
+    },
+    {
+      value: "blue",
+      label: "Blue",
+      selected: false,
+      color: "bg-blue"
+    },
+    {
+      value: "purple",
+      label: "Purple",
+      selected: false,
+      color: "bg-purple-dark"
+    },
+    {
+      value: "red",
+      label: "Red",
+      selected: false,
+      color: "bg-red"
+    },
+  ]
+}
+
 export default {
   name: "SolutionValuation",
   props: {
@@ -119,7 +171,7 @@ export default {
     NavigationButtonGroup
   },
   setup() {
-    const data = reactive({ solutionValuationData, colorData })
+    const data = reactive({ solutionValuationData, colorData, colorData2 })
 
     const rules = {
       solutionValuationData: {
@@ -135,10 +187,15 @@ export default {
       data.colorData.options = updatedOptions
     }
 
+    function handleSelectSingleItem(updatedOptions) {
+      data.colorData2.options = updatedOptions
+    }
+
     return {
       data,
       v$,
-      handleToggleSelectItem
+      handleToggleSelectItem,
+      handleSelectSingleItem
     }
   }
 }
