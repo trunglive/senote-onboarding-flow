@@ -19,7 +19,7 @@
     >
       <div class="pl-4 pt-4 h-80">
         <BaseSelect
-          custom-class="w-72"
+          custom-class="w-64"
           :options="data.colorData.options"
           @handleToggleSelectItem="handleToggleSelectItem"
           mode="multiple"

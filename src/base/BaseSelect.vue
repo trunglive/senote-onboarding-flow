@@ -6,9 +6,9 @@
       error ? 'outline-red' : 'outline-none',
       customClass,
       disableInput && 'cursor-pointer bg-white',
-      dropdownOpen ? 'border-ocean-dark' : 'border-white-dark-2',
+      dropdownOpen ? 'border-1 border-ocean-dark' : 'border-white-dark-2',
     ]"
-    class="h-base-input flex items-center bg-white border-1 appearance-none px-4 py-2 rounded placeholder-gray-500 text-gray-900 focus:z-10 cursor-pointer hover:bg-white-light"
+    class="h-base-select-input flex items-center appearance-none px-4 py-2 rounded placeholder-gray-500 text-gray-900 focus:z-10 cursor-pointer bg-white-light"
     v-bind="$attrs"
     :value="modelValue"
     :placeholder="placeholder"
@@ -17,22 +17,22 @@
     @focusout="handleFocusOutOfDropdown"
     tabindex="-1"
   >
-    <div class="flex justify-between w-full">
-      <div class="text-black-dark opacity-50">
+    <div class="flex items-center justify-between w-full">
+      <div class="text-black-dark opacity-50 text-sm">
         {{ composeInputPlaceholder }}
       </div>
       <div>
         <AppIcon
           v-show="!dropdownOpen"
           icon="DownArrow"
-          width="18"
-          height="27"
+          width="12"
+          height="12"
         />
         <AppIcon
           v-show="dropdownOpen"
           icon="UpArrow"
-          width="18"
-          height="27"
+          width="12"
+          height="12"
         />
       </div>
     </div>
@@ -40,7 +40,7 @@
   <div
     id="select-dropdown-wrapper"
     tabindex="0"
-    :class="{ hidden: !dropdownOpen }"
+    :class="{ hidden: !dropdownOpen, customClass }"
     class="tags-selector js-active outline-none"
   >
     <div class="tags-selector__header">
@@ -305,7 +305,6 @@ export default {
 </script>
 <style scoped>
 div.tags-selector.js-active {
-  width: 288px;
   padding: 8px 0 8px 8px;
   border-radius: 4px;
   box-shadow: 0 15px 18px 0 rgba(0, 0, 0, 0.06);
