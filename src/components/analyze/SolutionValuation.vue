@@ -69,10 +69,28 @@ const colorData = {
   selected: [],
   options: [
     {
+      value: "black",
+      label: "Black",
+      selected: true,
+      color: "bg-black"
+    },
+    {
+      value: "silver",
+      label: "Silver",
+      selected: false,
+      color: "bg-white-dark-2"
+    },
+    {
       value: "ocean",
       label: "Ocean",
       selected: true,
       color: "bg-ocean-dark"
+    },
+    {
+      value: "blue",
+      label: "Blue",
+      selected: false,
+      color: "bg-blue"
     },
     {
       value: "purple",
@@ -85,7 +103,7 @@ const colorData = {
       label: "Red",
       selected: true,
       color: "bg-red"
-    }
+    },
   ]
 }
 
