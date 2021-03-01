@@ -40,7 +40,8 @@ module.exports = {
         DEFAULT: colors.white,
         dark: "#e6edf0",
         "dark-2": "hsla(0, 0%, 92.9%, .92)",
-        "dark-3": "#ddd",
+        "dark-3": "#eee",
+        "dark-4": "#ddd",
       },
     },
     width: theme => ({

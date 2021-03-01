@@ -84,7 +84,7 @@ export default {
   width: 18px;
   height: 18px;
   background-color: #fff;
-  border: 2px solid #ddd;
+  border: 2px solid #eee;
   border-radius: 4px;
   cursor: pointer;
   transition: 0.2s ease-in-out;
