@@ -174,7 +174,12 @@ export default {
       required: true,
     },
   },
-  emits: ["update:modelValue", "blur", "enter", "handleToggleSelectItem"],
+  emits: [
+    "update:modelValue",
+    "blur",
+    "enter",
+    "handleToggleSelectItem",
+  ],
   setup(props, { emit }) {
     let dropdownOpen = ref(false)
     let searchInputFocused = ref(false)
@@ -227,8 +232,8 @@ export default {
       // => fire focus out
       if (
         !event.currentTarget.contains(event.relatedTarget) &&
-        (event.relatedTarget?.id !== "select-dropdown-wrapper" &&
-          event.relatedTarget?.id !== "search-add-tag-text")
+        event.relatedTarget?.id !== "select-dropdown-wrapper" &&
+        event.relatedTarget?.id !== "search-add-tag-text"
       ) {
         // console.log('focus out')
         dropdownOpen.value = false

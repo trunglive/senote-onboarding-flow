@@ -36,6 +36,12 @@
 
 <script>
 import { reactive } from "vue"
+import NavigationButtonGroup from "@/components/NavigationButtonGroup"
+import TitleWrapper from "@/base/wrapper/TitleWrapper"
+import BaseRadioGroup from "@/base/BaseRadioGroup"
+import BaseSelect from "@/base/BaseSelect"
+import { required } from "@vuelidate/validators"
+import { useVuelidate } from "@vuelidate/core"
 
 const solutionValuationData = {
   title: "On a typical day, when do you get focused the most?",
@@ -82,13 +88,6 @@ const colorData = {
     }
   ]
 }
-
-import NavigationButtonGroup from "@/components/NavigationButtonGroup"
-import TitleWrapper from "@/base/wrapper/TitleWrapper"
-import BaseRadioGroup from "@/base/BaseRadioGroup"
-import BaseSelect from "@/base/BaseSelect"
-import { required } from "@vuelidate/validators"
-import { useVuelidate } from "@vuelidate/core"
 
 export default {
   name: "SolutionValuation",
