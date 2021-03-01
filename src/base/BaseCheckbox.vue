@@ -84,9 +84,10 @@ export default {
   width: 18px;
   height: 18px;
   background-color: #fff;
-  border: 1px solid #40474f;
-  border-radius: 3px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
   cursor: pointer;
+  transition: 0.2s ease-in-out;
 }
 
 .checkbox-item label:after {
