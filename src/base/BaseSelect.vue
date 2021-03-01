@@ -6,7 +6,7 @@
       error ? 'outline-red' : 'outline-none',
       customClass,
       disableInput && 'cursor-pointer bg-white',
-      dropdownOpen ? 'border-ocean-dark' : 'border-black',
+      dropdownOpen ? 'border-ocean-dark' : 'border-white-dark-2',
     ]"
     class="h-base-input flex items-center bg-white border-1 appearance-none px-4 py-2 rounded placeholder-gray-500 text-gray-900 focus:z-10 cursor-pointer hover:bg-white-light"
     v-bind="$attrs"
