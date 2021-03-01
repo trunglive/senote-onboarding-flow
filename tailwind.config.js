@@ -40,6 +40,7 @@ module.exports = {
         DEFAULT: colors.white,
         dark: "#e6edf0",
         "dark-2": "hsla(0, 0%, 92.9%, .92)",
+        "dark-3": "#ddd",
       },
     },
     width: theme => ({
@@ -87,6 +88,7 @@ module.exports = {
     }),
     borderWidth: theme => ({
       1: "1px",
+      2: "2px",
     }),
     extend: {
       outline: {

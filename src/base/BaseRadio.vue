@@ -16,7 +16,7 @@
       class="flex items-center cursor-pointer"
     >
       <span
-        class="w-4 h-4 mr-2 rounded-full border-1 flex-no-shrink"
+        class="w-4 h-4 mr-2 rounded-full border-2 border-white-dark-3 flex-no-shrink"
       />
       {{ label }}</label>
   </div>
@@ -53,12 +53,13 @@ input[type="radio"] + label span {
 input[type="radio"] + label span:hover,
 input[type="radio"] + label:hover span {
   transform: scale(1.05);
+  transition: 0.1s ease-in-out;
 }
 
 input[type="radio"]:checked + label span {
-  background-color: #036f72;
+  /*background-color: #036f72;*/
   box-shadow: 0 0 0 2px white inset;
-  border: 1px solid #036f72;
+  border: 5px solid #036f72;
 }
 
 input[type="radio"]:checked + label {
