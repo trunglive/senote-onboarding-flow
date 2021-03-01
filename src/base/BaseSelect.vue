@@ -18,8 +18,8 @@
     tabindex="-1"
   >
     <div class="flex justify-between w-full">
-      <div class="text-black-light opacity-50">
-        Select one or more colors
+      <div class="text-black-dark opacity-50">
+        {{ composeInputPlaceholder }}
       </div>
       <div>
         <AppIcon
@@ -174,16 +174,21 @@ export default {
       required: true,
     },
   },
-  emits: [
-    "update:modelValue",
-    "blur",
-    "enter",
-    "handleToggleSelectItem",
-  ],
+  emits: ["update:modelValue", "blur", "enter", "handleToggleSelectItem"],
   setup(props, { emit }) {
     let dropdownOpen = ref(false)
     let searchInputFocused = ref(false)
     let searchInputChanged = ref(false)
+
+    const optionSelectedCount = computed(() => {
+      return props.options.filter(option => option.selected)
+    })
+
+    const composeInputPlaceholder = computed(() => {
+      return optionSelectedCount.value.length > 0
+        ? `${optionSelectedCount.value.length} selected`
+        : "Select one or more colors"
+    })
 
     function handleToggleSelect() {
       dropdownOpen.value = !dropdownOpen.value
@@ -244,6 +249,8 @@ export default {
       dropdownOpen,
       searchInputFocused,
       searchInputChanged,
+      optionSelectedCount,
+      composeInputPlaceholder,
       handleToggleSelect,
       handleToggleSelectItem,
       handleSearchInputFocus,
