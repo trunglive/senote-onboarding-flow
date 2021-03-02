@@ -1,21 +1,19 @@
 <template>
   <div class="flex flex-col items-center justify-center">
-    <AvatarGroup
-      :avatar-letter="avatarLetter"
-    />
+    <AvatarGroup :avatar-letter="avatarLetter" />
     <div>
       <div class="flex items-center justify-between w-navigation-button">
-        <input
+        <BaseInput
           v-model="state.emailAddress"
-          id="email"
-          name="email"
-          type="email"
-          autocomplete="off"
-          required
-          class="w-navigation-button appearance-none rounded-none py-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:z-10"
+          @blur="v$.emailAddress.$touch"
           placeholder="Enter email"
-        >
-        <Checkmark v-if="!v$.emailAddress.$invalid" />
+          custom-class="w-72"
+          :enable-background-on-hover="false"
+        />
+        <Checkmark
+          :invalid="state.emailAddress.length > 0 && v$.emailAddress.$invalid"
+          :valid="state.emailAddress.length > 0 && !v$.emailAddress.$invalid"
+        />
       </div>
       <div class="border-t border-dashed">
         <NavigationButtonGroup
@@ -29,6 +27,7 @@
 
 <script>
 import { reactive, computed } from "vue"
+import BaseInput from "@/base/BaseInput"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import AvatarGroup from "@/components/AvatarGroup"
 import Checkmark from "@/components/icons/Checkmark"
@@ -38,29 +37,30 @@ import { useVuelidate } from "@vuelidate/core"
 export default {
   name: "AddEmail",
   components: {
+    BaseInput,
     AvatarGroup,
     NavigationButtonGroup,
-    Checkmark
+    Checkmark,
   },
   props: {
     msg: String,
-    send: Function
+    send: Function,
   },
   setup() {
     const state = reactive({
-      emailAddress: ""
+      emailAddress: "",
     })
 
     const avatarLetter = computed(() => state.emailAddress?.[0])
 
     const rules = {
-      emailAddress: { required, email }
+      emailAddress: { required, email },
     }
 
     const v$ = useVuelidate(rules, state)
 
     return { state, avatarLetter, v$ }
-  }
+  },
 }
 </script>
 

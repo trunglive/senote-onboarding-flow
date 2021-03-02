@@ -1,6 +1,7 @@
 <template>
   <span
-    class="base-input__valid"
+    class="base-input"
+    :class="[invalid && 'base-input__invalid', valid && 'base-input__valid']"
   ><span
     class="icon icon--normal icon--check"
   ><svg
@@ -23,18 +24,24 @@
 
 <script>
 export default {
-  name: "Checkmark"
+  name: "Checkmark",
+  props: {
+    valid: {
+      type: Boolean,
+    },
+    invalid: {
+      type: Boolean,
+    }
+  }
 }
 </script>
 
 <style scoped>
-.base-input__valid {
+.base-input {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background-color: #67bf64;
-  -webkit-transition: all 0.15s ease-in-out;
-  transition: all 0.15s ease-in-out;
+  transition: all 0.2s ease-in-out;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -47,6 +54,14 @@ export default {
   font-size: 14px;
   color: #fff;
   pointer-events: none;
+}
+
+.base-input__valid {
+  background-color: #67bf64;
+}
+
+.base-input__invalid {
+  background-color: #f05454;
 }
 
 .icon {
