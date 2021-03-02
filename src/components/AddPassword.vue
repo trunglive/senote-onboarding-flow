@@ -6,16 +6,13 @@
     />
     <div>
       <div class="flex items-center justify-between w-navigation-button">
-        <input
+        <BaseInput
           v-model="state.password"
-          id="password"
-          name="password"
-          type="password"
-          autocomplete="off"
-          required
-          class="w-navigation-button appearance-none rounded-none py-2 placeholder-gray-500 text-gray-900 focus:outline-none focus:z-10"
+          @blur="v$.password.$touch"
           placeholder="Enter your password"
-        >
+          custom-class="w-72"
+          :enable-background-on-hover="false"
+        />
         <Checkmark v-if="!v$.password.$invalid" />
       </div>
       <div class="border-t border-dashed">
@@ -34,6 +31,7 @@
 
 <script>
 import { reactive } from "vue"
+import BaseInput from "@/base/BaseInput"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import AvatarGroup from "@/components/AvatarGroup"
 import Checkmark from "@/components/icons/Checkmark"
@@ -60,7 +58,7 @@ export default {
 
     return { state, v$, passwordMinLength }
   },
-  components: { AvatarGroup, NavigationButtonGroup, Checkmark }
+  components: { BaseInput, AvatarGroup, NavigationButtonGroup, Checkmark }
 }
 </script>
 
