@@ -9,7 +9,7 @@
         required
       >
         <BaseInput
-          v-model="state.summary.website"
+          v-model="formData.summary.website"
           :error="v$.summary.website.$error"
           @blur="v$.summary.website.$touch"
           placeholder="Add website..."
@@ -22,7 +22,7 @@
           required
         >
           <BaseInput
-            v-model="state.summary.yearFounded"
+            v-model="formData.summary.yearFounded"
             :error="v$.summary.yearFounded.$error"
             @blur="v$.summary.yearFounded.$touch"
             placeholder="Add year founded..."
@@ -34,7 +34,7 @@
           required
         >
           <BaseInput
-            v-model="state.summary.activeUsers"
+            v-model="formData.summary.activeUsers"
             :error="v$.summary.activeUsers.$error"
             @blur="v$.summary.activeUsers.$touch"
             placeholder="Add active users..."
@@ -46,7 +46,7 @@
           required
         >
           <BaseInput
-            v-model="state.summary.funding"
+            v-model="formData.summary.funding"
             :error="v$.summary.funding.$error"
             @blur="v$.summary.funding.$touch"
             placeholder="Add funding..."
@@ -57,14 +57,14 @@
       <div class="flex justify-between">
         <TitleWrapper title="Strength">
           <BaseInput
-            v-model="state.strength"
+            v-model="formData.strength"
             placeholder="Add strength..."
             custom-class="w-80"
           />
         </TitleWrapper>
         <TitleWrapper title="Weakness">
           <BaseInput
-            v-model="state.weakness"
+            v-model="formData.weakness"
             placeholder="Add weakness..."
             custom-class="w-80"
           />
@@ -81,12 +81,13 @@
 </template>
 
 <script>
+import { reactive, toRefs } from "vue"
+import { required } from "@vuelidate/validators"
+import { useVuelidate } from "@vuelidate/core"
+
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import TitleWrapper from "@/base/wrapper/TitleWrapper"
 import BaseInput from "@/base/BaseInput"
-import { reactive } from "vue"
-import { required } from "@vuelidate/validators"
-import { useVuelidate } from "@vuelidate/core"
 
 export default {
   name: "CompetitorAnalysis",
@@ -95,7 +96,7 @@ export default {
     send: Function
   },
   setup() {
-    const state = reactive({
+    const formData = reactive({
       summary: {
         website: "",
         yearFounded: null,
@@ -115,9 +116,9 @@ export default {
       }
     }
 
-    const v$ = useVuelidate(rules, state)
+    const v$ = useVuelidate(rules, toRefs(formData))
 
-    return { state, v$ }
+    return { formData, v$ }
   }
 }
 </script>

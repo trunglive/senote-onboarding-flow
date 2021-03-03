@@ -9,7 +9,7 @@
     >
       <div class="h-64 overflow-y-auto">
         <div
-          v-for="(persona, index) in state.personaList"
+          v-for="(persona, index) in formData.personaList"
           :key="persona.id"
           class="avatar-input-wrapper flex items-center p-4 hover:bg-white-light"
           :class="{
@@ -58,7 +58,7 @@ import AvatarSquareBox from "@/components/AvatarSquareBox"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import BaseInput from "@/base/BaseInput"
 import EnterSquareGroup from "@/components/icons/EnterSquareGroup"
-import { nextTick, reactive, computed } from "vue"
+import { nextTick, reactive, computed, toRefs } from "vue"
 import { required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
 import { v4 as uuidv4 } from "uuid"
@@ -78,7 +78,7 @@ export default {
     NavigationButtonGroup,
   },
   setup() {
-    const state = reactive({
+    const formData = reactive({
       personaList: [{ id: uuidv4(), value: "", entered: false }],
     })
 
@@ -92,7 +92,7 @@ export default {
       ],
     }
 
-    const v$ = useVuelidate(rules, state)
+    const v$ = useVuelidate(rules, toRefs(formData))
 
     const minPersonasText = `Please add at least ${minPersonas} persona${
       minPersonas === 1 ? "" : "s"
@@ -100,13 +100,13 @@ export default {
 
     const disableContinueButton = computed(
       () =>
-        state.personaList.filter(persona => persona.entered).length <
+        formData.personaList.filter(persona => persona.entered).length <
         minPersonas
     )
 
     function handleHitEnter({ value, id }) {
       if (value) {
-        state.personaList = state.personaList.map(persona => {
+        formData.personaList = formData.personaList.map(persona => {
           if (persona.id === id) {
             return {
               ...persona,
@@ -118,7 +118,7 @@ export default {
 
         const nextId = uuidv4()
 
-        state.personaList.push({
+        formData.personaList.push({
           id: nextId,
           value: "",
           entered: false,
@@ -130,7 +130,7 @@ export default {
       }
     }
 
-    return { state, v$, minPersonasText, disableContinueButton, handleHitEnter }
+    return { formData, v$, minPersonasText, disableContinueButton, handleHitEnter }
   },
 }
 </script>

@@ -7,7 +7,7 @@
     <div>
       <div class="flex items-center justify-between w-navigation-button">
         <BaseInput
-          v-model="state.password"
+          v-model="formData.password"
           @blur="v$.password.$touch"
           placeholder="Enter your password"
           custom-class="w-72"
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { reactive } from "vue"
+import { reactive, toRefs } from "vue"
 import BaseInput from "@/base/BaseInput"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import AvatarGroup from "@/components/AvatarGroup"
@@ -46,7 +46,7 @@ export default {
     send: Function
   },
   setup() {
-    const state = reactive({
+    const formData = reactive({
       password: ""
     })
 
@@ -54,9 +54,9 @@ export default {
       password: { required, minLength: minLength(passwordMinLength) }
     }
 
-    const v$ = useVuelidate(rules, state)
+    const v$ = useVuelidate(rules, toRefs(formData))
 
-    return { state, v$, passwordMinLength }
+    return { formData, v$, passwordMinLength }
   },
   components: { BaseInput, AvatarGroup, NavigationButtonGroup, Checkmark }
 }

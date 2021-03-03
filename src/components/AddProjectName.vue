@@ -5,7 +5,7 @@
     </div>
     <div>
       <input
-        v-model="state.projectName"
+        v-model="formData.projectName"
         id="projectName"
         name="projectName"
         type="text"
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { reactive } from "vue"
+import { reactive, toRefs } from "vue"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import { brand } from "@/data/api"
 import StepInfo from "@/components/StepIntro"
@@ -42,7 +42,7 @@ export default {
     NavigationButtonGroup
   },
   setup(props) {
-    const state = reactive({
+    const formData = reactive({
       projectName: ""
     })
 
@@ -52,7 +52,7 @@ export default {
       }
     }
 
-    const v$ = useVuelidate(rules, state)
+    const v$ = useVuelidate(rules, toRefs(formData))
 
     function composeStepTitle() {
       return `What's the name of the project you want to use on ${brand.label}?`
@@ -60,7 +60,7 @@ export default {
 
     return {
       composeStepTitle,
-      state,
+      formData,
       v$
     }
   }

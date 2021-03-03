@@ -4,15 +4,15 @@
     <div>
       <div class="flex items-center justify-between w-navigation-button">
         <BaseInput
-          v-model="state.emailAddress"
+          v-model="formData.emailAddress"
           @blur="v$.emailAddress.$touch"
           placeholder="Enter email"
           custom-class="w-72"
           :enable-background-on-hover="false"
         />
         <Checkmark
-          :invalid="state.emailAddress.length > 0 && v$.emailAddress.$invalid"
-          :valid="state.emailAddress.length > 0 && !v$.emailAddress.$invalid"
+          :invalid="formData.emailAddress.length > 0 && v$.emailAddress.$invalid"
+          :valid="formData.emailAddress.length > 0 && !v$.emailAddress.$invalid"
         />
       </div>
       <div class="border-t border-dashed">
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { reactive, computed } from "vue"
+import { reactive, computed, toRefs } from "vue"
 import BaseInput from "@/base/BaseInput"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import AvatarGroup from "@/components/AvatarGroup"
@@ -47,19 +47,19 @@ export default {
     send: Function,
   },
   setup() {
-    const state = reactive({
+    const formData = reactive({
       emailAddress: "",
     })
 
-    const avatarLetter = computed(() => state.emailAddress?.[0])
+    const avatarLetter = computed(() => formData.emailAddress?.[0])
 
     const rules = {
       emailAddress: { required, email },
     }
 
-    const v$ = useVuelidate(rules, state)
+    const v$ = useVuelidate(rules, toRefs(formData))
 
-    return { state, avatarLetter, v$ }
+    return { formData, avatarLetter, v$ }
   },
 }
 </script>
