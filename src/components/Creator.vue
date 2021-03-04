@@ -27,7 +27,7 @@
             :is-phase-step-loaded="isPhaseStepLoaded"
             :current-state="currentState"
             phase-name="analyze"
-            :blur-phase-step-label="currentState.value === 'discoverPhase'"
+            :blur-phase-step-label="currentState === 'discoverPhase'"
             hide-step-info
             hide-switch-button-group
             hide-navigation-button-group
@@ -42,7 +42,7 @@
             :is-phase-step-loaded="isPhaseStepLoaded"
             :current-state="currentState"
             phase-name="prototype"
-            :blur-phase-step-label="currentState.value === 'discoverPhase' || currentState.value === 'analyzePhase'"
+            :blur-phase-step-label="currentState === 'discoverPhase' || currentState === 'analyzePhase'"
             hide-step-info
             hide-switch-button-group
             hide-navigation-button-group
@@ -61,9 +61,12 @@ export default {
   name: "Creator",
   props: {
     isPhaseStepLoaded: Boolean,
-    currentState: Object
+    currentState: {
+      type: String,
+      default: ""
+    }
   },
-  components: { Phase }
+  components: { Phase },
   // components: { Abstract },
 }
 </script>

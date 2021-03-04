@@ -86,9 +86,11 @@ export default {
     const designThinkingProcesses = computed(
       () => store.getters.designThinkingProcesses
     )
+
     const currentPhase = computed(
       () => designThinkingProcesses.value?.[props.phaseName]
     ) // discover, analyze, prototype
+
     const isContinueButtonDisabled = computed(() =>
       currentPhase.value?.stepProcesses.every(step => !step.enabled)
     )
