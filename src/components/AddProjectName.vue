@@ -14,7 +14,7 @@
       <div class="border-t border-dashed">
         <NavigationButtonGroup
           :send="send"
-          :disable-continue-button="v$.projectName.$invalid"
+          :disable-continue-button="v$.$invalid"
         />
       </div>
     </div>

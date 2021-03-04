@@ -30,7 +30,7 @@ export default {
     },
     modelValue: {
       type: Array,
-      required: true
+      default: () => []
     }
   },
   components: { BaseCheckbox }

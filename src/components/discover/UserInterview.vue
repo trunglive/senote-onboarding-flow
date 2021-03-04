@@ -1,34 +1,34 @@
 <template>
   <div class="flex flex-col items-center justify-center">
     <TitleWrapper
-      :title="data.title"
+      :title="formData.title"
       required
     >
       <div class="flex pl-4 pt-4 space-x-10">
         <BaseCheckboxGroup
-          v-model="data.checked"
-          :name="data.name"
-          :options="data.options"
+          v-model="formData.checked"
+          :name="formData.name"
+          :options="formData.options"
         />
       </div>
     </TitleWrapper>
     <div class="pt-20">
       <NavigationButtonGroup
         :send="send"
-        :disable-continue-button="v$.checked.$invalid"
+        :disable-continue-button="v$.$invalid"
       />
     </div>
   </div>
 </template>
 
 <script>
-import { reactive, ref } from "vue"
-import TitleWrapper from "@/base/wrapper/TitleWrapper"
-import NavigationButtonGroup from "@/components/NavigationButtonGroup"
-import BaseCheckboxGroup from "@/base/BaseCheckboxGroup"
+import { reactive, ref, toRefs } from "vue"
 import { required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
 
+import TitleWrapper from "@/base/wrapper/TitleWrapper"
+import NavigationButtonGroup from "@/components/NavigationButtonGroup"
+import BaseCheckboxGroup from "@/base/BaseCheckboxGroup"
 
 const userInterviewData = {
   title: "On a typical day, when do you get focused the most?",
@@ -59,7 +59,7 @@ export default {
     currentState: String
   },
   setup() {
-    const data = reactive(userInterviewData)
+    const formData = reactive(userInterviewData)
 
     const rules = {
       checked: {
@@ -67,10 +67,10 @@ export default {
       }
     }
 
-    const v$ = useVuelidate(rules, data)
+    const v$ = useVuelidate(rules, toRefs(formData))
 
     return {
-      data,
+      formData,
       v$
     }
   }

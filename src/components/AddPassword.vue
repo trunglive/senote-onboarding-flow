@@ -34,7 +34,7 @@
         </div>
         <NavigationButtonGroup
           :send="send"
-          :disable-continue-button="v$.password.$invalid"
+          :disable-continue-button="v$.$invalid"
         />
       </div>
     </div>

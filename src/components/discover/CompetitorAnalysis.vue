@@ -74,7 +74,7 @@
     <div class="pt-20">
       <NavigationButtonGroup
         :send="send"
-        :disable-continue-button="false"
+        :disable-continue-button="v$.$invalid"
       />
     </div>
   </div>

@@ -6,7 +6,7 @@
         required
       >
         <BaseInput
-          v-model="state.marketingMessage"
+          v-model="formData.marketingMessage"
           :error="v$.marketingMessage.$error"
           @blur="v$.marketingMessage.$touch"
           placeholder="Add Answer..."
@@ -17,7 +17,7 @@
         required
       >
         <BaseInput
-          v-model="state.worstThingHappened"
+          v-model="formData.worstThingHappened"
           :error="v$.worstThingHappened.$error"
           @blur="v$.worstThingHappened.$touch"
           placeholder="Add Answer..."
@@ -27,16 +27,17 @@
     <div class="pt-20">
       <NavigationButtonGroup
         :send="send"
-        :disable-continue-button="v$.marketingMessage.$invalid || v$.worstThingHappened.$invalid"
+        :disable-continue-button="v$.$invalid"
       />
     </div>
   </div>
 </template>
 
 <script>
-import { computed, reactive } from "vue"
+import { computed, reactive, toRefs } from "vue"
 import { required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
+
 import BaseInput from "@/base/BaseInput"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import TitleWrapper from "@/base/wrapper/TitleWrapper"
@@ -50,7 +51,7 @@ export default {
   },
   name: "StakeholderInterview",
   setup() {
-    const state = reactive({
+    const formData = reactive({
       marketingMessage: "",
       worstThingHappened: ""
     })
@@ -64,9 +65,9 @@ export default {
       }
     }
 
-    const v$ = useVuelidate(rules, state)
+    const v$ = useVuelidate(rules, toRefs(formData))
 
-    return { state, v$ }
+    return { formData, v$ }
   }
 }
 </script>
