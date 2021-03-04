@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center mb-10">
     <AvatarSquareBox :avatar-letter="avatarLetter" />
     <div class="text-black-dark text-xl mt-6">
-      {{ avatarLetter?.length > 0 ? "Create Account" : "Continue with Email" }}
+      {{ title }}
     </div>
   </div>
 </template>
@@ -16,6 +16,10 @@ export default {
     avatarLetter: {
       type: String,
       default: undefined
+    },
+    title: {
+      type: String,
+      required: true
     }
   }
 }

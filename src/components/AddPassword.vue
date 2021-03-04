@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col items-center justify-center">
     <AvatarGroup
-      avatar-title="S"
       avatar-text="Set your password"
+      title="Create password"
     />
     <div>
       <div class="flex items-center justify-between w-navigation-button">
