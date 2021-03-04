@@ -4,16 +4,13 @@
       <StepInfo :title="composeStepTitle()" />
     </div>
     <div>
-      <input
+      <BaseInput
         v-model="formData.projectName"
-        id="projectName"
-        name="projectName"
-        type="text"
-        autocomplete="off"
-        required
-        class="appearance-none rounded-none w-navigation-button py-2 placeholder-gray-500 text-center text-black-light focus:outline-none focus:z-10"
+        @blur="v$.projectName.$touch"
         placeholder="Research Project"
-      >
+        custom-class="w-navigation-button text-center px-0"
+        :enable-background-on-hover="false"
+      />
       <div class="border-t border-dashed">
         <NavigationButtonGroup
           :send="send"
@@ -26,9 +23,10 @@
 
 <script>
 import { reactive, toRefs } from "vue"
+import StepInfo from "@/components/StepIntro"
+import BaseInput from "@/base/BaseInput"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import { brand } from "@/data/api"
-import StepInfo from "@/components/StepIntro"
 import { required } from "@vuelidate/validators"
 import useVuelidate from "@vuelidate/core"
 
@@ -38,6 +36,7 @@ export default {
     send: Function
   },
   components: {
+    BaseInput,
     StepInfo,
     NavigationButtonGroup
   },
