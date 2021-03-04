@@ -13,7 +13,7 @@
         width="32"
         height="32"
         fill="#4F1962"
-        rx="1.333"
+        rx="8"
       />
       <g
         stroke="#FFF"
