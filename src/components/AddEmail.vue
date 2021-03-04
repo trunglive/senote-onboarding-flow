@@ -10,9 +10,17 @@
           custom-class="w-72"
           :enable-background-on-hover="false"
         />
-        <Checkmark
-          :invalid="formData.emailAddress.length > 0 && v$.emailAddress.$invalid"
-          :valid="formData.emailAddress.length > 0 && !v$.emailAddress.$invalid"
+        <AppIcon
+          icon="Checkmark"
+          width="28"
+          height="28"
+          v-show="formData.emailAddress.length > 0 && !v$.emailAddress.$invalid"
+        />
+        <AppIcon
+          icon="Close"
+          width="28"
+          height="28"
+          v-show="formData.emailAddress.length > 0 && v$.emailAddress.$invalid"
         />
       </div>
       <div class="border-t border-dashed">
@@ -30,7 +38,7 @@ import { reactive, computed, toRefs } from "vue"
 import BaseInput from "@/base/BaseInput"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import AvatarGroup from "@/components/AvatarGroup"
-import Checkmark from "@/components/icons/Checkmark"
+import AppIcon from "@/components/AppIcon"
 import { email, required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
 
@@ -39,8 +47,8 @@ export default {
   components: {
     BaseInput,
     AvatarGroup,
+    AppIcon,
     NavigationButtonGroup,
-    Checkmark,
   },
   props: {
     msg: String,
