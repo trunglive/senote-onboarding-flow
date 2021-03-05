@@ -40,7 +40,10 @@
               :value="step.value"
               @handleToggleSwitch="handleToggleSwitch"
             />
-            <AppIcon icon="QuestionMark" />
+            <QuestionMark
+              :label="step.label"
+              :content="step.tooltipContent"
+            />
           </div>
         </div>
       </div>
@@ -60,6 +63,7 @@ import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import AppIcon from "@/components/AppIcon"
 import Switch from "@/base/Switch"
 import StepInfo from "@/components/StepIntro"
+import QuestionMark from "@/components/icons/QuestionMark"
 
 export default {
   name: "Phase",
@@ -75,6 +79,7 @@ export default {
     stepHiddenOnSwitchOff: Boolean,
   },
   components: {
+    QuestionMark,
     StepInfo,
     Switch,
     AppIcon,
