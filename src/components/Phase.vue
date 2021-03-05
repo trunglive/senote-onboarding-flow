@@ -40,10 +40,16 @@
               :value="step.value"
               @handleToggleSwitch="handleToggleSwitch"
             />
-            <QuestionMark
+            <Tooltip
+              v-slot="{ handleMouseover, handleMouseleave }"
               :label="step.label"
               :content="step.tooltipContent"
-            />
+            >
+              <QuestionMark
+                @mouseover="handleMouseover"
+                @mouseleave="handleMouseleave"
+              />
+            </Tooltip>
           </div>
         </div>
       </div>
@@ -63,6 +69,7 @@ import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import AppIcon from "@/components/AppIcon"
 import Switch from "@/base/Switch"
 import StepInfo from "@/components/StepIntro"
+import Tooltip from "@/base/Tooltip"
 import QuestionMark from "@/components/icons/QuestionMark"
 
 export default {
@@ -79,6 +86,7 @@ export default {
     stepHiddenOnSwitchOff: Boolean,
   },
   components: {
+    Tooltip,
     QuestionMark,
     StepInfo,
     Switch,
