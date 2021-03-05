@@ -41,14 +41,10 @@
               @handleToggleSwitch="handleToggleSwitch"
             />
             <Tooltip
-              v-slot="{ handleMouseover, handleMouseleave }"
               :label="step.label"
               :content="step.tooltipContent"
             >
-              <QuestionMark
-                @mouseover="handleMouseover"
-                @mouseleave="handleMouseleave"
-              />
+              <QuestionMark />
             </Tooltip>
           </div>
         </div>

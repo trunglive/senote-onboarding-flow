@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="question-mark question-mark__info"
-  >
+  <div class="question-mark">
     <span class="icon">
       <svg
         viewBox="0 0 8 12"
@@ -28,10 +26,6 @@ export default {
 
 <style scoped>
 .question-mark {
-  cursor: pointer;
-}
-
-.question-mark__info {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,6 +35,7 @@ export default {
   color: #acaeaf;
   background-color: #edf0f2;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .icon {

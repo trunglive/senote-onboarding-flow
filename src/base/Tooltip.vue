@@ -1,9 +1,11 @@
 <template>
   <div class="tooltip__wrapper">
-    <slot
-      :handleMouseover="handleMouseover"
-      :handleMouseleave="handleMouseleave"
-    />
+    <div
+      @mouseover="handleMouseover"
+      @mouseleave="handleMouseleave"
+    >
+      <slot />
+    </div>
     <div
       class="tooltip"
       :class="tooltipHidden && 'hidden'"
