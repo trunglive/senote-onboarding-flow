@@ -45,7 +45,8 @@ export default {
     UpArrow: lazyLoad("UpArrow"),
     DownArrow: lazyLoad("DownArrow"),
     Checkmark: lazyLoad("Checkmark"),
-    Close: lazyLoad("Close")
+    Close: lazyLoad("Close"),
+    QuestionMark: lazyLoad("QuestionMark")
   }
 }
 </script>

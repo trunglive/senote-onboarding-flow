@@ -33,14 +33,14 @@
           </div>
           <div
             v-show="!hideSwitchButtonGroup"
-            class="flex space-x-4"
+            class="flex items-center space-x-4"
           >
             <Switch
               :enabled="step.enabled"
               :value="step.value"
               @handleToggleSwitch="handleToggleSwitch"
             />
-            <div>?</div>
+            <AppIcon icon="QuestionMark" />
           </div>
         </div>
       </div>
