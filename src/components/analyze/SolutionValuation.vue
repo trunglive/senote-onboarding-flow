@@ -1,38 +1,32 @@
 <template>
   <div class="flex flex-col items-center space-y-10">
-    <TitleWrapper
-      :title="data.solutionValuationData.title"
-      required
-    >
-      <div class="flex pl-4 pt-4">
-        <BaseRadioGroup
-          v-model="data.solutionValuationData.selected"
-          :name="data.solutionValuationData.name"
-          :options="data.solutionValuationData.options"
-          :model-value="data.solutionValuationData.selected"
-        />
-      </div>
-    </TitleWrapper>
-    <TitleWrapper
-      title="What is your favorite color?"
-      required
-    >
-      <div class="pl-4 pt-4 h-80">
-        <BaseSelect
-          custom-class="w-64"
-          :options="data.colorData.options"
-          @handleToggleSelectItem="handleToggleSelectItem"
-          mode="multiple"
-        />
-      </div>
-      <div class="pl-4 pt-4 h-80">
-        <BaseSelect
-          custom-class="w-72"
-          :options="data.colorData2.options"
-          @handleSelectSingleItem="handleSelectSingleItem"
-        />
-      </div>
-    </TitleWrapper>
+    <div class="space-y-10">
+      <TitleWrapper
+        :title="data.solutionValuationData.title"
+        required
+      >
+        <div class="flex pl-4 pt-4">
+          <BaseRadioGroup
+            v-model="data.solutionValuationData.selected"
+            :name="data.solutionValuationData.name"
+            :options="data.solutionValuationData.options"
+            :model-value="data.solutionValuationData.selected"
+          />
+        </div>
+      </TitleWrapper>
+      <TitleWrapper
+        title="What is your favorite color?"
+        required
+      >
+        <div class="pl-4">
+          <BaseSelect
+            custom-class="w-72"
+            :options="data.colorData2.options"
+            @handleSelectSingleItem="handleSelectSingleItem"
+          />
+        </div>
+      </TitleWrapper>
+    </div>
     <div class="pt-20">
       <NavigationButtonGroup
         :send="send"
@@ -68,50 +62,6 @@ const solutionValuationData = {
       value: "night",
       label: "Night"
     }
-  ]
-}
-
-const colorData = {
-  title: "What are your favorite colors?",
-  name: "colorQuestions",
-  selected: [],
-  options: [
-    {
-      value: "black",
-      label: "Black",
-      selected: true,
-      color: "bg-black"
-    },
-    {
-      value: "silver",
-      label: "Silver",
-      selected: false,
-      color: "bg-white-dark-2"
-    },
-    {
-      value: "ocean",
-      label: "Ocean",
-      selected: true,
-      color: "bg-ocean-dark"
-    },
-    {
-      value: "blue",
-      label: "Blue",
-      selected: false,
-      color: "bg-blue"
-    },
-    {
-      value: "purple",
-      label: "Purple",
-      selected: false,
-      color: "bg-purple-dark"
-    },
-    {
-      value: "red",
-      label: "Red",
-      selected: true,
-      color: "bg-red"
-    },
   ]
 }
 
@@ -171,7 +121,7 @@ export default {
     NavigationButtonGroup
   },
   setup() {
-    const data = reactive({ solutionValuationData, colorData, colorData2 })
+    const data = reactive({ solutionValuationData, colorData2 })
 
     const rules = {
       solutionValuationData: {
@@ -183,10 +133,6 @@ export default {
 
     const v$ = useVuelidate(rules, data)
 
-    function handleToggleSelectItem(updatedOptions) {
-      data.colorData.options = updatedOptions
-    }
-
     function handleSelectSingleItem(updatedOptions) {
       data.colorData2.options = updatedOptions
     }
@@ -194,7 +140,6 @@ export default {
     return {
       data,
       v$,
-      handleToggleSelectItem,
       handleSelectSingleItem
     }
   }

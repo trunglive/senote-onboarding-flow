@@ -1,147 +1,149 @@
 <template>
-  <div
-    :id="id"
-    :ref="id"
-    :class="[
-      error ? 'outline-red' : 'outline-none',
-      customClass,
-      disableInput && 'cursor-pointer bg-white',
-      dropdownOpen ? 'border-1 border-ocean-dark' : 'border-white-dark-2',
-    ]"
-    class="h-base-select-input flex items-center appearance-none px-4 py-2 rounded placeholder-gray-500 text-gray-900 focus:z-10 cursor-pointer bg-white-light"
-    v-bind="$attrs"
-    :value="modelValue"
-    :placeholder="placeholder"
-    @input="$emit('update:modelValue', $event.target.value)"
-    @click="handleToggleSelect"
-    @focusout="handleFocusOutOfDropdown"
-    tabindex="-1"
-  >
-    <div class="flex items-center justify-between w-full">
-      <div class="text-black-dark opacity-50 text-sm">
-        {{ composeInputPlaceholder }}
-      </div>
-      <div>
-        <AppIcon
-          v-show="!dropdownOpen"
-          icon="DownArrow"
-          width="12"
-          height="12"
-        />
-        <AppIcon
-          v-show="dropdownOpen"
-          icon="UpArrow"
-          width="12"
-          height="12"
-        />
-      </div>
-    </div>
-  </div>
-  <div
-    id="select-dropdown-wrapper"
-    tabindex="0"
-    :class="{ hidden: !dropdownOpen, customClass }"
-    class="tags-selector js-active outline-none"
-  >
-    <div class="tags-selector__header">
-      <button
-        type="button"
-        class="tags-selector__button"
-      >
-        <span
-          class="icon icon--normal icon--cog"
-          style="width: 24px; height: 24px"
-        ><AppIcon
-          icon="Setting"
-        /></span>
-      </button>
-      <div class="tags-selector__tags">
-        Colors
+  <div class="relative">
+    <div
+      :id="id"
+      :ref="id"
+      :class="[
+        error ? 'outline-red' : 'outline-none',
+        customClass,
+        disableInput && 'cursor-pointer bg-white',
+        dropdownOpen ? 'border-1 border-ocean-dark' : 'border-white-dark-2',
+      ]"
+      class="h-base-select-input flex items-center appearance-none px-4 py-2 rounded placeholder-gray-500 text-gray-900 focus:z-10 cursor-pointer bg-white-light"
+      v-bind="$attrs"
+      :value="modelValue"
+      :placeholder="placeholder"
+      @input="$emit('update:modelValue', $event.target.value)"
+      @click="handleToggleSelect"
+      @focusout="handleFocusOutOfDropdown"
+      tabindex="-1"
+    >
+      <div class="flex items-center justify-between w-full">
+        <div class="text-black-dark opacity-50 text-sm">
+          {{ composeInputPlaceholder }}
+        </div>
+        <div>
+          <AppIcon
+            v-show="!dropdownOpen"
+            icon="DownArrow"
+            width="12"
+            height="12"
+          />
+          <AppIcon
+            v-show="dropdownOpen"
+            icon="UpArrow"
+            width="12"
+            height="12"
+          />
+        </div>
       </div>
     </div>
     <div
-      @focusout="handleFocusOutOfSearchInput"
-      tabindex="-1"
-      class="tags-selector__input-container"
+      id="select-dropdown-wrapper"
+      tabindex="0"
+      :class="[ !dropdownOpen && 'hidden', customClass ]"
+      class="absolute tags-selector js-active outline-none"
     >
-      <AppIcon
-        v-show="searchInputFocused"
-        icon="Search"
-        width="16"
-        height="15"
-      />
-      <div
-        v-show="!searchInputChanged"
-        id="search-add-tag-text"
-        tabindex="0"
-        class="tags-selector__placeholder outline-none"
-        :class="searchInputFocused && 'active'"
-        @click="handleSearchInputFocus"
-      >
-        Search or add tag
+      <div class="tags-selector__header">
+        <button
+          type="button"
+          class="tags-selector__button"
+        >
+          <span
+            class="icon icon--normal icon--cog"
+            style="width: 24px; height: 24px"
+          ><AppIcon
+            icon="Setting"
+          /></span>
+        </button>
+        <div class="tags-selector__tags">
+          Colors
+        </div>
       </div>
-      <input
-        id="search-add-tag-input"
-        class="search-add-tag-input"
-        type="text"
-        @click="handleSearchInputFocus"
-        @input="handleSearchInputChange"
-      >
-    </div>
-    <!----><!----><!---->
-    <div>
       <div
-        class="tags-selector__scroll vb vb-invisible"
-        style="position: relative; overflow: hidden"
+        @focusout="handleFocusOutOfSearchInput"
+        tabindex="-1"
+        class="tags-selector__input-container"
       >
-        <div class="tags-selector__list vb-content">
-          <div
-            v-for="option in options"
-            :key="option.value"
-            class="tags-selector__list-item tag-list-item"
-            :class="[
-              option.selected &&
-                'tag-list-item--selected tags-selector__list-item--selected',
-              tagItemFocus === option.value && 'tag-list-item--focused',
-            ]"
-            @click="
-              mode === 'multiple'
-                ? handleToggleSelectItem(option.value)
-                : handleSelectSingleItem(option.value)
-            "
-          >
+        <AppIcon
+          v-show="searchInputFocused"
+          icon="Search"
+          width="16"
+          height="15"
+        />
+        <div
+          v-show="!searchInputChanged"
+          id="search-add-tag-text"
+          tabindex="0"
+          class="tags-selector__placeholder outline-none"
+          :class="searchInputFocused && 'active'"
+          @click="handleSearchInputFocus"
+        >
+          Search or add tag
+        </div>
+        <input
+          id="search-add-tag-input"
+          class="search-add-tag-input"
+          type="text"
+          @click="handleSearchInputFocus"
+          @input="handleSearchInputChange"
+        >
+      </div>
+      <!----><!----><!---->
+      <div>
+        <div
+          class="tags-selector__scroll vb vb-invisible"
+          style="position: relative; overflow: hidden"
+        >
+          <div class="tags-selector__list vb-content">
             <div
-              class="tag-list-item__color"
-              :class="{ [option.color]: true, hidden: mode === 'single' }"
-            />
-            <div
-              class="tag-list-item__name"
-              :class="{ 'ml-2.5': mode === 'single' }"
+              v-for="option in options"
+              :key="option.value"
+              class="tags-selector__list-item tag-list-item"
+              :class="[
+                option.selected &&
+                  'tag-list-item--selected tags-selector__list-item--selected',
+                tagItemFocus === option.value && 'tag-list-item--focused',
+              ]"
+              @click="
+                mode === 'multiple'
+                  ? handleToggleSelectItem(option.value)
+                  : handleSelectSingleItem(option.value)
+              "
             >
-              <span>{{ option.label }}</span>
-            </div>
-
-            <div
-              v-if="option.selected"
-              class="mr-1"
-              :class="{ hidden: mode === 'single' }"
-            >
-              <AppIcon
-                icon="Tick"
-                width="24"
-                height="10"
+              <div
+                class="tag-list-item__color"
+                :class="{ [option.color]: true, hidden: mode === 'single' }"
               />
+              <div
+                class="tag-list-item__name"
+                :class="{ 'ml-2.5': mode === 'single' }"
+              >
+                <span>{{ option.label }}</span>
+              </div>
+
+              <div
+                v-if="option.selected"
+                class="mr-1"
+                :class="{ hidden: mode === 'single' }"
+              >
+                <AppIcon
+                  icon="Tick"
+                  width="24"
+                  height="10"
+                />
+              </div>
             </div>
           </div>
+          <div
+            class="vb-dragger"
+            style="position: absolute; height: 0px; top: 0px"
+          >
+            <div class="vb-dragger-styler" />
+          </div>
         </div>
-        <div
-          class="vb-dragger"
-          style="position: absolute; height: 0px; top: 0px"
-        >
-          <div class="vb-dragger-styler" />
-        </div>
+        <!---->
       </div>
-      <!---->
     </div>
   </div>
 </template>
@@ -304,6 +306,10 @@ export default {
 }
 </script>
 <style scoped>
+#select-dropdown-wrapper {
+  z-index: 999;
+}
+
 div.tags-selector.js-active {
   padding: 8px 0 8px 8px;
   border-radius: 4px;
