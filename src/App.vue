@@ -1,12 +1,14 @@
 <template>
   <div class="main-app-wrapper">
-    <div class="flex">
+    <div
+      class="main-content-wrapper"
+    >
       <div
         :class="
           isPhaseEntityLoaded ? (isPhaseStepLoaded ? 'w-4/5' : 'w-1/2') : 'w-full'
         "
       >
-        <div class="h-screen px-32 py-20">
+        <div class="px-32 py-20">
           <AddEmail
             v-if="state.matches('addEmail')"
             :send="send"
@@ -223,6 +225,11 @@ export default {
 
 .main-app-wrapper {
   position: relative;
+}
+
+.main-content-wrapper {
+  display: flex;
+  /*height: calc(100vh - 5rem);*/
 }
 
 .navigation-progress-bar {

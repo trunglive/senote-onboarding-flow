@@ -104,7 +104,7 @@ export const userDataMachine = Machine({
     },
     addEmail: {
       on: {
-        NEXT: "addPassword",
+        NEXT: "designThinkingProcesses",
       },
       invoke: {
         src: updateFormMachine,
@@ -186,7 +186,7 @@ export const userDataMachine = Machine({
     designThinkingProcesses: {
       on: {
         NEXT: "discoverPhase",
-        BACK: "addProjectName",
+        BACK: "addEmail",
       },
       invoke: {
         src: updateFormMachine,

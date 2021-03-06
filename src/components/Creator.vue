@@ -78,7 +78,7 @@ export default {
 .creator-wrapper {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 5rem);
   background-image: url("icons/Abstract.svg");
 }
 
@@ -89,7 +89,7 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 480px;
-  height: 600px;
+  /*height: 600px;*/
   padding: 30px 50px 50px 50px;
   background-color: #ffffff;
   border-radius: 0.6em;

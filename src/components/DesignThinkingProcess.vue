@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col items-center justify-center">
-    <div class="flex flex-col w-navigation-button mb-2">
+  <div class="flex flex-col items-center justify-center mt-16">
+    <div class="flex flex-col w-navigation-button">
       <StepInfo :title="composeStepTitle()" />
       <div class="space-y-2.5 mt-6 mb-2">
         <div
@@ -20,15 +20,10 @@
         </div>
       </div>
     </div>
-    <NavigationButtonGroup
-      hidden
-      :send="send"
-    />
   </div>
 </template>
 
 <script>
-import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import { brand, designThinkingProcesses } from "@/data/api"
 import StepInfo from "@/components/StepIntro"
 
@@ -39,7 +34,6 @@ export default {
   },
   components: {
     StepInfo,
-    NavigationButtonGroup
   },
   setup() {
     function composeStepTitle() {

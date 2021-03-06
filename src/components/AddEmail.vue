@@ -1,7 +1,7 @@
 <template>
   <div class="">
-    <div class="text-5xl font-bold">
-      Welcome!
+    <div class="text-4xl font-bold opacity-80">
+      Welcome to Senote
     </div>
     <div class="pt-12 pb-8 text-black">
       First, we'd like to get to know about you
