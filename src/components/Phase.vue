@@ -36,7 +36,8 @@
             class="flex items-center space-x-4"
           >
             <Switch
-              :enabled="step.enabled"
+              :on="step.enabled"
+              :disabled="step.required"
               :value="step.value"
               @handleToggleSwitch="handleToggleSwitch"
             />

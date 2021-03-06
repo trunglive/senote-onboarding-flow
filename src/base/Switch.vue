@@ -1,7 +1,7 @@
 <template>
   <span
     class="base-checkbox base-checkbox--switch"
-    :class="{ 'base-checkbox--checked': enabled }"
+    :class="{ 'base-checkbox--checked': on, 'opacity-30': disabled }"
     @click="handleToggleSwitch"
   />
 </template>
@@ -11,7 +11,8 @@
 export default {
   name: "Switch",
   props: {
-    enabled: Boolean,
+    on: Boolean,
+    disabled: Boolean,
     value: {
       type: String,
       default: ""
@@ -20,7 +21,9 @@ export default {
   emits: ["handleToggleSwitch"],
   setup(props, { emit }) {
     function handleToggleSwitch() {
-      emit("handleToggleSwitch", props.value)
+      if (!props.disabled) {
+        emit("handleToggleSwitch", props.value)
+      }
     }
 
     return {
