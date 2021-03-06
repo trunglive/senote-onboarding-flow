@@ -1,37 +1,34 @@
 <template>
-  <div class="flex flex-col items-center justify-center">
-    <AvatarGroup
-      :avatar-letter="avatarLetter"
-      title="Continue with Email"
-    />
-    <div>
-      <div class="flex items-center justify-between w-navigation-button">
+  <div class="">
+    <div class="text-5xl font-bold">
+      Welcome!
+    </div>
+    <div class="pt-12 pb-8 text-black">
+      First, we'd like to get to know about you
+    </div>
+    <div class="flex space-x-6">
+      <TitleWrapper
+        title="What is your full name?"
+        required
+      >
+        <BaseInput
+          v-model="formData.fullName"
+          @blur="v$.fullName.$touch"
+          placeholder="John Doe"
+          custom-class="w-72"
+        />
+      </TitleWrapper>
+      <TitleWrapper
+        title="What is your email?"
+        required
+      >
         <BaseInput
           v-model="formData.emailAddress"
           @blur="v$.emailAddress.$touch"
-          placeholder="Enter email"
-          custom-class="w-72 pl-0 pr-0"
-          :enable-background-on-hover="false"
+          placeholder="john.doe@gmail.com"
+          custom-class="w-72"
         />
-        <AppIcon
-          icon="Checkmark"
-          width="28"
-          height="28"
-          v-show="formData.emailAddress.length > 0 && !v$.emailAddress.$invalid"
-        />
-        <AppIcon
-          icon="Close"
-          width="28"
-          height="28"
-          v-show="formData.emailAddress.length > 0 && v$.emailAddress.$invalid"
-        />
-      </div>
-      <div class="border-t border-dashed hidden">
-        <NavigationButtonGroup
-          :send="send"
-          :disable-continue-button="v$.$invalid"
-        />
-      </div>
+      </TitleWrapper>
     </div>
   </div>
 </template>
@@ -39,19 +36,15 @@
 <script>
 import { reactive, computed, toRefs } from "vue"
 import BaseInput from "@/base/BaseInput"
-import NavigationButtonGroup from "@/components/NavigationButtonGroup"
-import AvatarGroup from "@/components/AvatarGroup"
-import AppIcon from "@/components/AppIcon"
 import { email, required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
+import TitleWrapper from "@/base/wrapper/TitleWrapper"
 
 export default {
   name: "AddEmail",
   components: {
+    TitleWrapper,
     BaseInput,
-    AvatarGroup,
-    AppIcon,
-    NavigationButtonGroup,
   },
   props: {
     msg: String,
@@ -59,12 +52,14 @@ export default {
   },
   setup() {
     const formData = reactive({
+      fullName: "",
       emailAddress: "",
     })
 
     const avatarLetter = computed(() => formData.emailAddress?.[0])
 
     const rules = {
+      fullName: { required, email },
       emailAddress: { required, email },
     }
 

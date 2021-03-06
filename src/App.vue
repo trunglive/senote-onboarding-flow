@@ -6,7 +6,7 @@
           isPhaseEntityLoaded ? (isPhaseStepLoaded ? 'w-4/5' : 'w-1/2') : 'w-full'
         "
       >
-        <div class="my-24">
+        <div class="h-screen px-32 py-20">
           <AddEmail
             v-if="state.matches('addEmail')"
             :send="send"
