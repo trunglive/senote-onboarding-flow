@@ -1,5 +1,5 @@
 <template>
-  <input
+  <textarea
     :id="id"
     :ref="id"
     :class="[
@@ -9,9 +9,9 @@
       enableBackgroundOnHover && 'hover:bg-white-light',
     ]"
     class="appearance-none rounded-none px-4 py-3 rounded placeholder-gray-500 text-gray-900 focus:z-10 bg-white-light"
-    type="text"
-    autocomplete="off"
     v-bind="$attrs"
+    rows="4"
+    cols="50"
     :value="modelValue"
     :placeholder="placeholderHidden ? null : placeholder"
     @input="$emit('update:modelValue', $event.target.value)"
@@ -20,18 +20,18 @@
     @focusin="handleFocusin"
     @focusout="handleFocusout"
     :disabled="disableInput"
-  >
+  />
 </template>
 
 <script>
 import { ref } from "vue"
 
 export default {
-  name: "BaseInput",
+  name: "BaseTextarea",
   props: {
     customClass: {
       type: String,
-      default: "w-long-input",
+      default: "",
     },
     error: {
       type: Boolean,
