@@ -33,11 +33,9 @@
       </div>
       <TitleWrapper
         title="What is your project about?"
-        required
       >
         <BaseTextarea
           v-model="formData.projectSummary"
-          @blur="v$.projectSummary.$touch"
           placeholder="Hey team, I'd love to share with you about Milrx project that I am working on..."
           custom-class="w-72"
         />
@@ -78,7 +76,6 @@ export default {
     const rules = {
       fullName: { required },
       emailAddress: { required, email },
-      projectSummary: { required },
     }
 
     const v$ = useVuelidate(rules, toRefs(formData))
