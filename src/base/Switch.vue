@@ -1,9 +1,14 @@
 <template>
-  <span
-    class="base-checkbox base-checkbox--switch"
-    :class="{ 'base-checkbox--checked': on, 'opacity-30': disabled }"
-    @click="handleToggleSwitch"
-  />
+  <div class="flex items-center space-x-4">
+    <div class="text-black">
+      {{ label }}
+    </div>
+    <div
+      class="base-switch base-switch--main"
+      :class="{ 'base-switch--main__on': on, 'opacity-30': disabled }"
+      @click="handleToggleSwitch"
+    />
+  </div>
 </template>
 
 <script>
@@ -11,8 +16,18 @@
 export default {
   name: "Switch",
   props: {
-    on: Boolean,
-    disabled: Boolean,
+    label: {
+      type: String,
+      default: ""
+    },
+    on: {
+      type: Boolean,
+      default: true
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     value: {
       type: String,
       default: ""
@@ -34,12 +49,12 @@ export default {
 </script>
 
 <style scoped>
-.base-checkbox {
+.base-switch {
   display: inline-block;
   cursor: pointer;
 }
 
-.base-checkbox--switch {
+.base-switch--main {
   position: relative;
   width: 51px;
   height: 31px;
@@ -48,7 +63,7 @@ export default {
   border-radius: 50px;
 }
 
-.base-checkbox--switch::after {
+.base-switch--main::after {
   content: "";
   position: absolute;
   top: 3px;
@@ -60,11 +75,11 @@ export default {
   border-radius: 50%;
 }
 
-.base-checkbox--switch.base-checkbox--checked {
+.base-switch--main.base-switch--main__on {
   background-color: #007b83;
 }
 
-.base-checkbox--switch.base-checkbox--checked::after {
+.base-switch--main.base-switch--main__on::after {
   transform: translateX(20px);
 }
 </style>

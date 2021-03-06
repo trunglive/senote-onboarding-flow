@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="pb-2 opacity-80">
+    <div class="pb-2 text-black">
       {{ title }} <span
         v-show="required"
         class="text-red"

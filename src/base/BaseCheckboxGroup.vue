@@ -1,15 +1,17 @@
 <template>
-  <div
-    v-for="option in options"
-    :key="option.value"
-  >
-    <BaseCheckbox
-      :label="option.label"
-      :value="option.value"
-      :model-value="modelValue"
-      :name="name"
-      @update:modelValue="$emit('update:modelValue', $event)"
-    />
+  <div class="flex pt-2 space-x-10">
+    <div
+      v-for="option in options"
+      :key="option.value"
+    >
+      <BaseCheckbox
+        :label="option.label"
+        :value="option.value"
+        :model-value="modelValue"
+        :name="name"
+        @update:modelValue="$emit('update:modelValue', $event)"
+      />
+    </div>
   </div>
 </template>
 

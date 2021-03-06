@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center mr-8 mb-4">
+  <div class="flex items-center">
     <input
       class="hidden"
       :id="value"
@@ -13,7 +13,7 @@
     <label
       :for="value"
       v-if="label"
-      class="flex items-center cursor-pointer"
+      class="flex items-center cursor-pointer text-black"
     >
       <span
         class="w-4 h-4 mr-2 rounded-full border-2 border-white-dark-3 flex-no-shrink"
@@ -46,6 +46,10 @@ export default {
 }
 </script>
 <style>
+input[type="radio"] + label {
+  font-size: 14px;
+}
+
 input[type="radio"] + label span {
   transition: background 0.7s, transform 0.7s;
 }
