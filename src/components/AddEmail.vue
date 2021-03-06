@@ -26,7 +26,7 @@
           v-show="formData.emailAddress.length > 0 && v$.emailAddress.$invalid"
         />
       </div>
-      <div class="border-t border-dashed">
+      <div class="border-t border-dashed hidden">
         <NavigationButtonGroup
           :send="send"
           :disable-continue-button="v$.$invalid"

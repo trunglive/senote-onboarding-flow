@@ -13,6 +13,7 @@
       />
       <div class="border-t border-dashed">
         <NavigationButtonGroup
+          hidden
           :send="send"
           :disable-continue-button="v$.$invalid"
         />

@@ -27,7 +27,7 @@
         </div>
       </TitleWrapper>
     </div>
-    <div class="pt-20">
+    <div class="pt-20 hidden">
       <NavigationButtonGroup
         :send="send"
         :disable-continue-button="v$.$invalid"

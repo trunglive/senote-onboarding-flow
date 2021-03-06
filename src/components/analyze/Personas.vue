@@ -40,7 +40,7 @@
         </div>
       </div>
     </TitleWrapper>
-    <div class="pt-20">
+    <div class="pt-20 hidden">
       <NavigationButtonGroup
         :send="send"
         :disable-continue-button="disableContinueButton"

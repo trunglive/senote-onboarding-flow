@@ -52,6 +52,7 @@
       </div>
     </div>
     <NavigationButtonGroup
+      hidden
       v-show="!hideNavigationButtonGroup"
       :send="send"
       :disable-continue-button="isContinueButtonDisabled"

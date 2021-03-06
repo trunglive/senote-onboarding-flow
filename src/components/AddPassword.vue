@@ -33,6 +33,7 @@
             {{ passwordMinLength }} characters long</span>
         </div>
         <NavigationButtonGroup
+          hidden
           :send="send"
           :disable-continue-button="v$.$invalid"
         />

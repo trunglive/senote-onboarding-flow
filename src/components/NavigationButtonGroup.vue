@@ -1,16 +1,19 @@
 <template>
-  <div class="flex flex-col mt-4">
+  <div
+    class="flex"
+    :class="[horizontal ? 'flex-row-reverse space-x-reverse space-x-2' : 'flex-col', hidden && 'hidden']"
+  >
     <div
       :class="{ 'cursor-not-allowed': showSpinner || disableContinueButton, 'cursor-pointer': !disableContinueButton }"
     >
       <a
         @click="handleClickContinue"
         :class="
-          showSpinner || disableContinueButton
+          [showSpinner || disableContinueButton
             ? 'bg-ocean-light opacity-50 pointer-event-none'
-            : 'bg-ocean hover:bg-ocean-dark'
+            : 'bg-ocean hover:bg-ocean-dark', customWidth]
         "
-        class="w-navigation-button h-navigation-button flex flex-col items-center justify-center rounded-md text-white font-bold duration-200 ease-in-out"
+        class="h-12 flex flex-col items-center justify-center rounded-md text-white text-sm font-bold duration-200 ease-in-out"
       >
         <Spinner
           v-show="showSpinner"
@@ -23,7 +26,8 @@
     <a
       @click="handleClickBack"
       href="#"
-      class="text-black w-navigation-button h-12 flex flex-col items-center justify-center hover:text-black-light duration-100 ease-in-out"
+      class="h-12 flex flex-col items-center justify-center text-black-light text-sm font-bold hover:text-black duration-100 ease-in-out"
+      :class="[customWidth, horizontal && 'border-1 border-white-dark rounded-md']"
     >
       Back
     </a>
@@ -38,7 +42,19 @@ export default {
   name: "NavigationButtonGroup",
   props: {
     send: Function,
-    disableContinueButton: Boolean
+    disableContinueButton: Boolean,
+    hidden: {
+      type: Boolean,
+      default: false,
+    },
+    horizontal: {
+      type: Boolean,
+      default: false,
+    },
+    customWidth: {
+      type: String,
+      default: "w-navigation-button"
+    }
   },
   components: { Spinner },
   setup(props, { emit }) {

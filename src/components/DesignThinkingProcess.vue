@@ -20,7 +20,10 @@
         </div>
       </div>
     </div>
-    <NavigationButtonGroup :send="send" />
+    <NavigationButtonGroup
+      hidden
+      :send="send"
+    />
   </div>
 </template>
 

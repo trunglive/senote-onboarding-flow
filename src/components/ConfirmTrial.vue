@@ -3,7 +3,10 @@
     <div class="flex flex-col w-navigation-button mb-2">
       <StepInfo :title="composeStepTitle()" />
     </div>
-    <NavigationButtonGroup :send="send" />
+    <NavigationButtonGroup
+      hidden
+      :send="send"
+    />
   </div>
 </template>
 
