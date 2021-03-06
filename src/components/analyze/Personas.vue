@@ -1,8 +1,5 @@
 <template>
-  <div
-    id="personas-wrapper"
-    class="flex flex-col items-center justify-center"
-  >
+  <div class="flex flex-col items-center justify-center">
     <TitleWrapper
       :title="minPersonasText"
       required
@@ -136,10 +133,6 @@ export default {
 </script>
 
 <style scoped>
-#personas-wrapper {
-  margin-top: -80px;
-}
-
 .avatar-input-wrapper:hover .avatar--inner-circle {
   background-color: #f2f4f6;
 }

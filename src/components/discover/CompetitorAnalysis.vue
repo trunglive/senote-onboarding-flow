@@ -1,8 +1,5 @@
 <template>
-  <div
-    id="competitor-analysis-wrapper"
-    class="flex flex-col items-center justify-center"
-  >
+  <div class="flex flex-col items-center justify-center">
     <div class="space-y-10">
       <TitleWrapper
         title="Website"
@@ -123,8 +120,4 @@ export default {
 }
 </script>
 
-<style scoped>
-#competitor-analysis-wrapper {
-  margin-top: -120px;
-}
-</style>
+<style scoped></style>

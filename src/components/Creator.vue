@@ -1,7 +1,7 @@
 <template>
   <div class="creator-wrapper">
     <div class="creator-inner">
-      <div class="text-3xl mb-8">
+      <div class="mb-8 text-3xl font-medium text-black-dark">
         Research Me
       </div>
       <div>
