@@ -2,14 +2,15 @@
   <div class="flex flex-col items-center justify-center">
     <div class="space-y-10">
       <TitleWrapper
-        :title="formData.title"
+        :title="formData.radioData.title"
         required
       >
-        <div class="flex pt-4 space-x-10">
-          <BaseCheckboxGroup
-            v-model="formData.checked"
-            :name="formData.name"
-            :options="formData.options"
+        <div class="flex pt-4">
+          <BaseRadioGroup
+            v-model="formData.radioData.checked"
+            :name="formData.radioData.name"
+            :options="formData.radioData.options"
+            :model-value="formData.radioData.checked"
           />
         </div>
       </TitleWrapper>
@@ -20,18 +21,12 @@
         <div class="min-h-80">
           <BaseSelect
             custom-class="w-64"
-            :options="data.colorData.options"
+            :options="formData.colorData.options"
             @handleToggleSelectItem="handleToggleSelectItem"
             mode="multiple"
           />
         </div>
       </TitleWrapper>
-    </div>
-    <div class="pt-20 hidden">
-      <NavigationButtonGroup
-        :send="send"
-        :disable-continue-button="v$.$invalid"
-      />
     </div>
   </div>
 </template>
@@ -45,11 +40,12 @@ import TitleWrapper from "@/base/wrapper/TitleWrapper"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import BaseCheckboxGroup from "@/base/BaseCheckboxGroup"
 import BaseSelect from "@/base/BaseSelect"
+import BaseRadioGroup from "@/base/BaseRadioGroup"
 
-const userInterviewData = {
+const radioData = {
   title: "On a typical day, when do you get focused the most?",
   name: "userInterviewQuestions",
-  checked: [],
+  checked: "",
   options: [
     {
       value: "morning",
@@ -112,31 +108,34 @@ const colorData = {
 
 export default {
   name: "UserInterview",
-  components: { BaseSelect, TitleWrapper, BaseCheckboxGroup, NavigationButtonGroup },
+  components: { BaseRadioGroup, BaseSelect, TitleWrapper },
   props: {
     msg: String,
     send: Function,
     currentState: String
   },
   setup() {
-    const formData = reactive(userInterviewData)
-    const data = reactive({ colorData })
+    const formData = reactive({ radioData, colorData })
 
     const rules = {
-      checked: {
-        required
+      radioData: {
+        checked: required
+      },
+      colorData: {
+        checked: {
+          required
+        }
       }
     }
 
     const v$ = useVuelidate(rules, toRefs(formData))
 
     function handleToggleSelectItem(updatedOptions) {
-      data.colorData.options = updatedOptions
+      formData.colorData.options = updatedOptions
     }
 
     return {
       formData,
-      data,
       v$,
       handleToggleSelectItem
     }
