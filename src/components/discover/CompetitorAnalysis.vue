@@ -13,7 +13,7 @@
           custom-class="w-full"
         />
       </TitleWrapper>
-      <div class="flex">
+      <div class="flex space-x-6">
         <TitleWrapper
           title="Year Founded"
           required
@@ -51,28 +51,6 @@
           />
         </TitleWrapper>
       </div>
-      <div class="flex justify-between">
-        <TitleWrapper title="Strength">
-          <BaseInput
-            v-model="formData.strength"
-            placeholder="Add strength..."
-            custom-class="w-80"
-          />
-        </TitleWrapper>
-        <TitleWrapper title="Weakness">
-          <BaseInput
-            v-model="formData.weakness"
-            placeholder="Add weakness..."
-            custom-class="w-80"
-          />
-        </TitleWrapper>
-      </div>
-    </div>
-    <div class="pt-20 hidden">
-      <NavigationButtonGroup
-        :send="send"
-        :disable-continue-button="v$.$invalid"
-      />
     </div>
   </div>
 </template>
@@ -82,13 +60,12 @@ import { reactive, toRefs } from "vue"
 import { required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
 
-import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import TitleWrapper from "@/base/wrapper/TitleWrapper"
 import BaseInput from "@/base/BaseInput"
 
 export default {
   name: "CompetitorAnalysis",
-  components: { BaseInput, TitleWrapper, NavigationButtonGroup },
+  components: { BaseInput, TitleWrapper },
   props: {
     send: Function
   },
@@ -100,8 +77,6 @@ export default {
         activeUsers: "",
         funding: ""
       },
-      strength: "",
-      weakness: ""
     })
 
     const rules = {
