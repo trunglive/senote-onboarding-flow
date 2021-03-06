@@ -65,28 +65,28 @@ const minPersonas = 2
 export default {
   name: "Personas",
   props: {
-    send: Function,
+    send: Function
   },
   components: {
     TitleWrapper,
     AvatarSquareBox,
     BaseInput,
     EnterSquareGroup,
-    NavigationButtonGroup,
+    NavigationButtonGroup
   },
   setup() {
     const formData = reactive({
-      personaList: [{ id: uuidv4(), value: "", entered: false }],
+      personaList: [{ id: uuidv4(), value: "", entered: false }]
     })
 
     const rules = {
       personaList: [
         {
           value: {
-            required,
-          },
-        },
-      ],
+            required
+          }
+        }
+      ]
     }
 
     const v$ = useVuelidate(rules, toRefs(formData))
@@ -107,7 +107,7 @@ export default {
           if (persona.id === id) {
             return {
               ...persona,
-              entered: true,
+              entered: true
             }
           }
           return persona
@@ -118,7 +118,7 @@ export default {
         formData.personaList.push({
           id: nextId,
           value: "",
-          entered: false,
+          entered: false
         })
 
         // focus on next input on next component re-render
@@ -128,7 +128,7 @@ export default {
     }
 
     return { formData, v$, minPersonasText, disableContinueButton, handleHitEnter }
-  },
+  }
 }
 </script>
 

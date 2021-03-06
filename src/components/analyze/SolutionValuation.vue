@@ -103,7 +103,7 @@ const colorData2 = {
       label: "Red",
       selected: false,
       color: "bg-red"
-    },
+    }
   ]
 }
 

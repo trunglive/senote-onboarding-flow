@@ -81,7 +81,7 @@ export default {
     hideStepInfo: Boolean,
     hideSwitchButtonGroup: Boolean,
     hideNavigationButtonGroup: Boolean,
-    stepHiddenOnSwitchOff: Boolean,
+    stepHiddenOnSwitchOff: Boolean
   },
   components: {
     Tooltip,
@@ -89,7 +89,7 @@ export default {
     StepInfo,
     Switch,
     AppIcon,
-    NavigationButtonGroup,
+    NavigationButtonGroup
   },
   setup(props) {
     const store = useStore()
@@ -118,9 +118,9 @@ export default {
       currentPhase,
       isContinueButtonDisabled,
       composeStepTitle,
-      handleToggleSwitch,
+      handleToggleSwitch
     }
-  },
+  }
 }
 </script>
 

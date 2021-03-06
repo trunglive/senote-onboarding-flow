@@ -5,7 +5,8 @@
         <rdf:Description rdf:about=""/>
       </rdf:RDF>
     </x:xmpmeta>
-    <?xpacket end="w"?></metadata>
+    <?xpacket end="w"?>
+  </metadata>
   <defs>
     <style>
       .cls-1 {
@@ -14,5 +15,7 @@
       }
     </style>
   </defs>
-  <path id="Shape_3_copy" data-name="Shape 3 copy" class="cls-1" d="M790,631H779.622l3.387,3.387-0.622.622-3.844-3.845-0.189.19L778,631h0l-0.354-.354,0.354-.353V630h0.293l4.353-4.354,0.708,0.708L779.707,630H790v-6h1v7h-1Z" transform="translate(-777.656 -624)"/>
+  <path id="Shape_3_copy" data-name="Shape 3 copy" class="cls-1"
+        d="M790,631H779.622l3.387,3.387-0.622.622-3.844-3.845-0.189.19L778,631h0l-0.354-.354,0.354-.353V630h0.293l4.353-4.354,0.708,0.708L779.707,630H790v-6h1v7h-1Z"
+        transform="translate(-777.656 -624)"/>
 </svg>

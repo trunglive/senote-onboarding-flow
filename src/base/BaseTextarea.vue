@@ -31,32 +31,32 @@ export default {
   props: {
     customClass: {
       type: String,
-      default: "",
+      default: ""
     },
     error: {
       type: Boolean,
-      default: false,
+      default: false
     },
     placeholder: {
       type: String,
-      default: "",
+      default: ""
     },
     modelValue: {
       type: [String, Number],
-      default: "",
+      default: ""
     },
     id: {
       type: String,
-      default: "",
+      default: ""
     },
     disableInput: {
       type: Boolean,
-      default: false,
+      default: false
     },
     enableBackgroundOnHover: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
   emits: ["update:modelValue", "blur", "enter"],
   setup() {
@@ -73,7 +73,7 @@ export default {
     return {
       placeholderHidden,
       handleFocusin,
-      handleFocusout,
+      handleFocusout
     }
   }
 }

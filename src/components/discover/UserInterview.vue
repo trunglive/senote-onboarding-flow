@@ -106,7 +106,7 @@ const colorData = {
       label: "Red",
       selected: true,
       color: "bg-red"
-    },
+    }
   ]
 }
 
@@ -138,7 +138,7 @@ export default {
       formData,
       data,
       v$,
-      handleToggleSelectItem,
+      handleToggleSelectItem
     }
   }
 }

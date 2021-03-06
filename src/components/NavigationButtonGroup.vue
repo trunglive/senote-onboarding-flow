@@ -45,11 +45,11 @@ export default {
     disableContinueButton: Boolean,
     hidden: {
       type: Boolean,
-      default: false,
+      default: false
     },
     horizontal: {
       type: Boolean,
-      default: false,
+      default: false
     },
     customWidth: {
       type: String,

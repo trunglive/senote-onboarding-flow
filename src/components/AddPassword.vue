@@ -55,22 +55,22 @@ const passwordMinLength = 5
 export default {
   name: "AddPassword",
   props: {
-    send: Function,
+    send: Function
   },
   components: { AppIcon, BaseInput, AvatarGroup, NavigationButtonGroup },
   setup() {
     const formData = reactive({
-      password: "",
+      password: ""
     })
 
     const rules = {
-      password: { required, minLength: minLength(passwordMinLength) },
+      password: { required, minLength: minLength(passwordMinLength) }
     }
 
     const v$ = useVuelidate(rules, toRefs(formData))
 
     return { formData, v$, passwordMinLength }
-  },
+  }
 }
 </script>
 

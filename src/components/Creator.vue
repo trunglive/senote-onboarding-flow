@@ -69,7 +69,7 @@ export default {
       default: ""
     }
   },
-  components: { Phase },
+  components: { Phase }
   // components: { Abstract },
 }
 </script>

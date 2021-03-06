@@ -33,12 +33,12 @@ export default {
   props: {
     label: {
       type: String,
-      default: "",
+      default: ""
     },
     content: {
       type: String,
-      default: "",
-    },
+      default: ""
+    }
   },
   setup() {
     let tooltipHidden = ref(true)
@@ -54,9 +54,9 @@ export default {
     return {
       tooltipHidden,
       handleMouseover,
-      handleMouseleave,
+      handleMouseleave
     }
-  },
+  }
 }
 </script>
 

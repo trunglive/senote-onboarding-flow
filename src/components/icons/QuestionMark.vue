@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: "QuestionMark",
+  name: "QuestionMark"
 }
 </script>
 

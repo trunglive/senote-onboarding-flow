@@ -58,30 +58,30 @@ export default {
   components: {
     TitleWrapper,
     BaseInput,
-    BaseTextarea,
+    BaseTextarea
   },
   props: {
     msg: String,
-    send: Function,
+    send: Function
   },
   setup() {
     const formData = reactive({
       fullName: "",
       emailAddress: "",
-      projectSummary: "",
+      projectSummary: ""
     })
 
     const avatarLetter = computed(() => formData.emailAddress?.[0])
 
     const rules = {
       fullName: { required },
-      emailAddress: { required, email },
+      emailAddress: { required, email }
     }
 
     const v$ = useVuelidate(rules, toRefs(formData))
 
     return { formData, avatarLetter, v$ }
-  },
+  }
 }
 </script>
 
