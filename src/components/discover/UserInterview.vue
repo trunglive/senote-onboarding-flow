@@ -5,7 +5,7 @@
         :title="formData.title"
         required
       >
-        <div class="flex pl-4 pt-4 space-x-10">
+        <div class="flex pt-4 space-x-10">
           <BaseCheckboxGroup
             v-model="formData.checked"
             :name="formData.name"
@@ -17,7 +17,7 @@
         title="What are your favorite colors?"
         required
       >
-        <div class="pl-4 min-h-80">
+        <div class="min-h-80">
           <BaseSelect
             custom-class="w-64"
             :options="data.colorData.options"

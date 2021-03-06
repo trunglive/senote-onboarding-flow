@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-lg pl-4 pb-2">
+    <div class="pb-2">
       {{ title }} <span
         v-show="required"
         class="text-red"

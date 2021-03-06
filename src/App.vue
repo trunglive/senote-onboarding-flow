@@ -2,7 +2,7 @@
   <div class="flex">
     <div
       :class="
-        isPhaseEntityLoaded ? (isPhaseStepLoaded ? 'w-3/5' : 'w-1/2') : 'w-full'
+        isPhaseEntityLoaded ? (isPhaseStepLoaded ? 'w-4/5' : 'w-1/2') : 'w-full'
       "
     >
       <ProgressBar :percentage="calculateProgressBarPercentage(state.value)" />

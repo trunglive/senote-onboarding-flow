@@ -10,7 +10,7 @@
           v-model="formData.password"
           @blur="v$.password.$touch"
           placeholder="Enter your password"
-          custom-class="w-72"
+          custom-class="w-72 pl-0 pr-0"
           :enable-background-on-hover="false"
         />
         <AppIcon

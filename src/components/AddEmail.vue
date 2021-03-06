@@ -10,7 +10,7 @@
           v-model="formData.emailAddress"
           @blur="v$.emailAddress.$touch"
           placeholder="Enter email"
-          custom-class="w-72"
+          custom-class="w-72 pl-0 pr-0"
           :enable-background-on-hover="false"
         />
         <AppIcon

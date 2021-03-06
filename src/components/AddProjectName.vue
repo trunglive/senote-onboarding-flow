@@ -8,7 +8,7 @@
         v-model="formData.projectName"
         @blur="v$.projectName.$touch"
         placeholder="Research Project"
-        custom-class="w-navigation-button text-center px-0"
+        custom-class="w-navigation-button text-center pl-0 pr-0"
         :enable-background-on-hover="false"
       />
       <div class="border-t border-dashed">

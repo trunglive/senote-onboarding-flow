@@ -5,7 +5,7 @@
         :title="data.solutionValuationData.title"
         required
       >
-        <div class="flex pl-4 pt-4">
+        <div class="flex pt-4">
           <BaseRadioGroup
             v-model="data.solutionValuationData.selected"
             :name="data.solutionValuationData.name"
@@ -18,13 +18,11 @@
         title="What is your favorite color?"
         required
       >
-        <div class="pl-4">
-          <BaseSelect
-            custom-class="w-72"
-            :options="data.colorData2.options"
-            @handleSelectSingleItem="handleSelectSingleItem"
-          />
-        </div>
+        <BaseSelect
+          custom-class="w-72"
+          :options="data.colorData2.options"
+          @handleSelectSingleItem="handleSelectSingleItem"
+        />
       </TitleWrapper>
     </div>
     <div class="pt-20">

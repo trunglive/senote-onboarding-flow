@@ -1,6 +1,9 @@
 <template>
   <div class="creator-wrapper">
-    <div class="creator-inner">
+    <div
+      class="creator-inner"
+      :class="isPhaseStepLoaded && 'creator-inner__small'"
+    >
       <div class="mb-8 text-3xl font-medium text-black-dark">
         Research Me
       </div>
@@ -92,5 +95,10 @@ export default {
   border-radius: 0.6em;
   box-shadow: rgba(0, 0, 0, 0.2) 0 2.2em 7.4em 0;
   transition: height 0.4s ease 0s, margin 0.4s ease 0s;
+}
+
+.creator-inner__small {
+  max-width: 380px;
+  padding: 30px 0 30px 40px;
 }
 </style>
