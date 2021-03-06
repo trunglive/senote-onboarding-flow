@@ -9,13 +9,14 @@
     <div class="space-y-10">
       <div class="flex space-x-6">
         <TitleWrapper
-          title="What is your full name?"
+          title="What is your name?"
           required
         >
           <BaseInput
-            v-model="formData.fullName"
-            @blur="v$.fullName.$touch"
-            placeholder="John Doe"
+            v-model="formData.name"
+            :error="v$.name.$error"
+            @blur="v$.name.$touch"
+            placeholder="Daniel"
             custom-class="w-72"
           />
         </TitleWrapper>
@@ -25,8 +26,9 @@
         >
           <BaseInput
             v-model="formData.emailAddress"
+            :error="v$.emailAddress.$error"
             @blur="v$.emailAddress.$touch"
-            placeholder="john.doe@gmail.com"
+            placeholder="daniel@gmail.com"
             custom-class="w-72"
           />
         </TitleWrapper>
@@ -66,7 +68,7 @@ export default {
   },
   setup() {
     const formData = reactive({
-      fullName: "",
+      name: "",
       emailAddress: "",
       projectSummary: ""
     })
@@ -74,7 +76,7 @@ export default {
     const avatarLetter = computed(() => formData.emailAddress?.[0])
 
     const rules = {
-      fullName: { required },
+      name: { required },
       emailAddress: { required, email }
     }
 
