@@ -13,15 +13,16 @@
         />
       </TitleWrapper>
       <TitleWrapper
-        title="What's the worst thing that could happen in this project?"
+        :title="formData.checkboxData.title"
         required
       >
-        <BaseInput
-          v-model="formData.worstThingHappened"
-          :error="v$.worstThingHappened.$error"
-          @blur="v$.worstThingHappened.$touch"
-          placeholder="Add Answer..."
-        />
+        <div class="flex pt-4 space-x-10">
+          <BaseCheckboxGroup
+            v-model="formData.checkboxData.checked"
+            :name="formData.checkboxData.name"
+            :options="formData.checkboxData.options"
+          />
+        </div>
       </TitleWrapper>
     </div>
     <div class="pt-20 hidden">
@@ -39,11 +40,32 @@ import { required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
 
 import BaseInput from "@/base/BaseInput"
+import BaseCheckboxGroup from "@/base/BaseCheckboxGroup"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import TitleWrapper from "@/base/wrapper/TitleWrapper"
 
+const checkboxData = {
+  title: "On a typical day, when do you get focused the most?",
+  name: "userInterviewQuestions",
+  checked: [],
+  options: [
+    {
+      value: "morning",
+      label: "Morning"
+    },
+    {
+      value: "afternoon",
+      label: "Afternoon"
+    },
+    {
+      value: "night",
+      label: "Night"
+    }
+  ]
+}
+
 export default {
-  components: { TitleWrapper, BaseInput, NavigationButtonGroup },
+  components: { TitleWrapper, BaseInput, BaseCheckboxGroup, NavigationButtonGroup },
   props: {
     msg: String,
     send: Function,
@@ -53,16 +75,13 @@ export default {
   setup() {
     const formData = reactive({
       marketingMessage: "",
-      worstThingHappened: ""
+      checkboxData
     })
 
     const rules = {
       marketingMessage: {
         required
       },
-      worstThingHappened: {
-        required
-      }
     }
 
     const v$ = useVuelidate(rules, toRefs(formData))
