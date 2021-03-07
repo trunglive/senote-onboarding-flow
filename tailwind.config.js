@@ -83,7 +83,7 @@ module.exports = {
     height: theme => ({
       auto: "auto",
       ...theme("spacing"),
-      "base-select-input": "2.6rem",
+      "base-select-input": "3rem",
       full: "100%",
       screen: "100vh",
       "navigation-button": "3.25rem",

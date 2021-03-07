@@ -1,31 +1,55 @@
 <template>
   <div class="flex flex-col items-center justify-center">
-    <div class="space-y-10">
-      <TitleWrapper
-        :title="formData.radioData.title"
-        required
-      >
-        <div class="flex">
-          <BaseRadioGroup
-            v-model="formData.radioData.checked"
-            :name="formData.radioData.name"
-            :options="formData.radioData.options"
-            :model-value="formData.radioData.checked"
-          />
-        </div>
-      </TitleWrapper>
-      <TitleWrapper
-        title="What are your favorite colors?"
-        required
-      >
-        <div class="min-h-80">
-          <BaseSelect
+    <div class="flex flex-col space-y-4">
+      <div class="flex space-x-4">
+        <TitleWrapper
+          title="Enter email"
+          required
+        >
+          <BaseInput
+            v-model="formData.userInvitationGroup[0].userEmail"
+            :error="v$.userInvitationGroup[0].userEmail.$error"
+            @blur="v$.userInvitationGroup[0].userEmail.$touch"
+            placeholder="daniel@gmail.com"
             custom-class="w-64"
-            :options="formData.colorData.options"
-            @handleToggleSelectItem="handleToggleSelectItem"
-            mode="multiple"
           />
-        </div>
+        </TitleWrapper>
+        <TitleWrapper
+          :title="formData.spaceAccess.title"
+          required
+        >
+          <div class="min-h-80">
+            <BaseSelect
+              custom-class="w-40"
+              :options="formData.spaceAccess.options"
+              @handleToggleSelectItem="handleToggleSelectItem"
+            />
+          </div>
+        </TitleWrapper>
+        <TitleWrapper
+          :title="formData.permissionAccess.title"
+          required
+        >
+          <div class="min-h-80">
+            <BaseSelect
+              custom-class="w-40"
+              :options="formData.permissionAccess.options"
+              @handleToggleSelectItem="handleToggleSelectItem"
+            />
+          </div>
+        </TitleWrapper>
+      </div>
+      <div class="flex items-center justify-center border-1 border-dashed border-ocean-dark rounded h-base-select-input text-ocean-dark font-bold cursor-pointer">
+        + Invite another user
+      </div>
+      <TitleWrapper
+        :title="formData.f2aData.title"
+      >
+        <BaseCheckboxGroup
+          v-model="formData.f2aData.checked"
+          :name="formData.f2aData.name"
+          :options="formData.f2aData.options"
+        />
       </TitleWrapper>
     </div>
   </div>
@@ -37,109 +61,119 @@ import { required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
 
 import TitleWrapper from "@/base/wrapper/TitleWrapper"
-import NavigationButtonGroup from "@/components/NavigationButtonGroup"
-import BaseCheckboxGroup from "@/base/BaseCheckboxGroup"
 import BaseSelect from "@/base/BaseSelect"
-import BaseRadioGroup from "@/base/BaseRadioGroup"
+import BaseInput from "@/base/BaseInput"
+import BaseCheckboxGroup from "@/base/BaseCheckboxGroup"
 
-const radioData = {
-  title: "On a typical day, when do you get focused the most?",
-  name: "userInterviewQuestions",
-  checked: "",
-  options: [
-    {
-      value: "morning",
-      label: "Morning"
-    },
-    {
-      value: "afternoon",
-      label: "Afternoon"
-    },
-    {
-      value: "night",
-      label: "Night"
-    }
-  ]
-}
+const userInvitationGroup = [{ userEmail: "", canAccess: "", role: "" }]
 
-const colorData = {
-  title: "What are your favorite colors?",
-  name: "colorQuestions",
+const spaceAccess = {
+  title: "Space access",
+  name: "spaceAccess",
   selected: [],
   options: [
     {
-      value: "black",
-      label: "Black",
+      value: "all",
+      label: "All",
       selected: true,
-      color: "bg-black"
+      color: "bg-black",
     },
     {
-      value: "silver",
-      label: "Silver",
+      value: "iOSApp",
+      label: "iOS App",
       selected: false,
-      color: "bg-white-dark-2"
+      color: "bg-black",
     },
     {
-      value: "ocean",
-      label: "Ocean",
+      value: "webApp",
+      label: "Web App",
+      selected: false,
+      color: "bg-white-dark-2",
+    },
+  ],
+}
+
+const permissionAccess = {
+  title: "Permission access",
+  name: "permissionAccess",
+  selected: [],
+  options: [
+    {
+      value: "viewOnly",
+      label: "View Only",
       selected: true,
-      color: "bg-ocean-dark"
+      color: "bg-black",
     },
     {
-      value: "blue",
-      label: "Blue",
+      value: "viewAndRead",
+      label: "View & Read",
       selected: false,
-      color: "bg-blue"
+      color: "bg-white-dark-2",
     },
+  ],
+}
+
+const f2aData = {
+  title: "",
+  name: "2faEnabled",
+  checked: [],
+  options: [
     {
-      value: "purple",
-      label: "Purple",
-      selected: false,
-      color: "bg-purple-dark"
-    },
-    {
-      value: "red",
-      label: "Red",
-      selected: true,
-      color: "bg-red"
+      value: "2faEnabled",
+      label: "Require members to sign in with 2FA-protected account"
     }
   ]
 }
 
 export default {
   name: "UserInterview",
-  components: { BaseRadioGroup, BaseSelect, TitleWrapper },
+  components: { BaseCheckboxGroup, BaseInput, BaseSelect, TitleWrapper },
   props: {
     msg: String,
     send: Function,
-    currentState: String
+    currentState: String,
   },
   setup() {
-    const formData = reactive({ radioData, colorData })
+    const formData = reactive({
+      userInvitationGroup,
+      spaceAccess,
+      permissionAccess,
+      f2aData
+    })
 
     const rules = {
-      radioData: {
-        checked: required
-      },
-      colorData: {
+      userInvitationGroup: [{
+        userEmail: required
+      }],
+      spaceAccess: {
         checked: {
-          required
-        }
+          required,
+        },
+      },
+      permissionAccess: {
+        checked: {
+          required,
+        },
+      },
+      f2aData: {
+        checked: {
+          required,
+        },
       }
     }
 
     const v$ = useVuelidate(rules, toRefs(formData))
 
     function handleToggleSelectItem(updatedOptions) {
-      formData.colorData.options = updatedOptions
+      formData.spaceAccess.options = updatedOptions
     }
 
     return {
       formData,
       v$,
-      handleToggleSelectItem
+      handleToggleSelectItem,
     }
-  }
+  },
 }
 </script>
 

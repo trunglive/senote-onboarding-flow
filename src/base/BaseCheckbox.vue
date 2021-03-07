@@ -82,21 +82,21 @@ export default {
   position: absolute;
   top: 10%;
   left: -12%;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   background-color: #fff;
   border: 2px solid #eee;
   border-radius: 4px;
   cursor: pointer;
-  transition: 0.2s ease-in-out;
+  /*transition: 0.2s ease-in-out;*/
 }
 
 .checkbox-item label:after {
   position: absolute;
   width: 10px;
   height: 5px;
-  top: 20%;
-  left: 20%;
+  top: 25%;
+  left: 22%;
   transform: rotate(-45deg);
   background: transparent;
   border: 2px solid #fff;

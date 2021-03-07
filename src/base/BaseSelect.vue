@@ -42,9 +42,12 @@
       id="select-dropdown-wrapper"
       tabindex="0"
       :class="[ !dropdownOpen && 'hidden', customClass ]"
-      class="absolute tags-selector js-active outline-none"
+      class="absolute tags-selector js-active outline-none pb-2 pl-2"
     >
-      <div class="tags-selector__header">
+      <div
+        class="tags-selector__header"
+        :class="mode === 'multiple' ? 'flex' : 'hidden'"
+      >
         <button
           type="button"
           class="tags-selector__button"
@@ -64,6 +67,7 @@
         @focusout="handleFocusOutOfSearchInput"
         tabindex="-1"
         class="tags-selector__input-container"
+        :class="mode === 'multiple' ? 'flex' : 'hidden'"
       >
         <AppIcon
           v-show="searchInputFocused"
@@ -320,11 +324,12 @@ div.tags-selector.js-active {
 }
 
 div.tags-selector__header {
+  /*display: flex;*/
   align-items: center;
-  color: #3b3b3b;
-  display: flex;
   justify-content: space-between;
+  padding-top: 8px;
   padding-right: 8px;
+  color: #3b3b3b;
 }
 
 button.tags-selector__button {
@@ -359,18 +364,18 @@ div.tags-selector__tags {
 }
 
 div.tags-selector__input-container {
+  position: relative;
+  /*display: flex;*/
   align-items: center;
-  background-color: #f8f9fa;
-  border-radius: 4px;
-  color: #3b3b3b;
-  cursor: default;
-  display: flex;
   height: 41px;
-  margin-right: 8px;
   margin-top: 8px;
+  margin-right: 8px;
   margin-bottom: 4px;
   padding: 5px 10px;
-  position: relative;
+  color: #3b3b3b;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  cursor: default;
 }
 
 .tags-selector__input-container > svg {
