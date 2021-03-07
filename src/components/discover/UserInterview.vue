@@ -39,7 +39,7 @@
           </div>
         </TitleWrapper>
       </div>
-      <div class="flex items-center justify-center border-1 border-dashed border-ocean-dark rounded h-base-select-input text-ocean-dark font-bold cursor-pointer">
+      <div class="flex items-center justify-center h-base-select-input text-black-light border-1 border-dashed rounded cursor-pointer">
         + Invite another user
       </div>
       <TitleWrapper

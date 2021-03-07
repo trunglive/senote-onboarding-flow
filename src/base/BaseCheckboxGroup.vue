@@ -14,12 +14,19 @@
         :box-style="boxStyle"
         @update:modelValue="$emit('update:modelValue', $event)"
       />
+      <BaseInput
+        v-if="dynamic"
+        placeholder="+ Add type"
+        custom-class="w-44"
+        :dynamic="dynamic"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import BaseCheckbox from "@/base/BaseCheckbox"
+import BaseInput from "@/base/BaseInput"
 
 export default {
   name: "BaseCheckboxGroup",
@@ -41,8 +48,12 @@ export default {
       type: Boolean,
       default: false,
     },
+    dynamic: {
+      type: Boolean,
+      default: false
+    }
   },
-  components: { BaseCheckbox }
+  components: { BaseInput, BaseCheckbox }
 
 }
 </script>

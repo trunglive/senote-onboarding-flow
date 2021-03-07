@@ -95,6 +95,7 @@ module.exports = {
     extend: {
       outline: {
         red: "1px solid #d0021b",
+        "dashed-grey": "1px dashed #646464",
       },
     },
   },

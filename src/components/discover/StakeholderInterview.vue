@@ -21,6 +21,7 @@
           :name="formData.checkboxData.name"
           :options="formData.checkboxData.options"
           box-style
+          dynamic
         />
       </TitleWrapper>
     </div>

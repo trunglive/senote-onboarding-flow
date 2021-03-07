@@ -6,8 +6,9 @@
       error ? 'outline-red' : 'outline-none',
       customClass,
       disableInput && 'cursor-pointer',
+      dynamic && !placeholderHidden ? 'rounded border-1 border-dashed' : 'bg-white-light'
     ]"
-    class="appearance-none px-4 py-3 rounded placeholder-gray-500 text-gray-900 focus:z-10 bg-white-light"
+    class="appearance-none px-4 py-3 rounded placeholder-gray-500 text-black focus:z-10"
     type="text"
     autocomplete="off"
     v-bind="$attrs"
@@ -55,6 +56,10 @@ export default {
     enableBackgroundOnHover: {
       type: Boolean,
       default: true
+    },
+    dynamic: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ["update:modelValue", "blur", "enter"],

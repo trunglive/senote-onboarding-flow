@@ -77,7 +77,7 @@ export default {
 .checkbox-item-container.checkbox-item-container__box-style {
   display: flex;
   align-items: center;
-  width: 180px;
+  width: 176px;
   height: 48px;
   padding: 10px 15px;
   opacity: 80%;
