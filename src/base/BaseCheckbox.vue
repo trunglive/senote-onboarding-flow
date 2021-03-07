@@ -1,6 +1,12 @@
 <template>
-  <div class="checkbox-item-container">
-    <div class="price-checkbox__less-than-ten checkbox-item">
+  <div
+    class="checkbox-item-container"
+    :class="boxStyle && 'checkbox-item-container__box-style'"
+  >
+    <div
+      class="price-checkbox__less-than-ten checkbox-item"
+      :class="boxStyle && 'checkbox-item__box-style'"
+    >
       <input
         type="checkbox"
         :name="name"
@@ -39,7 +45,11 @@ export default {
     modelValue: {
       type: Array,
       required: true
-    }
+    },
+    boxStyle: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, { emit }) {
     function updateCheckbox() {
@@ -62,6 +72,23 @@ export default {
 <style scoped>
 .checkbox-item-container {
   display: flex;
+}
+
+.checkbox-item-container.checkbox-item-container__box-style {
+  display: flex;
+  align-items: center;
+  width: 180px;
+  height: 48px;
+  padding: 10px 15px;
+  opacity: 80%;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.checkbox-item-container.checkbox-item-container__box-style:nth-child(4n+4) {
+  /*flex-grow: 0;*/
+  /*flex-shrink: 1;*/
+  /*flex-basis: 100%;*/
 }
 
 .label-text {
@@ -89,6 +116,11 @@ export default {
   border-radius: 4px;
   cursor: pointer;
   /*transition: 0.2s ease-in-out;*/
+}
+
+.checkbox-item.checkbox-item__box-style label {
+  border: 2px solid #ddd;
+  border-radius: 50%;
 }
 
 .checkbox-item label:after {

@@ -16,13 +16,12 @@
         :title="formData.checkboxData.title"
         required
       >
-        <div class="flex space-x-10">
-          <BaseCheckboxGroup
-            v-model="formData.checkboxData.checked"
-            :name="formData.checkboxData.name"
-            :options="formData.checkboxData.options"
-          />
-        </div>
+        <BaseCheckboxGroup
+          v-model="formData.checkboxData.checked"
+          :name="formData.checkboxData.name"
+          :options="formData.checkboxData.options"
+          box-style
+        />
       </TitleWrapper>
     </div>
     <div class="pt-20 hidden">
@@ -45,21 +44,29 @@ import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import TitleWrapper from "@/base/wrapper/TitleWrapper"
 
 const checkboxData = {
-  title: "On a typical day, when do you get focused the most?",
-  name: "userInterviewQuestions",
+  title: "Which type of creative work used in this project?",
+  name: "creativeWorkQuestions",
   checked: [],
   options: [
     {
-      value: "morning",
-      label: "Morning"
+      value: "productDesign",
+      label: "Product Design"
     },
     {
-      value: "afternoon",
-      label: "Afternoon"
+      value: "development",
+      label: "Development"
     },
     {
-      value: "night",
-      label: "Night"
+      value: "branding",
+      label: "Branding"
+    },
+    {
+      value: "marketing",
+      label: "Marketing"
+    },
+    {
+      value: "copyWriting",
+      label: "Copywriting"
     }
   ]
 }
