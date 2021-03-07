@@ -46,10 +46,6 @@ export default {
 }
 </script>
 <style>
-input[type="radio"] + label {
-  font-size: 14px;
-}
-
 input[type="radio"] + label span {
   transition: background 0.7s, transform 0.7s;
 }

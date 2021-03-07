@@ -9,10 +9,11 @@
       </div>
       <div>
         <div>
-          <div class="text-black-light font-medium">
+          <div class="text-black font-medium">
             Phase 1 - Discover
           </div>
           <Phase
+            :is-phase-entity-loaded="isPhaseEntityLoaded"
             :is-phase-step-loaded="isPhaseStepLoaded"
             :current-state="currentState"
             phase-name="discover"
@@ -23,10 +24,11 @@
           />
         </div>
         <div>
-          <div class="text-black-light font-medium">
+          <div class="text-black font-medium">
             Phase 2 - Analyze
           </div>
           <Phase
+            :is-phase-entity-loaded="isPhaseEntityLoaded"
             :is-phase-step-loaded="isPhaseStepLoaded"
             :current-state="currentState"
             phase-name="analyze"
@@ -38,10 +40,11 @@
           />
         </div>
         <div>
-          <div class="text-black-light font-medium">
+          <div class="text-black font-medium">
             Phase 3 - Prototype
           </div>
           <Phase
+            :is-phase-entity-loaded="isPhaseEntityLoaded"
             :is-phase-step-loaded="isPhaseStepLoaded"
             :current-state="currentState"
             phase-name="prototype"
@@ -63,6 +66,7 @@ import Phase from "@/components/Phase"
 export default {
   name: "Creator",
   props: {
+    isPhaseEntityLoaded: Boolean,
     isPhaseStepLoaded: Boolean,
     currentState: {
       type: String,

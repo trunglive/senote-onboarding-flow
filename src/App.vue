@@ -96,6 +96,7 @@
         "
       >
         <Creator
+          :is-phase-entity-loaded="isPhaseEntityLoaded"
           :is-phase-step-loaded="isPhaseStepLoaded"
           :current-state="state.value"
         />

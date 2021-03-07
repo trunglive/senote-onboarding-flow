@@ -5,7 +5,7 @@
         :title="formData.radioData.title"
         required
       >
-        <div class="flex pt-4">
+        <div class="flex">
           <BaseRadioGroup
             v-model="formData.radioData.checked"
             :name="formData.radioData.name"

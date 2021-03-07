@@ -16,7 +16,7 @@
         :title="formData.checkboxData.title"
         required
       >
-        <div class="flex pt-4 space-x-10">
+        <div class="flex space-x-10">
           <BaseCheckboxGroup
             v-model="formData.checkboxData.checked"
             :name="formData.checkboxData.name"

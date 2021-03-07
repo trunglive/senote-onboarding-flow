@@ -13,7 +13,7 @@
             ? 'bg-ocean-light opacity-50 pointer-event-none'
             : 'bg-ocean hover:bg-ocean-dark', customWidth]
         "
-        class="h-12 flex flex-col items-center justify-center rounded-md text-white text-sm font-bold duration-200 ease-in-out"
+        class="h-12 flex flex-col items-center justify-center rounded text-white text-sm font-bold duration-200 ease-in-out"
       >
         <Spinner
           v-show="showSpinner"
@@ -27,7 +27,7 @@
       @click="handleClickBack"
       href="#"
       class="h-12 flex flex-col items-center justify-center text-black-light text-sm font-bold hover:text-black duration-100 ease-in-out"
-      :class="[customWidth, horizontal && 'border-1 border-white-dark rounded-md']"
+      :class="[customWidth, horizontal && 'border-1 border-white-dark rounded']"
     >
       Back
     </a>

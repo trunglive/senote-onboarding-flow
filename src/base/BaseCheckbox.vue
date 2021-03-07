@@ -66,7 +66,6 @@ export default {
 
 .label-text {
   margin-left: 1rem;
-  font-size: 14px;
   color: #40474f;
 }
 

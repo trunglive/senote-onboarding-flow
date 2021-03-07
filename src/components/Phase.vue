@@ -22,7 +22,10 @@
             class="flex items-center space-x-4"
           >
             <AppIcon :icon="step.icon" />
-            <div class="text-black-light text-sm">
+            <div
+              class="text-black-light"
+              :class="isPhaseEntityLoaded && 'text-sm'"
+            >
               <div
                 class="m-2"
                 :class="blurPhaseStepLabel && 'creator__item-name'"
@@ -74,6 +77,7 @@ export default {
   name: "Phase",
   props: {
     currentState: String,
+    isPhaseEntityLoaded: Boolean,
     isPhaseStepLoaded: Boolean,
     send: Function,
     phaseName: String,

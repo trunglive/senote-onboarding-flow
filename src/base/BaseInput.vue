@@ -5,10 +5,9 @@
     :class="[
       error ? 'outline-red' : 'outline-none',
       customClass,
-      disableInput && 'cursor-pointer bg-white',
-      enableBackgroundOnHover && 'hover:bg-white-light',
+      disableInput && 'cursor-pointer',
     ]"
-    class="appearance-none px-4 py-3 rounded placeholder-gray-500 text-sm text-gray-900 focus:z-10 bg-white-light"
+    class="appearance-none px-4 py-3 rounded placeholder-gray-500 text-gray-900 focus:z-10 bg-white-light"
     type="text"
     autocomplete="off"
     v-bind="$attrs"

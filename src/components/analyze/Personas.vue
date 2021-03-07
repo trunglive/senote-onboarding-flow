@@ -8,7 +8,7 @@
         <div
           v-for="(persona, index) in formData.personaList"
           :key="persona.id"
-          class="avatar-input-wrapper flex items-center p-4 hover:bg-white-light"
+          class="avatar-input-wrapper flex items-center p-4 bg-white-light"
           :class="{
             'cursor-pointer': persona.entered,
             'border-t-1 border-white-light-2': index >= 1,

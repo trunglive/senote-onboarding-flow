@@ -109,8 +109,8 @@ const radioData = {
 }
 
 const checkboxData = {
-  title: "Traffic Source",
-  name: "userInterviewQuestions",
+  title: "Traffic",
+  name: "traffic",
   checked: [],
   options: [
     {
