@@ -84,6 +84,12 @@
             :is-phase-step-loaded="isPhaseStepLoaded"
             :current-state="state.value"
           />
+          <Flows
+            v-if="state.matches('flows')"
+            :send="send"
+            :is-phase-step-loaded="isPhaseStepLoaded"
+            :current-state="state.value"
+          />
           <ConfirmTrial
             v-if="state.matches('confirmTrial')"
             :send="send"
@@ -132,6 +138,7 @@ import UserInterview from "@/components/discover/UserInterview"
 import CompetitorAnalysis from "@/components/discover/CompetitorAnalysis"
 import Personas from "@/components/analyze/Personas"
 import SolutionValuation from "@/components/analyze/SolutionValuation"
+import Flows from "@/components/analyze/Flows"
 import ConfirmTrial from "@/components/ConfirmTrial"
 import ProgressBar from "@/base/ProgressBar"
 import NavigationButtonGroup from "@/components/NavigationButtonGroup"
@@ -154,6 +161,7 @@ export default {
     CompetitorAnalysis,
     Personas,
     SolutionValuation,
+    Flows,
     ConfirmTrial
   },
   setup() {
