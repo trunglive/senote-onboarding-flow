@@ -1,18 +1,26 @@
 <template>
   <div
     class="flex"
-    :class="[horizontal ? 'flex-row-reverse space-x-reverse space-x-2' : 'flex-col', hidden && 'hidden']"
+    :class="[
+      horizontal ? 'flex-row-reverse space-x-reverse space-x-2' : 'flex-col',
+      hidden && 'hidden',
+    ]"
   >
     <div
-      :class="{ 'cursor-not-allowed': showSpinner || disableContinueButton, 'cursor-pointer': !disableContinueButton }"
+      :class="{
+        'cursor-not-allowed': showSpinner || disableContinueButton,
+        'cursor-pointer': !disableContinueButton,
+        hidden: currentState === 'confirmTrial',
+      }"
     >
       <a
         @click="handleClickContinue"
-        :class="
-          [showSpinner || disableContinueButton
+        :class="[
+          showSpinner || disableContinueButton
             ? 'bg-ocean-light opacity-50 pointer-event-none'
-            : 'bg-ocean hover:bg-ocean-dark', customWidth]
-        "
+            : 'bg-ocean hover:bg-ocean-dark',
+          customWidth,
+        ]"
         class="h-12 flex flex-col items-center justify-center rounded text-white text-sm font-bold duration-200 ease-in-out"
       >
         <Spinner
@@ -27,7 +35,11 @@
       @click="handleClickBack"
       href="#"
       class="h-12 flex flex-col items-center justify-center text-black-light text-sm font-bold hover:text-black duration-100 ease-in-out"
-      :class="[customWidth, horizontal && 'border-1 border-white-dark rounded']"
+      :class="[
+        customWidth,
+        horizontal && 'border-1 border-white-dark rounded',
+        currentState === 'addEmail' ? 'hidden' : 'block',
+      ]"
     >
       Back
     </a>
@@ -43,18 +55,23 @@ export default {
   props: {
     send: Function,
     disableContinueButton: Boolean,
+    disableBackButton: Boolean,
     hidden: {
       type: Boolean,
-      default: false
+      default: false,
     },
     horizontal: {
       type: Boolean,
-      default: false
+      default: false,
     },
     customWidth: {
       type: String,
-      default: "w-navigation-button"
-    }
+      default: "w-navigation-button",
+    },
+    currentState: {
+      type: String,
+      default: "",
+    },
   },
   components: { Spinner },
   setup(props, { emit }) {
@@ -63,7 +80,7 @@ export default {
     function handleClickContinue() {
       if (!props.disableContinueButton) {
         showSpinner.value = true
-        return new Promise((resolve) => {
+        return new Promise(resolve => {
           setTimeout(() => {
             resolve("success")
             showSpinner.value = false
@@ -81,9 +98,9 @@ export default {
     return {
       showSpinner,
       handleClickContinue,
-      handleClickBack
+      handleClickBack,
     }
-  }
+  },
 }
 </script>
 

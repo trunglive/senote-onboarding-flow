@@ -22,7 +22,7 @@ export default {
   components: { StepInfo, NavigationButtonGroup },
   setup() {
     function composeStepTitle() {
-      return "That’s it! You’re ready to go. Start your free 7-days trial."
+      return "That’s it! You’re ready to go. Start your free 7-day trial."
     }
 
     return {

@@ -18,8 +18,8 @@ export default {
 
 <style scoped>
 div.progress-bar {
-  height: 8px;;
-  background-color: #f8f9fa;
+  height: 8px;
+  background-color: rgba(241, 239, 239, 0.88);
   border-radius: 200px;
 }
 

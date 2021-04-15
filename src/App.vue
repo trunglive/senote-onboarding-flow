@@ -1,11 +1,13 @@
 <template>
   <div class="main-app-wrapper">
-    <div
-      class="main-content-wrapper"
-    >
+    <div class="main-content-wrapper">
       <div
         :class="
-          isPhaseEntityLoaded ? (isPhaseStepLoaded ? 'w-4/5' : 'w-1/2') : 'w-full'
+          isPhaseEntityLoaded
+            ? isPhaseStepLoaded
+              ? 'w-4/5'
+              : 'w-1/2'
+            : 'w-full'
         "
       >
         <div class="px-32 py-20">
@@ -98,7 +100,11 @@
       </div>
       <div
         :class="
-          isPhaseEntityLoaded ? (isPhaseStepLoaded ? 'w-2/5' : 'w-1/2') : 'hidden'
+          isPhaseEntityLoaded
+            ? isPhaseStepLoaded
+              ? 'w-2/5'
+              : 'w-1/2'
+            : 'hidden'
         "
       >
         <Creator
@@ -110,10 +116,12 @@
     </div>
     <div class="navigation-progress-bar">
       <div class="text-black-light text-sm">
-        3/12 questions remaining
+        {{ calculateProgressBarPercentage(state.value) }}% completed
       </div>
       <ProgressBar :percentage="calculateProgressBarPercentage(state.value)" />
       <NavigationButtonGroup
+        :current-state="state.value"
+        :disable-back-button="state.value === 'addEmail'"
         :send="send"
         custom-width="w-28"
         horizontal
@@ -162,7 +170,7 @@ export default {
     Personas,
     SolutionValuation,
     Flows,
-    ConfirmTrial
+    ConfirmTrial,
   },
   setup() {
     const { state, send } = useMachine(userDataMachine)
@@ -171,22 +179,22 @@ export default {
       discoverPhase: [
         "stakeholderInterview",
         "userInterview",
-        "competitorAnalysis"
+        "competitorAnalysis",
       ],
       analyzePhase: [
         "problemValuation",
         "personas",
         "solutionValuation",
-        "flows"
+        "flows",
       ],
-      prototypePhase: ["paperPrototype", "interactivePrototype"]
+      prototypePhase: ["paperPrototype", "interactivePrototype"],
     }
 
     // phase entity includes both phase & phase steps
     const isPhaseEntityLoaded = computed(() =>
       [
         ...Object.keys(phaseMap),
-        ...Object.values(phaseMap).flat()
+        ...Object.values(phaseMap).flat(),
       ].some(entity => state.value.matches(entity))
     )
 
@@ -197,19 +205,23 @@ export default {
     )
 
     const calculateProgressBarPercentage = currentState => {
-      const mapping = {
-        addEmail: 10,
-        addPassword: 20,
-        customizeFirstProject: 30,
-        addProjectName: 40,
-        businessGoalIntroduction: 50,
-        designThinkingProcesses: 60,
-        discoverPhase: 70,
-        analyzePhase: 80,
-        prototypePhase: 90,
-        confirmTrial: 100
-      }
-      return mapping[currentState]
+      console.log(currentState, "current state::")
+      const mapping = [
+        "addEmail",
+        "designThinkingProcesses",
+        "discoverPhase",
+        "analyzePhase",
+        "prototypePhase",
+        "stakeholderInterview",
+        "userInterview",
+        "competitorAnalysis",
+        "personas",
+        "solutionValuation",
+        "flows",
+        "confirmTrial",
+      ]
+      const percentageCompleted = (mapping.indexOf(currentState) / 11) * 100
+      return Number(percentageCompleted).toFixed(0)
     }
 
     return {
@@ -217,9 +229,9 @@ export default {
       send,
       calculateProgressBarPercentage,
       isPhaseEntityLoaded,
-      isPhaseStepLoaded
+      isPhaseStepLoaded,
     }
-  }
+  },
 }
 </script>
 
