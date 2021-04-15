@@ -80,7 +80,7 @@ export default {
   width: 176px;
   height: 48px;
   padding: 10px 15px;
-  opacity: 80%;
+  opacity: 0.8;
   background-color: #f8f9fa;
   border-radius: 4px;
 }
