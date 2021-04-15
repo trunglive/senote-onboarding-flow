@@ -15,12 +15,12 @@
         </div>
       </TitleWrapper>
       <TitleWrapper
-        title="What is your favorite color?"
+        :title="data.roles.title"
         required
       >
         <BaseSelect
           custom-class="w-72"
-          :options="data.colorData2.options"
+          :options="data.roles.options"
           @handleSelectSingleItem="handleSelectSingleItem"
         />
       </TitleWrapper>
@@ -63,47 +63,41 @@ const solutionValuationData = {
   ]
 }
 
-const colorData2 = {
-  title: "What are your favorite colors?",
-  name: "colorQuestions",
+const roles = {
+  title: "What is your current role?",
+  name: "roleQuestions",
   selected: [],
   options: [
     {
-      value: "black",
-      label: "Black",
+      value: "productManager",
+      label: "Product Manager",
       selected: false,
-      color: "bg-black"
-    },
-    {
-      value: "silver",
-      label: "Silver",
-      selected: false,
-      color: "bg-white-dark-2"
-    },
-    {
-      value: "ocean",
-      label: "Ocean",
-      selected: true,
       color: "bg-ocean-dark"
     },
     {
-      value: "blue",
-      label: "Blue",
+      value: "machineLearningEngineer",
+      label: "Machine Learning Engineer",
       selected: false,
       color: "bg-blue"
     },
     {
-      value: "purple",
-      label: "Purple",
+      value: "webDeveloper",
+      label: "Web Developer",
+      selected: false,
+      color: "bg-black"
+    },
+    {
+      value: "businessAnalyst",
+      label: "Business Analyst",
+      selected: true,
+      color: "bg-white-dark-2"
+    },
+    {
+      value: "designer",
+      label: "Designer",
       selected: false,
       color: "bg-purple-dark"
     },
-    {
-      value: "red",
-      label: "Red",
-      selected: false,
-      color: "bg-red"
-    }
   ]
 }
 
@@ -119,7 +113,7 @@ export default {
     NavigationButtonGroup
   },
   setup() {
-    const data = reactive({ solutionValuationData, colorData2 })
+    const data = reactive({ solutionValuationData, roles })
 
     const rules = {
       solutionValuationData: {
@@ -132,7 +126,7 @@ export default {
     const v$ = useVuelidate(rules, data)
 
     function handleSelectSingleItem(updatedOptions) {
-      data.colorData2.options = updatedOptions
+      data.roles.options = updatedOptions
     }
 
     return {
