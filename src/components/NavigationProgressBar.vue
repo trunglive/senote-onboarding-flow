@@ -8,6 +8,7 @@
       :current-state="state.value"
       :disable-back-button="state.value === 'addEmail'"
       :send="send"
+      @next="$emit('next')"
       custom-width="w-28"
       horizontal
     />
@@ -28,9 +29,9 @@ export default {
     state: Object,
     send: Function,
   },
+  emits: ["next"],
   setup() {
     const calculateProgressBarPercentage = currentState => {
-      // console.log(currentState, "current state::")
       const mapping = [
         "addEmail",
         "designThinkingProcesses",

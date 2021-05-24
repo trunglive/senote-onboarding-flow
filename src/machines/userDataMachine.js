@@ -19,7 +19,7 @@ export const userDataMachine = Machine(
         on: {
           ADD_EMAIL_NEXT: {
             target: "#designThinkingProcesses",
-            cond: { type: "addEmailValid" },
+            cond: { type: "formValid" },
           },
         },
       },
@@ -125,11 +125,9 @@ export const userDataMachine = Machine(
   },
   {
     guards: {
-      addEmailValid: (context, event) => {
-        console.log(event, "event::")
-        return true
-        // event.validation.value.$touch()
-        // return !event.validation.value.$invalid
+      formValid: (context, event) => {
+        event.validation.value.$touch()
+        return !event.validation.value.$invalid
       },
     },
   }

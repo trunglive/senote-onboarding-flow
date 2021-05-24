@@ -4,6 +4,7 @@
     <NavigationProgressBar
       :state="state"
       :send="send"
+      @next="$emit('next')"
     />
   </div>
 </template>
@@ -17,6 +18,7 @@ export default {
     state: Object,
     send: Function,
   },
+  emits: ["next"]
 }
 </script>
 

@@ -74,6 +74,7 @@ export default {
     },
   },
   components: { Spinner },
+  emits: ["next"],
   setup(props, { emit }) {
     const showSpinner = ref(false)
 
@@ -84,9 +85,7 @@ export default {
           setTimeout(() => {
             resolve("success")
             showSpinner.value = false
-            // props.send("ADD_EMAIL_NEXT")
-            props.send({ type: "ADD_EMAIL_NEXT", query: 'lala' });
-            emit("nextStep", { currentStep: 0 })
+            emit("next")
           }, 300)
         })
       }

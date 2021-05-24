@@ -2,6 +2,7 @@
   <navigation-progress-bar-wrapper
     :state="state"
     :send="send"
+    @next="handleClickNext"
   >
     <div class="">
       <div class="text-4xl font-bold opacity-80">
@@ -72,7 +73,7 @@ export default {
     state: Object,
     send: Function,
   },
-  setup() {
+  setup(props) {
     const formData = reactive({
       name: "",
       emailAddress: "",
@@ -88,7 +89,11 @@ export default {
 
     const v$ = useVuelidate(rules, toRefs(formData))
 
-    return { formData, avatarLetter, v$ }
+    const handleClickNext = () => {
+      props.send({ type: "ADD_EMAIL_NEXT", validation: v$ });
+    }
+
+    return { formData, avatarLetter, v$, handleClickNext }
   },
 }
 </script>
