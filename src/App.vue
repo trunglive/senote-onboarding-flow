@@ -34,6 +34,7 @@
           />
           <DesignThinkingProcess
             v-if="state.matches('designThinkingProcesses')"
+            :state="state"
             :send="send"
           />
           <Phase

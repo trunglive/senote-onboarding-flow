@@ -52,7 +52,7 @@ export const userDataMachine = Machine(
       designThinkingProcesses: {
         id: "designThinkingProcesses",
         on: {
-          NEXT: "discoverPhase",
+          DESIGN_THINKING_PROCESS_NEXT: "discoverPhase",
           BACK: "addEmail",
         },
       },
