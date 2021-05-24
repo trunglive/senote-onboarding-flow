@@ -13,6 +13,7 @@
         <div class="px-32 py-20">
           <AddEmail
             v-if="state.matches('addEmail')"
+            :state="state"
             :send="send"
           />
           <AddPassword
@@ -114,10 +115,6 @@
         />
       </div>
     </div>
-    <NavigationProgressBar
-      :state="state"
-      :send="send"
-    />
   </div>
 </template>
 <script>
@@ -139,12 +136,10 @@ import Personas from "@/components/analyze/Personas"
 import SolutionValuation from "@/components/analyze/SolutionValuation"
 import Flows from "@/components/analyze/Flows"
 import ConfirmTrial from "@/components/ConfirmTrial"
-import NavigationProgressBar from "@/components/NavigationProgressBar"
 
 export default {
   name: "App",
   components: {
-    NavigationProgressBar,
     AddEmail,
     AddPassword,
     CustomizeFirstProject, // skip
