@@ -114,23 +114,14 @@
         />
       </div>
     </div>
-    <div class="navigation-progress-bar">
-      <div class="text-black-light text-sm">
-        {{ calculateProgressBarPercentage(state.value) }}% completed
-      </div>
-      <ProgressBar :percentage="calculateProgressBarPercentage(state.value)" />
-      <NavigationButtonGroup
-        :current-state="state.value"
-        :disable-back-button="state.value === 'addEmail'"
-        :send="send"
-        custom-width="w-28"
-        horizontal
-      />
-    </div>
+    <NavigationProgressBar
+      :state="state"
+      :send="send"
+    />
   </div>
 </template>
 <script>
-import { computed } from "vue"
+import { computed, onMounted } from "vue"
 import { useMachine } from "@xstate/vue"
 import { userDataMachine } from "@/machines/userDataMachine"
 import AddEmail from "@/components/AddEmail"
@@ -148,14 +139,12 @@ import Personas from "@/components/analyze/Personas"
 import SolutionValuation from "@/components/analyze/SolutionValuation"
 import Flows from "@/components/analyze/Flows"
 import ConfirmTrial from "@/components/ConfirmTrial"
-import ProgressBar from "@/base/ProgressBar"
-import NavigationButtonGroup from "@/components/NavigationButtonGroup"
+import NavigationProgressBar from "@/components/NavigationProgressBar"
 
 export default {
   name: "App",
   components: {
-    NavigationButtonGroup,
-    ProgressBar,
+    NavigationProgressBar,
     AddEmail,
     AddPassword,
     CustomizeFirstProject, // skip
@@ -173,8 +162,6 @@ export default {
     ConfirmTrial,
   },
   setup() {
-    const { state, send } = useMachine(userDataMachine)
-
     const phaseMap = {
       discoverPhase: [
         "stakeholderInterview",
@@ -204,30 +191,15 @@ export default {
         .some(phaseStep => state.value.matches(phaseStep))
     )
 
-    const calculateProgressBarPercentage = currentState => {
-      console.log(currentState, "current state::")
-      const mapping = [
-        "addEmail",
-        "designThinkingProcesses",
-        "discoverPhase",
-        "analyzePhase",
-        "prototypePhase",
-        "stakeholderInterview",
-        "userInterview",
-        "competitorAnalysis",
-        "personas",
-        "solutionValuation",
-        "flows",
-        "confirmTrial",
-      ]
-      const percentageCompleted = (mapping.indexOf(currentState) / 11) * 100
-      return Number(percentageCompleted).toFixed(0)
-    }
+    onMounted(() => {
+      send("FETCH")
+    })
+
+    const { state, send } = useMachine(userDataMachine)
 
     return {
       state,
       send,
-      calculateProgressBarPercentage,
       isPhaseEntityLoaded,
       isPhaseStepLoaded,
     }
