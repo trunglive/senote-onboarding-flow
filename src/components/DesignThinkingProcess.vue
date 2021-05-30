@@ -37,6 +37,7 @@ import NavigationProgressBarWrapper from "@/components/NavigationProgressBarWrap
 export default {
   name: "DesignThinkingProcess",
   props: {
+    state: Object,
     send: Function,
   },
   components: {

@@ -43,6 +43,7 @@
             phase-name="discover"
             :is-phase-step-loaded="isPhaseStepLoaded"
             :current-state="state.value"
+            :state="state"
           />
           <Phase
             v-if="state.matches('analyzePhase')"
@@ -50,6 +51,7 @@
             phase-name="analyze"
             :is-phase-step-loaded="isPhaseStepLoaded"
             :current-state="state.value"
+            :state="state"
           />
           <Phase
             v-if="state.matches('prototypePhase')"
@@ -57,6 +59,7 @@
             phase-name="prototype"
             :is-phase-step-loaded="isPhaseStepLoaded"
             :current-state="state.value"
+            :state="state"
           />
           <StakeholderInterview
             v-if="state.matches('stakeholderInterview')"

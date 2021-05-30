@@ -58,19 +58,19 @@ export const userDataMachine = Machine(
       },
       discoverPhase: {
         on: {
-          NEXT: "analyzePhase",
+          PHASE_NEXT: "analyzePhase",
           BACK: "designThinkingProcesses",
         },
       },
       analyzePhase: {
         on: {
-          NEXT: "prototypePhase",
+          PHASE_NEXT: "prototypePhase",
           BACK: "discoverPhase",
         },
       },
       prototypePhase: {
         on: {
-          NEXT: "stakeholderInterview",
+          PHASE_NEXT: "stakeholderInterview",
           BACK: "analyzePhase",
         },
       },

@@ -1,5 +1,8 @@
 <template>
-  <div class="navigation-progress-bar">
+  <div
+    v-if="!hideNavigationButtonGroup"
+    class="navigation-progress-bar"
+  >
     <div class="text-black-light text-sm">
       {{ calculateProgressBarPercentage(state.value) }}% completed
     </div>
@@ -28,6 +31,7 @@ export default {
   props: {
     state: Object,
     send: Function,
+    hideNavigationButtonGroup: Boolean,
   },
   emits: ["next"],
   setup() {
@@ -53,10 +57,8 @@ export default {
     return {
       calculateProgressBarPercentage,
     }
-  }
+  },
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

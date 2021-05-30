@@ -1,82 +1,84 @@
 <template>
-  <div class="flex flex-col items-center justify-center">
-    <div class="flex flex-col w-navigation-button mb-2">
-      <StepInfo
-        v-show="!hideStepInfo"
-        :title="composeStepTitle()"
-      />
-      <div
-        class="mb-2"
-        :class="!hideSwitchButtonGroup ? 'space-y-2.5 mt-6' : 'mt-2'"
-      >
+  <NavigationProgressBarWrapper
+    :state="state"
+    :send="send"
+    @next="handleClickNext"
+    :hide-navigation-button-group="hideNavigationButtonGroup"
+  >
+    <div class="flex flex-col items-center justify-center">
+      <div class="flex flex-col w-navigation-button mb-2">
+        <StepInfo
+          v-show="!hideStepInfo"
+          :title="composeStepTitle()"
+        />
         <div
-          v-for="step in currentPhase?.stepProcesses"
-          :key="step.value"
-          class="flex items-center justify-between"
-          :class="
-            isPhaseStepLoaded && step.value !== currentState && 'opacity-30'
-          "
+          class="mb-2"
+          :class="!hideSwitchButtonGroup ? 'space-y-2.5 mt-6' : 'mt-2'"
         >
           <div
-            v-if="step.enabled || !stepHiddenOnSwitchOff"
-            class="flex items-center space-x-4"
+            v-for="step in currentPhase?.stepProcesses"
+            :key="step.value"
+            class="flex items-center justify-between"
+            :class="
+              isPhaseStepLoaded && step.value !== currentState && 'opacity-30'
+            "
           >
-            <AppIcon :icon="step.icon" />
             <div
-              class="text-black-light"
-              :class="isPhaseEntityLoaded && 'text-sm'"
+              v-if="step.enabled || !stepHiddenOnSwitchOff"
+              class="flex items-center space-x-4"
             >
+              <AppIcon :icon="step.icon" />
               <div
-                class="m-2"
-                :class="blurPhaseStepLabel && 'creator__item-name'"
+                class="text-black-light"
+                :class="isPhaseEntityLoaded && 'text-sm'"
               >
-                {{ step.label }}
+                <div
+                  class="m-2"
+                  :class="blurPhaseStepLabel && 'creator__item-name'"
+                >
+                  {{ step.label }}
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            v-show="!hideSwitchButtonGroup"
-            class="flex items-center space-x-4"
-          >
-            <Switch
-              :on="step.enabled"
-              :disabled="step.required"
-              :value="step.value"
-              @handleToggleSwitch="handleToggleSwitch"
-            />
-            <Tooltip
-              :label="step.label"
-              :content="step.tooltipContent"
+            <div
+              v-show="!hideSwitchButtonGroup"
+              class="flex items-center space-x-4"
             >
-              <QuestionMark />
-            </Tooltip>
+              <Switch
+                :on="step.enabled"
+                :disabled="step.required"
+                :value="step.value"
+                @handleToggleSwitch="handleToggleSwitch"
+              />
+              <Tooltip
+                :label="step.label"
+                :content="step.tooltipContent"
+              >
+                <QuestionMark />
+              </Tooltip>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <NavigationButtonGroup
-      hidden
-      v-show="!hideNavigationButtonGroup"
-      :send="send"
-      :disable-continue-button="isContinueButtonDisabled"
-    />
-  </div>
+  </NavigationProgressBarWrapper>
 </template>
 
 <script>
 import { computed } from "vue"
 import { useStore } from "vuex"
-import NavigationButtonGroup from "@/components/NavigationButtonGroup"
 import AppIcon from "@/components/AppIcon"
 import Switch from "@/base/Switch"
 import StepInfo from "@/components/StepIntro"
 import Tooltip from "@/base/Tooltip"
 import QuestionMark from "@/components/icons/QuestionMark"
+import NavigationProgressBarWrapper from "@/components/NavigationProgressBarWrapper"
 
 export default {
   name: "Phase",
   props: {
     currentState: String,
+    state: Object,
     isPhaseEntityLoaded: Boolean,
     isPhaseStepLoaded: Boolean,
     send: Function,
@@ -85,15 +87,15 @@ export default {
     hideStepInfo: Boolean,
     hideSwitchButtonGroup: Boolean,
     hideNavigationButtonGroup: Boolean,
-    stepHiddenOnSwitchOff: Boolean
+    stepHiddenOnSwitchOff: Boolean,
   },
   components: {
+    NavigationProgressBarWrapper,
     Tooltip,
     QuestionMark,
     StepInfo,
     Switch,
     AppIcon,
-    NavigationButtonGroup
   },
   setup(props) {
     const store = useStore()
@@ -118,13 +120,18 @@ export default {
       store.dispatch("toggleSwitch", { phaseName: props.phaseName, value })
     }
 
+    const handleClickNext = () => {
+      props.send("PHASE_NEXT");
+    }
+
     return {
       currentPhase,
       isContinueButtonDisabled,
       composeStepTitle,
-      handleToggleSwitch
+      handleToggleSwitch,
+      handleClickNext,
     }
-  }
+  },
 }
 </script>
 

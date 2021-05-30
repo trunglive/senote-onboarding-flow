@@ -2,6 +2,7 @@
   <div>
     <slot />
     <NavigationProgressBar
+      :hide-navigation-button-group="hideNavigationButtonGroup"
       :state="state"
       :send="send"
       @next="$emit('next')"
@@ -17,8 +18,9 @@ export default {
   props: {
     state: Object,
     send: Function,
+    hideNavigationButtonGroup: Boolean,
   },
-  emits: ["next"]
+  emits: ["next"],
 }
 </script>
 
