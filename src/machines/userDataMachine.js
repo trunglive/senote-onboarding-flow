@@ -76,11 +76,15 @@ export const userDataMachine = Machine(
       },
       stakeholderInterview: {
         on: {
-          NEXT: "userInterview",
+          STAKEHOLDER_INTERVIEW_NEXT: {
+            target: "#userInterview",
+            cond: { type: "formValid" },
+          },
           BACK: "prototypePhase",
         },
       },
       userInterview: {
+        id: "userInterview",
         on: {
           NEXT: "competitorAnalysis",
           BACK: "stakeholderInterview",

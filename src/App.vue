@@ -66,6 +66,7 @@
             :send="send"
             :is-phase-step-loaded="isPhaseStepLoaded"
             :current-state="state.value"
+            :state="state"
           />
           <UserInterview
             v-if="state.matches('userInterview')"

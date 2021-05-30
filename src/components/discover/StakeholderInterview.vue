@@ -1,47 +1,47 @@
 <template>
-  <div class="flex flex-col items-center justify-center">
-    <div class="space-y-10">
-      <TitleWrapper
-        title="What are the main marketing messages?"
-        required
-      >
-        <BaseInput
-          v-model="formData.marketingMessage"
-          :error="v$.marketingMessage.$error"
-          @blur="v$.marketingMessage.$touch"
-          placeholder="Add Answer..."
-        />
-      </TitleWrapper>
-      <TitleWrapper
-        :title="formData.checkboxData.title"
-        required
-      >
-        <BaseCheckboxGroup
-          v-model="formData.checkboxData.checked"
-          :name="formData.checkboxData.name"
-          :options="formData.checkboxData.options"
-          box-style
-          dynamic
-        />
-      </TitleWrapper>
+  <NavigationProgressBarWrapper
+    :state="state"
+    :send="send"
+    @next="handleClickNext"
+  >
+    <div class="flex flex-col items-center justify-center">
+      <div class="space-y-10">
+        <TitleWrapper
+          title="What are the main marketing messages?"
+          required
+        >
+          <BaseInput
+            v-model="formData.marketingMessage"
+            :error="v$.marketingMessage.$error"
+            @blur="v$.marketingMessage.$touch"
+            placeholder="Add Answer..."
+          />
+        </TitleWrapper>
+        <TitleWrapper
+          :title="formData.checkboxData.title"
+          required
+        >
+          <BaseCheckboxGroup
+            v-model="formData.checkboxData.checked"
+            :name="formData.checkboxData.name"
+            :options="formData.checkboxData.options"
+            box-style
+            dynamic
+          />
+        </TitleWrapper>
+      </div>
     </div>
-    <div class="pt-20 hidden">
-      <NavigationButtonGroup
-        :send="send"
-        :disable-continue-button="v$.$invalid"
-      />
-    </div>
-  </div>
+  </NavigationProgressBarWrapper>
 </template>
 
 <script>
-import { computed, reactive, toRefs } from "vue"
+import { reactive, toRefs } from "vue"
 import { required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
 
 import BaseInput from "@/base/BaseInput"
 import BaseCheckboxGroup from "@/base/BaseCheckboxGroup"
-import NavigationButtonGroup from "@/components/NavigationButtonGroup"
+import NavigationProgressBarWrapper from "@/components/NavigationProgressBarWrapper"
 import TitleWrapper from "@/base/wrapper/TitleWrapper"
 
 const checkboxData = {
@@ -51,54 +51,62 @@ const checkboxData = {
   options: [
     {
       value: "productDesign",
-      label: "Product Design"
+      label: "Product Design",
     },
     {
       value: "development",
-      label: "Development"
+      label: "Development",
     },
     {
       value: "branding",
-      label: "Branding"
+      label: "Branding",
     },
     {
       value: "marketing",
-      label: "Marketing"
+      label: "Marketing",
     },
     {
       value: "copyWriting",
-      label: "Copywriting"
-    }
-  ]
+      label: "Copywriting",
+    },
+  ],
 }
 
 export default {
-  components: { TitleWrapper, BaseInput, BaseCheckboxGroup, NavigationButtonGroup },
+  components: {
+    NavigationProgressBarWrapper,
+    TitleWrapper,
+    BaseInput,
+    BaseCheckboxGroup,
+  },
   props: {
     msg: String,
+    state: Object,
     send: Function,
-    currentState: String
+    currentState: String,
   },
   name: "StakeholderInterview",
-  setup() {
+  setup(props) {
     const formData = reactive({
       marketingMessage: "",
-      checkboxData
+      checkboxData,
     })
 
     const rules = {
       marketingMessage: {
-        required
+        required,
       },
     }
 
     const v$ = useVuelidate(rules, toRefs(formData))
 
-    return { formData, v$ }
-  }
+    const handleClickNext = () => {
+      props.send({ type: "STAKEHOLDER_INTERVIEW_NEXT", validation: v$ });
+    }
+
+    return { formData, v$, handleClickNext }
+  },
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
