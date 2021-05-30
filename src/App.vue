@@ -73,34 +73,40 @@
             :send="send"
             :is-phase-step-loaded="isPhaseStepLoaded"
             :current-state="state.value"
+            :state="state"
           />
           <CompetitorAnalysis
             v-if="state.matches('competitorAnalysis')"
             :send="send"
             :is-phase-step-loaded="isPhaseStepLoaded"
             :current-state="state.value"
+            :state="state"
           />
           <Personas
             v-if="state.matches('personas')"
             :send="send"
             :is-phase-step-loaded="isPhaseStepLoaded"
             :current-state="state.value"
+            :state="state"
           />
           <SolutionValuation
             v-if="state.matches('solutionValuation')"
             :send="send"
             :is-phase-step-loaded="isPhaseStepLoaded"
             :current-state="state.value"
+            :state="state"
           />
           <Flows
             v-if="state.matches('flows')"
             :send="send"
             :is-phase-step-loaded="isPhaseStepLoaded"
             :current-state="state.value"
+            :state="state"
           />
           <ConfirmTrial
             v-if="state.matches('confirmTrial')"
             :send="send"
+            :state="state"
           />
         </div>
       </div>

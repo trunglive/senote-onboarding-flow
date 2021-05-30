@@ -1,34 +1,41 @@
 <template>
-  <div class="flex flex-col items-center justify-center">
-    <div class="flex flex-col w-navigation-button mb-2">
-      <StepInfo :title="composeStepTitle()" />
+  <NavigationProgressBarWrapper
+    :state="state"
+    :send="send"
+    @next="handleClickNext"
+  >
+    <div class="flex flex-col items-center justify-center">
+      <div class="flex flex-col w-navigation-button mb-2">
+        <StepInfo :title="composeStepTitle()" />
+      </div>
     </div>
-    <NavigationButtonGroup
-      hidden
-      :send="send"
-    />
-  </div>
+  </NavigationProgressBarWrapper>
 </template>
 
 <script>
 import StepInfo from "@/components/StepIntro"
-import NavigationButtonGroup from "@/components/NavigationButtonGroup"
+import NavigationProgressBarWrapper from "@/components/NavigationProgressBarWrapper"
 
 export default {
   name: "ConfirmTrial",
   props: {
-    send: Function
+    send: Function,
   },
-  components: { StepInfo, NavigationButtonGroup },
-  setup() {
+  components: { NavigationProgressBarWrapper, StepInfo },
+  setup(props) {
     function composeStepTitle() {
       return "That’s it! You’re ready to go. Start your free 7-day trial."
     }
 
-    return {
-      composeStepTitle
+    const handleClickNext = () => {
+      props.send("CONFIRM_TRIAL_NEXT")
     }
-  }
+
+    return {
+      composeStepTitle,
+      handleClickNext,
+    }
+  },
 }
 </script>
 

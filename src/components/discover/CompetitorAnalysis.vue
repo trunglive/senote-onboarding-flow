@@ -1,84 +1,90 @@
 <template>
-  <div class="flex flex-col items-center justify-center">
-    <div class="space-y-10">
-      <TitleWrapper
-        :title="formData.summary.radioData.title"
-        required
-      >
-        <BaseRadioGroup
-          v-model="formData.summary.radioData.checked"
-          :name="formData.summary.radioData.name"
-          :options="formData.summary.radioData.options"
-          :model-value="formData.summary.radioData.checked"
-        />
-      </TitleWrapper>
-      <TitleWrapper
-        title="Website"
-        required
-      >
-        <BaseInput
-          v-model="formData.summary.website"
-          :error="v$.summary.website.$error"
-          @blur="v$.summary.website.$touch"
-          placeholder="Add website..."
-          custom-class="w-full"
-        />
-      </TitleWrapper>
-      <div class="flex space-x-6">
+  <NavigationProgressBarWrapper
+    :state="state"
+    :send="send"
+    @next="handleClickNext"
+  >
+    <div class="flex flex-col items-center justify-center">
+      <div class="space-y-10">
         <TitleWrapper
-          title="Year Founded"
+          :title="formData.summary.radioData.title"
           required
         >
-          <BaseInput
-            v-model="formData.summary.yearFounded"
-            :error="v$.summary.yearFounded.$error"
-            @blur="v$.summary.yearFounded.$touch"
-            placeholder="Add year founded..."
-            custom-class="w-52"
+          <BaseRadioGroup
+            v-model="formData.summary.radioData.checked"
+            :name="formData.summary.radioData.name"
+            :options="formData.summary.radioData.options"
+            :model-value="formData.summary.radioData.checked"
           />
         </TitleWrapper>
         <TitleWrapper
-          title="Active Users"
+          title="Website"
           required
         >
           <BaseInput
-            v-model="formData.summary.activeUsers"
-            :error="v$.summary.activeUsers.$error"
-            @blur="v$.summary.activeUsers.$touch"
-            placeholder="Add active users..."
-            custom-class="w-52"
+            v-model="formData.summary.website"
+            :error="v$.summary.website.$error"
+            @blur="v$.summary.website.$touch"
+            placeholder="Add website..."
+            custom-class="w-full"
           />
         </TitleWrapper>
+        <div class="flex space-x-6">
+          <TitleWrapper
+            title="Year Founded"
+            required
+          >
+            <BaseInput
+              v-model="formData.summary.yearFounded"
+              :error="v$.summary.yearFounded.$error"
+              @blur="v$.summary.yearFounded.$touch"
+              placeholder="Add year founded..."
+              custom-class="w-52"
+            />
+          </TitleWrapper>
+          <TitleWrapper
+            title="Active Users"
+            required
+          >
+            <BaseInput
+              v-model="formData.summary.activeUsers"
+              :error="v$.summary.activeUsers.$error"
+              @blur="v$.summary.activeUsers.$touch"
+              placeholder="Add active users..."
+              custom-class="w-52"
+            />
+          </TitleWrapper>
+          <TitleWrapper
+            title="Funding"
+            required
+          >
+            <BaseInput
+              v-model="formData.summary.funding"
+              :error="v$.summary.funding.$error"
+              @blur="v$.summary.funding.$touch"
+              placeholder="Add funding..."
+              custom-class="w-52"
+            />
+          </TitleWrapper>
+        </div>
+        <Switch
+          :on="formData.seoEnabled"
+          label="SEO Analysis"
+          @handleToggleSwitch="handleToggleSwitch"
+        />
         <TitleWrapper
-          title="Funding"
-          required
+          v-show="formData.seoEnabled"
+          :title="formData.summary.checkboxData.title"
         >
-          <BaseInput
-            v-model="formData.summary.funding"
-            :error="v$.summary.funding.$error"
-            @blur="v$.summary.funding.$touch"
-            placeholder="Add funding..."
-            custom-class="w-52"
+          <BaseCheckboxGroup
+            v-model="formData.summary.checkboxData.checked"
+            :name="formData.summary.checkboxData.name"
+            :options="formData.summary.checkboxData.options"
           />
         </TitleWrapper>
       </div>
-      <Switch
-        :on="formData.seoEnabled"
-        label="SEO Analysis"
-        @handleToggleSwitch="handleToggleSwitch"
-      />
-      <TitleWrapper
-        v-show="formData.seoEnabled"
-        :title="formData.summary.checkboxData.title"
-      >
-        <BaseCheckboxGroup
-          v-model="formData.summary.checkboxData.checked"
-          :name="formData.summary.checkboxData.name"
-          :options="formData.summary.checkboxData.options"
-        />
-      </TitleWrapper>
     </div>
-  </div>
+  </NavigationProgressBarWrapper>
 </template>
 
 <script>
@@ -86,6 +92,7 @@ import { reactive, toRefs } from "vue"
 import { required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
 
+import NavigationProgressBarWrapper from "@/components/NavigationProgressBarWrapper"
 import TitleWrapper from "@/base/wrapper/TitleWrapper"
 import BaseRadioGroup from "@/base/BaseRadioGroup"
 import BaseInput from "@/base/BaseInput"
@@ -99,13 +106,13 @@ const radioData = {
   options: [
     {
       value: "direct",
-      label: "Direct"
+      label: "Direct",
     },
     {
       value: "indirect",
-      label: "Indirect"
-    }
-  ]
+      label: "Indirect",
+    },
+  ],
 }
 
 const checkboxData = {
@@ -115,26 +122,34 @@ const checkboxData = {
   options: [
     {
       value: "visits",
-      label: "Visits"
+      label: "Visits",
     },
     {
       value: "uniqueVisitors",
-      label: "Unique Visitors"
+      label: "Unique Visitors",
     },
     {
       value: "pageViews",
-      label: "Page Views"
-    }
-  ]
+      label: "Page Views",
+    },
+  ],
 }
 
 export default {
   name: "CompetitorAnalysis",
-  components: { BaseCheckboxGroup, TitleWrapper, BaseRadioGroup, BaseInput, Switch },
-  props: {
-    send: Function
+  components: {
+    NavigationProgressBarWrapper,
+    TitleWrapper,
+    BaseCheckboxGroup,
+    BaseRadioGroup,
+    BaseInput,
+    Switch,
   },
-  setup() {
+  props: {
+    state: Object,
+    send: Function,
+  },
+  setup(props) {
     const formData = reactive({
       summary: {
         radioData,
@@ -142,24 +157,24 @@ export default {
         website: "",
         yearFounded: null,
         activeUsers: "",
-        funding: ""
+        funding: "",
       },
-      seoEnabled: true
+      seoEnabled: true,
     })
 
     const rules = {
       summary: {
         radioData: {
-          checked: required
+          checked: required,
         },
         checkboxData: {
-          checked: required
+          checked: required,
         },
         website: { required },
         yearFounded: { required },
         activeUsers: { required },
-        funding: { required }
-      }
+        funding: { required },
+      },
     }
 
     const v$ = useVuelidate(rules, toRefs(formData))
@@ -168,8 +183,12 @@ export default {
       formData.seoEnabled = !formData.seoEnabled
     }
 
-    return { formData, v$, handleToggleSwitch }
-  }
+    const handleClickNext = () => {
+      props.send({ type: "COMPETITOR_ANALYSIS_NEXT", validation: v$ })
+    }
+
+    return { formData, v$, handleToggleSwitch, handleClickNext }
+  },
 }
 </script>
 

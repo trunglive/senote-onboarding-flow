@@ -86,41 +86,65 @@ export const userDataMachine = Machine(
       userInterview: {
         id: "userInterview",
         on: {
-          NEXT: "competitorAnalysis",
+          USER_INTERVIEW_NEXT: {
+            target: "#competitorAnalysis",
+            cond: { type: "formValid" },
+          },
           BACK: "stakeholderInterview",
         },
       },
       competitorAnalysis: {
+        id: "competitorAnalysis",
         on: {
-          NEXT: "personas",
+          COMPETITOR_ANALYSIS_NEXT: {
+            target: "#personas",
+            cond: { type: "formValid" },
+          },
           BACK: "userInterview",
         },
       },
       personas: {
+        id: "personas",
         on: {
-          NEXT: "solutionValuation",
+          PERSONAS_NEXT: {
+            target: "#solutionValuation",
+            cond: { type: "formValid" },
+          },
           BACK: "competitorAnalysis",
         },
       },
       solutionValuation: {
+        id: "solutionValuation",
         on: {
-          NEXT: "flows",
+          SOLUTION_VALUATION_NEXT: {
+            target: "#flows",
+            cond: { type: "formValid" },
+          },
           BACK: "personas",
         },
       },
       flows: {
+        id: "flows",
         on: {
-          NEXT: "confirmTrial",
+          FLOWS_NEXT: {
+            target: "#confirmTrial",
+            cond: { type: "formValid" },
+          },
           BACK: "solutionValuation",
         },
       },
       confirmTrial: {
+        id: "confirmTrial",
         on: {
-          NEXT: "complete",
+          CONFIRM_TRIAL_NEXT: {
+            target: "#complete",
+            cond: { type: "formValid" },
+          },
           BACK: "flows",
         },
       },
       complete: {
+        id: "complete",
         on: {
           BACK: "confirmTrial",
         },
@@ -131,7 +155,8 @@ export const userDataMachine = Machine(
     guards: {
       formValid: (context, event) => {
         event.validation.value.$touch()
-        return !event.validation.value.$invalid
+        // return !event.validation.value.$invalid
+        return true // override in the meantime to go to NEXT step
       },
     },
   }
