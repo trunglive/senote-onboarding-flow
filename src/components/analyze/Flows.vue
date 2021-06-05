@@ -8,7 +8,6 @@
       <div class="space-y-10">
         <TitleWrapper
           title="What is your favorite color?"
-          required
         >
           <BaseSelect
             custom-class="w-72"
@@ -91,7 +90,9 @@ export default {
     }
 
     const handleClickNext = () => {
-      props.send({ type: "FLOWS_NEXT", validation: v$ })
+      // disable validation for now
+      // props.send({ type: "FLOWS_NEXT", validation: v$ })
+      props.send("FLOWS_NEXT")
     }
 
     return {

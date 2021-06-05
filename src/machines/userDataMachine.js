@@ -88,7 +88,8 @@ export const userDataMachine = Machine(
         on: {
           USER_INTERVIEW_NEXT: {
             target: "#competitorAnalysis",
-            cond: { type: "formValid" },
+            // disable validation for now
+            // cond: { type: "formValid" },
           },
           BACK: "stakeholderInterview",
         },
@@ -118,7 +119,8 @@ export const userDataMachine = Machine(
         on: {
           SOLUTION_VALUATION_NEXT: {
             target: "#flows",
-            cond: { type: "formValid" },
+            // disable validation for now
+            // cond: { type: "formValid" },
           },
           BACK: "personas",
         },
@@ -128,7 +130,8 @@ export const userDataMachine = Machine(
         on: {
           FLOWS_NEXT: {
             target: "#confirmTrial",
-            cond: { type: "formValid" },
+            // disable validation for now
+            // cond: { type: "formValid" },
           },
           BACK: "solutionValuation",
         },
@@ -155,8 +158,8 @@ export const userDataMachine = Machine(
     guards: {
       formValid: (context, event) => {
         event.validation.value.$touch()
-        // return !event.validation.value.$invalid
-        return true // override in the meantime to go to NEXT step
+        return !event.validation.value.$invalid
+        // return true // override in the meantime to go to NEXT step
       },
     },
   }

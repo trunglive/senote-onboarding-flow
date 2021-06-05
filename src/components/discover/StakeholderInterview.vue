@@ -19,7 +19,6 @@
         </TitleWrapper>
         <TitleWrapper
           :title="formData.checkboxData.title"
-          required
         >
           <BaseCheckboxGroup
             v-model="formData.checkboxData.checked"

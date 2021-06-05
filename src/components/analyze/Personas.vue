@@ -33,7 +33,7 @@
               :id="persona.id"
               :ref="persona.id"
               v-model="persona.value"
-              placeholder="Add persona..."
+              placeholder="Add a persona and hit ENTER"
               @enter="handleHitEnter"
               :disable-input="persona.entered"
             />
@@ -60,7 +60,7 @@ import { required } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
 import { v4 as uuidv4 } from "uuid"
 
-const minPersonas = 2
+const minPersonas = 1
 
 export default {
   name: "Personas",

@@ -8,7 +8,6 @@
       <div class="space-y-10">
         <TitleWrapper
           :title="formData.summary.radioData.title"
-          required
         >
           <BaseRadioGroup
             v-model="formData.summary.radioData.checked"
@@ -25,7 +24,7 @@
             v-model="formData.summary.website"
             :error="v$.summary.website.$error"
             @blur="v$.summary.website.$touch"
-            placeholder="Add website..."
+            placeholder="https://www.google.com"
             custom-class="w-full"
           />
         </TitleWrapper>
@@ -38,7 +37,7 @@
               v-model="formData.summary.yearFounded"
               :error="v$.summary.yearFounded.$error"
               @blur="v$.summary.yearFounded.$touch"
-              placeholder="Add year founded..."
+              placeholder="2009"
               custom-class="w-52"
             />
           </TitleWrapper>
@@ -50,19 +49,19 @@
               v-model="formData.summary.activeUsers"
               :error="v$.summary.activeUsers.$error"
               @blur="v$.summary.activeUsers.$touch"
-              placeholder="Add active users..."
+              placeholder="5000"
               custom-class="w-52"
             />
           </TitleWrapper>
           <TitleWrapper
-            title="Funding"
+            title="Funding (in USD)"
             required
           >
             <BaseInput
               v-model="formData.summary.funding"
               :error="v$.summary.funding.$error"
               @blur="v$.summary.funding.$touch"
-              placeholder="Add funding..."
+              placeholder="1000000"
               custom-class="w-52"
             />
           </TitleWrapper>
@@ -89,7 +88,7 @@
 
 <script>
 import { reactive, toRefs } from "vue"
-import { required } from "@vuelidate/validators"
+import { required, url, numeric, between } from "@vuelidate/validators"
 import { useVuelidate } from "@vuelidate/core"
 
 import NavigationProgressBarWrapper from "@/components/NavigationProgressBarWrapper"
@@ -170,10 +169,10 @@ export default {
         checkboxData: {
           checked: required,
         },
-        website: { required },
-        yearFounded: { required },
-        activeUsers: { required },
-        funding: { required },
+        website: { required, url },
+        yearFounded: { required, between: between(1000, 2021) },
+        activeUsers: { required, numeric },
+        funding: { required, numeric },
       },
     }
 

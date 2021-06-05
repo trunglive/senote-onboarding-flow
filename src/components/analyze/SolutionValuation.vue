@@ -8,7 +8,6 @@
       <div class="space-y-10">
         <TitleWrapper
           :title="data.solutionValuationData.title"
-          required
         >
           <div class="flex pt-4">
             <BaseRadioGroup
@@ -21,7 +20,6 @@
         </TitleWrapper>
         <TitleWrapper
           :title="data.roles.title"
-          required
         >
           <BaseSelect
             custom-class="w-72"
@@ -130,7 +128,9 @@ export default {
     }
 
     const handleClickNext = () => {
-      props.send({ type: "SOLUTION_VALUATION_NEXT", validation: v$ })
+      // disable validation for now
+      // props.send({ type: "SOLUTION_VALUATION_NEXT", validation: v$ })
+      props.send("SOLUTION_VALUATION_NEXT")
     }
 
     return {

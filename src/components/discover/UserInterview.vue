@@ -9,7 +9,6 @@
         <div class="flex space-x-4">
           <TitleWrapper
             title="Enter email"
-            required
           >
             <BaseInput
               v-model="formData.userInvitationGroup[0].userEmail"
@@ -21,7 +20,6 @@
           </TitleWrapper>
           <TitleWrapper
             :title="formData.spaceAccess.title"
-            required
           >
             <div class="min-h-80">
               <BaseSelect
@@ -33,7 +31,6 @@
           </TitleWrapper>
           <TitleWrapper
             :title="formData.permissionAccess.title"
-            required
           >
             <div class="min-h-80">
               <BaseSelect
@@ -185,7 +182,9 @@ export default {
     }
 
     const handleClickNext = () => {
-      props.send({ type: "USER_INTERVIEW_NEXT", validation: v$ })
+      // disable validation for now
+      // props.send({ type: "USER_INTERVIEW_NEXT", validation: v$ })
+      props.send("USER_INTERVIEW_NEXT")
     }
 
     return {

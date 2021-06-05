@@ -24,7 +24,7 @@ export default {
   components: { NavigationProgressBarWrapper, StepInfo },
   setup(props) {
     function composeStepTitle() {
-      return "That’s it! You’re ready to go. Start your free 7-day trial."
+      return "Thank you for completing the form. We will get in touch with you shortly."
     }
 
     const handleClickNext = () => {
